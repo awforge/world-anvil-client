@@ -1,0 +1,150 @@
+BlockTemplatePartRef:
+  type: object
+  title: Block Template Part
+  description: Basic identifing metadata of a statblock template part.
+  properties:
+    id: 
+      type: integer
+      format: int32
+      readOnly: true
+    title:
+      type: string
+      example: Block Template
+    slug:
+      type: string
+      nullable: true
+      readOnly: true
+    state:
+      type: string
+      nullable: true
+      readOnly: true
+    isWip:
+      type: string
+      nullable: true
+      readOnly: true
+    isDraft:
+      type: string
+      nullable: true
+      readOnly: true
+    entityClass:
+      type: string
+      enum: [BlockTemplatePart]
+      readOnly: true
+    icon:
+      type: string
+      nullable: true
+      readOnly: true
+    url:
+      type: string
+      nullable: true
+      readOnly: true
+    subscribergroups:
+      type: array
+      readOnly: true
+      example: []
+    folderId:
+      type: string
+      nullable: true
+      readOnly: true
+    tags:
+      type: string
+      nullable: true
+      readOnly: true
+    updateDate:
+      $ref: '../../schemas/date.yml'
+BlockTemplatePartReturnRef:
+  allOf:
+    - $ref: '#/BlockTemplatePartRef'
+    - type: object
+      title: Block Template Part - GR -1
+      description: Basic identifing metadata of a statblock template part.
+      properties:
+        isEditable:
+          type: string
+          nullable: true
+          readOnly: true
+        success:
+          type: string
+          nullable: true
+          readOnly: true
+BlockTemplatePart:
+  allOf:
+    - $ref: '#/BlockTemplatePartReturnRef'
+    - type: object
+      title: Block Template Part - GR 0
+      description: Full metadata of a statblock template part.
+      properties:
+        type:
+          type: string
+          enum: [string]
+        description:
+          type: string
+        placeholder:
+          type: string
+          nullable: true
+        required:
+          type: integer
+          enum: [0, 1]
+        cssClass:
+          type: string
+          nullable: true
+        position:
+          type: integer
+          format: int32
+        section:
+          type: string
+          nullable: true
+        rows:
+          type: integer
+          format: int32
+          nullable: true
+        renderer:
+          type: string
+          nullable: true
+        min:
+          type: integer
+          format: int32
+          nullable: true
+        max:
+          type: integer
+          format: int32
+          nullable: true
+        options:
+          type: string
+          nullable: true
+        trackable:
+          type: string
+          nullable: true
+BlockTemplatePartFull:
+  allOf:
+    - $ref: '#/BlockTemplatePart'
+    - type: object
+      title: Block Template Part - GR 2
+      description: Full schema of a statblock template part.
+      properties:
+        template:
+          $ref: 'blocktemplate.yml#/BlockTemplateRef'
+BlockTemplatePartUpdate:
+  allOf:
+    - $ref: '#/BlockTemplatePart'
+    - type: object
+      title: Block Template Part - Update
+      description: Update schema of a statblock template part.
+      properties:
+        template:
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int32
+BlockTemplatePartCreate:
+  allOf: 
+    - $ref: '#/BlockTemplatePartUpdate'
+    - type: object
+      title: Block Template Part - Create
+      description: Create schema of a statblock template part.
+      required:
+        - title
+        - type
+        - template
+      

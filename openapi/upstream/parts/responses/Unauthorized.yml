@@ -1,0 +1,14 @@
+description: 'Unauthorized. Application key or auth token provided is invalid, revoked or was not provided with the request.'
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        success:
+          type: boolean
+          nullable: false
+          default: false
+        error:
+          type: string
+          nullable: false
+          default: 'access_denied_auth_failed'

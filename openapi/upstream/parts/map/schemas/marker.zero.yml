@@ -1,0 +1,87 @@
+type: object
+title: Map Marker (Pin) - GR 0
+description: Metadata and content of a map marker (pin).
+properties:
+  id: 
+    type: string
+    format: uuid
+  title: 
+    type: string
+    example: "Marker Title"
+  slug: 
+    type: string
+    nullable: true
+  state: 
+    type: string
+    enum: [ private, public ]
+  isWip: 
+    type: boolean
+    nullable: true
+  isDraft: 
+    type: boolean
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ Marker ]
+  icon: 
+    type: string
+    enum: [ "fa-solid fa-location-dot" ]
+  url: 
+    type: string
+    nullable: true
+  subscribergroups:
+    type: array
+    items:
+      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+    example: []
+  folderId: 
+    type: string
+    nullable: true
+  tags: 
+    type: string
+    example: "#tag,#tags2"
+  updateDate: 
+    $ref: '../../schemas/date.yml'
+  description: 
+    type: string
+    example: "Description"
+  position:
+    type: integer
+    example: 121
+  htmlMarker:
+    type: string
+    example: "<icon class='fa-solid fa-location-dot'></icon>"
+  seeded:
+    type: string
+    example: "Storyteller Seeds. Secret information only visible to the author."
+  creationDate:
+    $ref: '../../schemas/date.yml'
+  isDeleted:
+    type: boolean
+    nullable: true
+  type:
+    type: string
+    nullable: true
+    example: null
+  isDirectLink:
+    type: boolean
+    example: false
+  isDraggable:
+    type: boolean
+    example: true
+  labelTitle:
+    type: string
+    nullable: true
+    example: "Label Title"
+  labelType:
+    type: string
+    enum: [ "label-default", "label-bow", "label-wob",  "label-kadwa1", "label-kadwa2", "label-kadwa3" ]
+  className:  
+    type: string
+    example: "css-class-name"
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true  

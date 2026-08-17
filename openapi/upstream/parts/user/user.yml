@@ -1,0 +1,79 @@
+user:
+  get:
+    tags:
+      - User
+    summary: Read User
+    description: |-
+      Retrieve the metadata of a user. Use the granularity parameter to specify the amount of data you want to receive.
+    operationId: readUser
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: granularity
+        in: query
+        required: true
+        schema:
+          type: string
+          enum: ['-1', '0', '2']
+          example: '-1'
+    requestBody:
+    responses:
+      '200':
+        description: 'A user object. The included fields depend on the chosen granularity.'
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: 'schemas/user.ref.yml'
+                - $ref: 'schemas/user.zero.yml'
+                - $ref: 'schemas/user.two.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  patch:
+    tags:
+      - User
+    summary: Update User
+    description: >-
+      Update the metadata of a user. Check the schema for all available fields.
+    operationId: updateUser
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/user.two.yml'
+    responses:
+      '200':
+        description: 'Returns the basic reference object of the updated user.'
+        schema:
+          $ref: 'schemas/user.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

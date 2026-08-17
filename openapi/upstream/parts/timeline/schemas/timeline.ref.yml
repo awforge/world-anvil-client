@@ -1,0 +1,47 @@
+type: object
+title: Timeline Reference Schema - GR -1
+description: The basic timeline reference schema with the core metadata
+properties:
+  id: 
+    type: string
+    format: uuid
+  title: 
+    type: string
+    example: "Test Timeline Creation"
+  slug: 
+    type: string
+    example: "test-timeline-creation-timeline"
+  state: 
+    type: string
+    enum: [ public, private ]
+  isWip: 
+    type: boolean
+  isDraft: 
+    type: boolean
+  entityClass: 
+    type: string
+    enum: [ Timeline ]
+  icon: 
+    type: string
+    enum: ["fa-solid fa-timeline"]
+  url: 
+    type: string
+    example: "http://www.worldanvil.com/w/<world-slug>/t/<timeline-slug>"
+  subscribergroups:
+    type: array
+    items:
+      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+  folderId: 
+    type: string
+    format: uuid
+  tags: 
+    type: string
+    example: "tag,tag2"
+  updateDate: 
+    $ref: '../../schemas/date.yml'
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true  

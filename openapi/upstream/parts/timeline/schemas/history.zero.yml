@@ -1,0 +1,116 @@
+type: object
+title: History Reference Schema - GR 0
+description: Reference schema with all the metadata of the historical event.
+properties:
+  id: 
+    type: string
+    format: uuid
+  title: 
+    type: string
+    example: "History Title"
+  slug: 
+    type: string
+    nullable: true
+  state: 
+    type: string
+    enum: [ private, public ]
+  isWip: 
+    type: boolean
+    nullable: true
+  isDraft: 
+    type: boolean
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ HistoricalEntry ]
+  icon: 
+    type: string
+    enum: [ "fa-solid fa-calendar-lines-pen" ]
+  url: 
+    type: string
+    example: "https://www.worldanvil.com/w/<world-slug>/h/<id>"
+  subscribergroups:
+    type: array
+    items:
+      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+    example: []
+  folderId: 
+    type: string
+    nullable: true
+  tags: 
+    type: string
+    nullable: true
+    example: "tag1,tag2,tag3"
+  updateDate: 
+    $ref: '../../schemas/date.yml'
+  significance: 
+    type: integer
+    format: int32
+    minimum: 0
+    maximum: 5
+    example: 2
+  year: 
+    type: string
+    example: "1"
+  month: 
+    type: integer
+    nullable: true
+    format: int32
+    example: 1
+  day: 
+    type: integer
+    nullable: true
+    format: int32
+    example: 1
+  hour: 
+    type: integer
+    nullable: true
+    format: int32
+    example: 1
+  minute: 
+    type: string
+    nullable: true
+    format: int32
+    example: 1
+  endingYear: 
+    type: string
+    example: "2"
+  endingMonth: 
+    type: integer
+    nullable: true
+    format: int32
+    example: 1
+  endingDay: 
+    type: integer
+    nullable: true
+    format: int32
+    example: 1
+  endingHour: 
+    type: integer
+    nullable: true
+    format: int32
+    example: 1
+  endingMinute: 
+    type: integer
+    nullable: true
+    format: int32
+    example: 1
+  lane:
+    type: string
+    nullable: true
+  backgroundColor: 
+    type: string
+    nullable: true
+  category:
+    $ref: history.category.schema.yml
+  displayRange: 
+    type: boolean
+  alternativeDisplayRange: 
+    type: string
+    example: Alternative display name
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true

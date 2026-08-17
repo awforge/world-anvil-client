@@ -1,0 +1,44 @@
+user-blocktemplates:
+  post:
+    tags:
+      - Block Template
+    summary: List Block Templates By User
+    description: Retrieve a list of statblock templates by user. This endpoint is paginated.
+    operationId: listBlockTemplatesByUser
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/limit.yml#/General'
+    responses:
+      '200':
+        description: List of statblock templates
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                entities:
+                  type: array
+                  items:
+                    $ref: 'schemas/blocktemplate.yml#/BlockTemplateRef'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

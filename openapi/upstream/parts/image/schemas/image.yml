@@ -1,0 +1,178 @@
+ImageRef:
+  type: object
+  title: Image Reference
+  description: Basic identifing metadata of an image.
+  properties:
+    id: 
+      type: integer
+      format: int32
+      nullable: false
+    title: 
+      type: string
+      example: "Image Title"
+    slug: 
+      type: string
+      nullable: true
+    state: 
+      type: string
+      enum: [ private, public ]
+    isWip: 
+      type: boolean
+      nullable: true
+    isDraft: 
+      type: boolean
+      nullable: true
+    entityClass: 
+      type: string
+      enum: [ Image ]
+    icon: 
+      type: string
+      enum: [ "fa-solid fa-image" ]
+    url: 
+      type: string
+      example: "https://www.worldanvil.com/uploads/images/<image-id>.<image-extension>"
+    subscribergroups:
+      type: array
+      items:
+        $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+      example: []
+    folderId: 
+      type: string
+      nullable: true
+    tags: 
+      type: string
+      nullable: true
+      example: "tag1,tag2,tag3"
+    updateDate: 
+      $ref: '../../schemas/date.yml'
+ImageReturnRef:
+  allOf:
+    - $ref: '#/ImageRef'
+    - type: object
+      title: Image - GR -1
+      description: Basic identifing metadata of an image returned when the granularity is set to -1.
+      properties:
+        isEditable: 
+          type: boolean
+          example: true
+          readOnly: true
+        success: 
+          type: boolean
+          example: true
+          readOnly: true
+Image:
+  allOf:
+    - $ref: '#/ImageReturnRef'
+    - type: object
+      title: Image - GR 0
+      description: Most of the metadata of an image returned when the granularity is set to 0.
+      properties:
+          filename: 
+            type: string
+            example: "<image-hash>.<extension>"
+            readOnly: true
+          path: 
+            type: string
+            example: "/uploads/images"
+            readOnly: true
+          size: 
+            type: integer
+            format: int32
+            readOnly: true
+          width: 
+            type: integer
+            format: int32
+            readOnly: true
+          height: 
+            type: integer
+            format: int32
+            readOnly: true
+          extension: 
+            type: string
+            enum: [webp, png, jpg, jpeg, gif]
+            readOnly: true
+          description: 
+            type: string
+            example: "Text of description."
+          alt: 
+            type: string
+            example: "Alt Text"
+          creditArtistName: 
+            type: string
+            example: "Name of the artist."
+          creditArtistWebsite: 
+            type: string
+            example: "Webiste of the artist."
+          creditArtTitle: 
+            type: string
+            example: "Title of the image."
+          creditArtUrl: 
+            type: string
+            example: "Url to the original website or location of the image."
+          creationDate:
+            $ref: '../../schemas/date.yml'
+          views: 
+            type: integer
+            format: int32
+            nullable: true
+            readOnly: true
+          likes: 
+            type: integer
+            format: int32
+            nullable: true
+            readOnly: true
+          isFeatured: 
+            type: boolean
+          linkUrl: 
+            type: string
+            example: "https://example.org"
+          pageUrl: 
+            type: string
+            example: "https://www.worldanvil.com/i/<id>"
+            readOnly: true
+ImageFull:
+  allOf:
+    - $ref: '#/Image'
+    - type: object
+      title: Image - GR 2
+      description: Full metadata of an image returned when the granularity is set to 2.
+      properties:
+        article:
+          $ref: '../../article/schemas/article.yml#/ArticleRef'
+        owner:
+          $ref: '../../user/schemas/user.ref.yml'
+        world:
+          $ref: '../../world/schemas/world.ref.yml'
+        charater:
+          $ref: '../../schemas/character.ref.yml'
+        gallieries:
+          type: array
+          items:
+            $ref: 'gallery.yml#/GalleryRef'
+          example: []
+          readOnly: true
+ImageUpdate:
+  allOf:
+    - $ref: '#/Image'
+    - type: object
+      title: Image Update
+      description: All the fields that can be updated in an image.
+      properties:
+        article:
+          type: object
+          properties:
+            id: 
+              type: string
+              format: uuid
+        world:
+          type: object
+          properties:
+            id: 
+              type: string
+              format: uuid
+        charater:
+          type: object
+          properties:
+            id: 
+              type: string
+              format: uuid

@@ -1,0 +1,43 @@
+type: object
+title: Character Reference Schema
+description: >-
+  The reference schema of a hero character.
+properties:
+  id: 
+    type: string
+    format: uuid
+  title: 
+    type: string
+    example: Name of Character
+  slug: 
+    type: string
+    example: '<id>'
+  state: 
+    type: string
+    enum: [visible, hidden]
+  isWip: 
+    type: string
+    nullable: true
+  isDraft: 
+    type: string
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [Character]
+  icon: 
+    type: string
+    enum: ["fa-solid fa-mask"]
+  url: 
+    type: string
+    example: 'http://www.worldanvil.com/hero/<id>'
+  subscribergroups:
+    type: array
+    example: []
+  folderId: 
+    type: string
+    example: "-1"
+  tags: 
+    type: string
+    nullable: true
+  updateDate:
+    $ref: 'date.yml'

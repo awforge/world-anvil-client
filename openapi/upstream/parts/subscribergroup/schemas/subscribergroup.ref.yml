@@ -1,0 +1,51 @@
+type: object
+title: SubscriberGroup Reference Schema - GR -1
+description: >-
+  The most basic subscriber group schema, it just contains the most basic metadata. Is returned when the granularity is set to -1 and is used as a reference in the other schemas.
+properties: 
+  id: 
+    type: string
+    format: uuid
+  title: 
+    type: string
+    example: Campaign Players
+  slug: 
+    type: string
+    nullable: true
+    readOnly: true
+  state: 
+    type: string
+    nullable: true
+    readOnly: true
+  entityClass: 
+    type: string
+    enum: [ SubscriberGroup]
+    readOnly: true
+  icon: 
+    type: string
+    nullable: true
+    readOnly: true
+  url: 
+    type: string
+    nullable: true
+    readOnly: true
+  subscribergroups: 
+    type: array
+    example: []
+    readOnly: true
+  folderId: 
+    type: string
+    nullable: true
+    example: "-1"
+  tags: 
+    type: string
+    nullable: true
+    example: "tag1,tag2,tag3"
+  updateDate: 
+    $ref: '../../schemas/date.yml'
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true

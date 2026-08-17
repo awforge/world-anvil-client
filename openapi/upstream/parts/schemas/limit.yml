@@ -1,0 +1,36 @@
+General:
+  type: object
+  properties:
+    limit:
+      type: string
+      minimum: 1
+      maximum: 50
+      example: 50
+    offset:
+      type: string
+      minimum: 0
+      example: 0
+  required:
+    - limit
+    - offset
+Articles:
+  type: object
+  required:
+    - limit
+    - offset
+  properties:
+    limit:
+      type: string
+      minimum: 1
+      maximum: 50
+      example: 50
+    offset:
+      type: string
+      minimum: 0
+      example: 0
+    category:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "-1"

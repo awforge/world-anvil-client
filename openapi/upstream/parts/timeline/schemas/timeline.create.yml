@@ -1,0 +1,77 @@
+type: object
+title: Timeline Create Schema
+description: All the fields here can be used when creating a timeline and which fields are required.
+properties:
+  title: 
+    type: string
+    example: "Test Timeline Creation"
+  state: 
+    type: string
+    enum: [ public, private ]
+  subscribergroups:
+    type: array
+    items:
+      id:
+        type: string
+        format: uuid
+  tags: 
+    type: string
+    example: "tag,tag2"
+  histories:
+    type: array
+    items:
+      id:
+        type: string
+        format: uuid
+  description:
+    type: string
+    example: "Description"
+  utdOffset:
+    type: string
+    example: "0"
+  type:
+    type: string
+    enum: [ parallel, master ]
+  showInToc:
+    type: boolean
+  world:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  article:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  category:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  calendar:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+  eras:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+  author:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+required:
+  - title
+  - world

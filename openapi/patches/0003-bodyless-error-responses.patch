@@ -1,0 +1,98 @@
+diff --git a/parts/responses/Forbidden.yml b/parts/responses/Forbidden.yml
+index 46749ae..62984fb 100644
+--- a/parts/responses/Forbidden.yml
++++ b/parts/responses/Forbidden.yml
+@@ -1,14 +1 @@
+ description: 'Access forbidden. The user is not allowed to access the resource.'
+-content:
+-  application/json:
+-    schema:
+-      type: object
+-      properties:
+-        success:
+-          type: boolean
+-          nullable: false
+-          default: false
+-        error:
+-          type: string
+-          nullable: false
+-          default: 'access_denied'
+\ No newline at end of file
+diff --git a/parts/responses/NotFound.yml b/parts/responses/NotFound.yml
+index 80075ac..ea300f0 100644
+--- a/parts/responses/NotFound.yml
++++ b/parts/responses/NotFound.yml
+@@ -1,14 +1 @@
+ description: 'Not found. The URI requested is invalid or the resource requested, such as a world, does not exists.'
+-content:
+-  application/json:
+-    schema:
+-      type: object
+-      properties:
+-        success:
+-          type: boolean
+-          nullable: false
+-          default: false
+-        error:
+-          type: string
+-          nullable: false
+-          default: 'resource_not_found'
+\ No newline at end of file
+diff --git a/parts/responses/Unauthorized.yml b/parts/responses/Unauthorized.yml
+index 56d3c47..ea892d9 100644
+--- a/parts/responses/Unauthorized.yml
++++ b/parts/responses/Unauthorized.yml
+@@ -1,14 +1 @@
+ description: 'Unauthorized. Application key or auth token provided is invalid, revoked or was not provided with the request.'
+-content:
+-  application/json:
+-    schema:
+-      type: object
+-      properties:
+-        success:
+-          type: boolean
+-          nullable: false
+-          default: false
+-        error:
+-          type: string
+-          nullable: false
+-          default: 'access_denied_auth_failed'
+\ No newline at end of file
+diff --git a/parts/responses/UnprocessableEntity.yml b/parts/responses/UnprocessableEntity.yml
+index f32f166..9483589 100644
+--- a/parts/responses/UnprocessableEntity.yml
++++ b/parts/responses/UnprocessableEntity.yml
+@@ -1,32 +1 @@
+ description: 'Unprocessable Entity. The request was well-formed but was unable to be followed due to semantic errors. Update the request and try again.'
+-content:
+-  application/json:
+-    schema:
+-      type: object
+-      properties:
+-        success:
+-          type: boolean
+-          nullable: false
+-          default: false
+-        status:
+-          type: string
+-          nullable: false
+-          default: 'Unprocessable Data provided'
+-        error:
+-          type: object
+-          nullable: false
+-          properties:
+-            summary:
+-              type: string
+-              nullable: false
+-            traceStack:
+-              type: string
+-              nullable: false
+-    example:
+-      summary: 'Example of an unprocessable entity response'
+-      value:
+-        success: false
+-        status: Unprocessable Data provided
+-        error:
+-          summary: 'A short summary of what the error is.'
+-          traceStack: 'The tracestack of the error. Use this to report a bug if you cannot figure out what is wrong.'
+\ No newline at end of file

@@ -1,0 +1,56 @@
+PromptRef:
+  type: object
+  title: Prompt
+  description: Worldbuilding prompt resource.
+  readOnly: true
+  properties:
+    id: 
+      type: string
+      format: uuid
+      nullable: false
+      isReadOnly: true
+    title: 
+      type: string
+      example: "Worldbuilding Prompt Name"
+      isReadOnly: true
+    slug: 
+      type: string
+      nullable: true
+      isReadOnly: true
+    state: 
+      type: string
+      nullable: true
+      isReadOnly: true
+    isWip: 
+      type: boolean
+      nullable: true
+      isReadOnly: true
+    isDraft: 
+      type: boolean
+      nullable: true
+      isReadOnly: true
+    entityClass: 
+      type: string
+      enum: [ Prompt ]
+      isReadOnly: true
+    icon: 
+      type: string
+      isReadOnly: true
+    url: 
+      type: string
+      nullable: true
+      isReadOnly: true
+    subscribergroups:
+      type: array
+      example: []
+      isReadOnly: true
+    folderId: 
+      type: string
+      nullable: true
+      isReadOnly: true
+    tags: 
+      type: string
+      nullable: true
+      isReadOnly: true
+    updateDate: 
+      $ref: 'date.yml'

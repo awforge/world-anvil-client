@@ -1,0 +1,26 @@
+type: object
+properties: 
+  page: 
+    type: object
+    properties: 
+      id: 
+        type: string
+        example: page
+      name: 
+        type: string
+        example: Page 1
+      shapes: 
+        type: object
+        additionalProperties: false
+        patternProperties:
+          '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$':
+            type: object
+            description: A shape object.
+            properties:
+              oneOf:
+                - $ref: 'canvas.shape.type.draw.yml'
+                - $ref: 'canvas.shape.type.arrow.yml'
+                - $ref: 'canvas.shape.type.sticky.yml'
+                - $ref: 'canvas.shape.type.text.yml'
+                - $ref: 'canvas.shape.type.block.yml'
+                - $ref: 'canvas.shape.type.rectangle.yml'

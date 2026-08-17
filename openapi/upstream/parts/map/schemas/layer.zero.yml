@@ -1,0 +1,58 @@
+type: object
+title: Map Layer Reference Schema - GR 0
+description: Returned map layer resource when the granularity is set to 0.
+properties:
+  id: 
+    type: string
+    format: uuid
+    nullable: false
+  title: 
+    type: string
+    example: "Layer Title"
+  slug: 
+    type: string
+    nullable: true
+  state: 
+    type: string
+    enum: [ private, public ]
+  isWip: 
+    type: boolean
+    nullable: true
+  isDraft: 
+    type: boolean
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ Layer ]
+  icon: 
+    type: string
+    enum: [ "fa-solid fa-layer-group" ]
+  url: 
+    type: string
+    nullable: true
+  subscribergroups:
+    type: array
+    items:
+      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+    example: []
+  folderId: 
+    type: string
+    example: "-1"
+  tags: 
+    type: string
+    example: ""
+  updateDate: 
+    $ref: '../../schemas/date.yml'
+  description: 
+    type: string
+    example: "Description"
+  position: 
+    type: integer
+    format: int32
+    example: 0
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true  

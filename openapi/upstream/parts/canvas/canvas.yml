@@ -1,0 +1,138 @@
+canvas:
+  get:
+    tags:
+      - Canvas
+    summary: Read Canvas
+    description: Retrieve the metadata of a single whiteboard. The returned fields depend on the given granularity.
+    operationId: readCanvas
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: granularity
+        in: query
+        required: true
+        schema:
+          type: string
+          enum: [ '-1', '0', '2' ]
+    responses:
+      '200':
+        description: 'The whiteboard metadata.'
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: 'schemas/canvas.ref.yml'
+                - $ref: 'schemas/canvas.zero.yml'
+                - $ref: 'schemas/canvas.two.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  put:
+    tags:
+      - Canvas
+    summary: Create Canvas
+    description: Create a new whiteboard. Required parameters for the creation of this entity are "title" and "world".
+    operationId: createCanvas
+    requestBody:
+      content:
+        application/json:
+          schema:
+    responses:
+      '200':
+        description: 'Reference to the newly created whiteboard.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/canvas.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  delete:
+    tags:
+      - Canvas
+    summary: Delete Canvas
+    description: Delete a whiteboard. This process is not reversible.
+    operationId: deleteCanvas
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+    responses:
+      '200':
+        description: 'Whiteboard was deleted successfully.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  patch:
+    tags:
+      - Canvas
+    summary: Update Canvas
+    description: Update a whiteboard metadata and its content.
+    operationId: updateCanvas
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+    responses:
+      '200':
+        description: 'The reference object of the updated whiteboard.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/canvas.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

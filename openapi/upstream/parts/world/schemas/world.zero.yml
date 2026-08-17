@@ -1,0 +1,116 @@
+type: object
+title: World Reference Schema - GR 0
+description: >-
+  The world schema with its core settings and metadata.
+properties:
+  id: 
+    type: string
+    format: uuid
+    nullable: false
+  title: 
+    type: string
+    example: "A Bright New World"
+  slug: 
+    type: string
+    example: "a-bright-new-world-username"
+  state: 
+    type: string
+    enum: [ private, public ]
+  isWip: 
+    type: boolean
+    nullable: true
+  isDraft: 
+    type: boolean
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ World ]
+  icon: 
+    type: string
+    enum: [ "fa-solid fa-globe-stand" ]
+  url: 
+    type: string
+    example: "https://worldanvil.com/w/a-bright-new-world-username"
+  subscribergroups:
+    type: array
+    items:
+      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+  folderId: 
+    type: string
+    example: "-1"
+  tags: 
+    type: string
+    example: "tag1,tag2,tag3"
+  updateDate: 
+    $ref: '../../schemas/date.yml'
+  descriptionParsed: 
+    type: string
+    nullable: true
+    example: "This is a test"
+  owner: 
+    $ref: '../../user/schemas/user.ref.yml'
+  countFollowers: 
+    type: integer
+    format: int32
+  countArticles: 
+    type: integer
+    format: int32
+  countMaps: 
+    type: integer
+    format: int32
+  countTimelines: 
+    type: integer
+    format: int32
+  subtitle: 
+    type: string
+    nullable: true
+  locale: 
+    type: string
+  description: 
+    type: string
+    nullable: true
+  excerpt: 
+    type: string
+    nullable: true
+  isStored: 
+    type: boolean
+  displayCss: 
+    type: string
+    format: css
+    nullable: true
+  displayPanelCss: 
+    type: string
+    format: css
+    nullable: true
+  copyright: 
+    type: string
+    nullable: true
+  worldSidebarContent: 
+    type: string
+    nullable: true
+  globalAnnouncement: 
+    type: string
+    nullable: true
+  globalHeader: 
+    type: string
+    nullable: true
+  globalSidebarFooter: 
+    type: string
+    nullable: true
+  globalArticleIntroduction: 
+    type: string
+    nullable: true
+  cover:
+    $ref: '../../image/schemas/image.yml#/ImageRef'
+  genres:
+    type: array
+    items:
+      $ref: 'genre.ref.yml'
+  theme:
+    $ref: 'theme.ref.yml'
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true

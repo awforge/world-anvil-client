@@ -1,0 +1,45 @@
+type: object
+title: Genre
+description: The schema for a world genre.
+properties:
+  id: 
+    type: string
+    format: uuid
+    nullable: false
+  title: 
+    type: string
+    example: "Fantasy, Urban"
+  slug: 
+    type: string
+    nullable: true
+  state: 
+    type: string
+    nullable: true
+  isWip: 
+    type: boolean
+    nullable: true
+  isDraft: 
+    type: boolean
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ Genre ]
+  icon: 
+    type: string
+    enum: [ "fa-solid fa-film-simple" ]
+  url: 
+    type: string
+    nullable: true
+  subscribergroups:
+    type: array
+    example: []
+  folderId: 
+    type: string
+    nullable: true
+    example: "null"
+  tags: 
+    type: string
+    nullable: true
+    example: "null"
+  updateDate: 
+    $ref: '../../schemas/date.yml'

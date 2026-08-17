@@ -1,0 +1,110 @@
+manuscript-tag:
+  get:
+    tags:
+      - Manuscript Tag
+    summary: Read Manuscript Tag
+    description: |-
+      Get the data of a single manuscript tag.  
+      Granularity range is -1 to 2.
+    operationId: readManuscriptTag
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: '{{manuscriptTagId}}'
+      - name: granularity
+        in: query
+        schema:
+          type: string
+          example: '-1'
+    requestBody:
+      content:
+        text/plain:
+          example: ''
+    responses:
+      '200':
+        description: ''
+  put:
+    tags:
+      - Manuscript Tag
+    summary: Create Manuscript Tag
+    description: >-
+      Create a new manuscript tag. Required parameters for the creation of
+      this entity are "manuscript".
+    operationId: createManuscriptTag
+    parameters:
+      - name: ''
+        in: query
+        schema:
+          type: string
+          example: ''
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              manuscript:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: '{{manuscriptId}}'
+              title:
+                type: string
+                example: Horror
+          example:
+            manuscript:
+              id: '{{manuscriptId}}'
+            title: Horror
+    responses:
+      '200':
+        description: ''
+  delete:
+    tags:
+      - Manuscript Tag
+    summary: Delete Manuscript Tag
+    description: Delete a manuscript tag.
+    operationId: deleteManuscriptTag
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: '{{manuscriptTagId}}'
+    requestBody:
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties: {}
+    responses:
+      '200':
+        description: ''
+  patch:
+    tags:
+      - Manuscript Tag
+    summary: Update Manuscript Tag
+    description: Update (patch) the content of a manuscript tag.
+    operationId: updateManuscriptTag
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: '{{manuscriptTagId}}'
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                example: Gothic Horror
+          example:
+            title: Gothic Horror
+    responses:
+      '200':
+        description: ''

@@ -1,0 +1,104 @@
+id: 
+  type: string
+  format: uuid
+name: 
+  type: string
+  example: Block
+size: 
+  type: array
+  items:
+    type: integer
+    format: int32
+type: 
+  type: string
+  enum: [ block ]
+asset: 
+  type: object
+  properties: 
+    id: 
+      type: string
+      format: uuid
+    src: 
+      type: string
+    size: 
+      type: array
+      items:
+        type: integer
+        format: int32
+    type: 
+      type: string
+      enum: [ block ]
+    block: 
+      type: object
+      properties: 
+        uuid: 
+          type: string
+          format: uuid
+        tlUrl: 
+          type: string
+        tlIcon: 
+          type: string
+        excerpt: 
+          type: string
+        rawData:
+          type: object
+          description: |
+            This is the raw data of the selected resource of this block. It is a JSON object that can be used to render the resource in the frontend. The properties
+            present depend on the type of resource. The id property is always present and is the id of the resource.
+          properties: 
+            id: 
+              type: string
+              format: uuid
+        tlTitle: 
+          type: string
+        template: 
+          type: string
+          enum: [ Event ]
+        tlWaType: 
+          type: string
+          enum: [ events ]
+        blockType: 
+          type: string
+          enum: [ DEFAULT ]
+        tlBgColor: 
+          type: string
+          example: "#000000"
+        tlShowText: 
+          type: boolean
+point: 
+  type: array
+  items:
+    type: integer
+    format: int32
+style:
+  $ref: './canvas.shape.style.yml'
+assetId: 
+  type: string
+  example: assetId
+maxWidth: 
+  type: integer
+  format: int32
+  example: 640
+minWidth: 
+  type: integer
+  format: int32
+  example: 320
+parentId: 
+  type: string
+  example: page
+rotation: 
+  type: integer
+  format: int32
+  example: 0
+maxHeight: 
+  type: integer
+  format: int32
+  example: 384
+minHeight: 
+  type: integer
+  format: int32
+  example: 192
+childIndex: 
+  type: integer
+  format: int32
+  example: 8

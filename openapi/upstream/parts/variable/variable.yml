@@ -1,0 +1,166 @@
+variable:
+  get:
+    tags:
+      - Variable
+    summary: Read Variable
+    description: |-
+      Get the data of a single variable.  
+      Granularity range is -1 to 2.
+    operationId: readVariable
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: '{{variableId}}'
+      - name: granularity
+        in: query
+        schema:
+          type: string
+          example: '-1'
+    requestBody:
+      content:
+        text/plain:
+          example: ''
+    responses:
+      '200':
+        description: ''
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  put:
+    tags:
+      - Variable
+    summary: Create Variable
+    description: >-
+      Create a new variable. Required parameters for the creation of this
+      entity are "title", "templateType" and "world".
+    operationId: createVariable
+    parameters:
+      - name: ''
+        in: query
+        schema:
+          type: string
+          example: ''
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              collection:
+                type: string
+                example: '{{variableCollectionId}}'
+              k:
+                type: string
+                example: key
+              type:
+                type: string
+                example: string
+              v:
+                type: string
+                example: value
+              world:
+                type: string
+                example: '{{worldId}}'
+          example:
+            collection: '{{variableCollectionId}}'
+            k: key
+            type: string
+            v: value
+            world: '{{worldId}}'
+    responses:
+      '200':
+        description: ''
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  delete:
+    tags:
+      - Variable
+    summary: Delete Variable
+    description: Delete a variable.
+    operationId: deleteVariable
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: '{{variableId}}'
+    requestBody:
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties: {}
+    responses:
+      '200':
+        description: ''
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  patch:
+    tags:
+      - Variable
+    summary: Update Variable
+    description: Update (patch) the content of a variable.
+    operationId: updateVariable
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: '{{variableId}}'
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                example: A key value pair
+          example:
+            title: A key value pair
+    responses:
+      '200':
+        description: ''
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

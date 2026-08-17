@@ -1,0 +1,57 @@
+type: object
+title: User Reference Schema - GR -1
+description: >-
+  The most basic user schema, it just contains some basic metadata. Is returned when the granularity is set to -1 and is used as a reference in the other schemas.
+properties:
+  id: 
+    type: string
+    format: uuid
+    nullable: false
+  title: 
+    type: string
+    example: "Username"
+  slug: 
+    type: string
+    nullable: true
+  state: 
+    type: string
+    nullable: true
+  isWip: 
+    type: boolean
+    nullable: true
+  isDraft: 
+    type: boolean
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ User ]
+  icon: 
+    type: string
+    enum: [ "fa-solid fa-user" ]
+  url: 
+    type: string
+    example: "https://worldanvil.com/author/username"
+  subscribergroups:
+    type: array
+    items:
+      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+    example: []
+  folderId: 
+    type: string
+    nullable: true
+    example: "-1"
+  tags: 
+    type: string
+    nullable: true
+    example: "tag1,tag2,tag3"
+  updateDate: 
+    $ref: '../../schemas/date.yml'
+  enabled:
+    type: boolean
+    readOnly: true
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true

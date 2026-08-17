@@ -1,0 +1,4 @@
+/target
+/node_modules
+/openapi/.upstream-fetch-*/
+/openapi/world-anvil.openapi.json

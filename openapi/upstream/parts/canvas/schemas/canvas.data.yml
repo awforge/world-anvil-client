@@ -1,0 +1,55 @@
+type: object
+description: Canvas data to render the canvas. To update / create need to figure out how to handle these elements.
+properties: 
+  id: 
+    type: string
+    format: uuid
+  name: 
+    type: string
+    example: Canvas Title
+  uuid: 
+    type: string
+    format: uuid
+  pages: 
+    $ref: 'canvas.pages.yml'
+  state: 
+    type: string
+    example: [ private, public ]
+  title: 
+    type: string
+    example: Canvas Title
+  assets: 
+    type: array
+    example: []
+  version: 
+    type: integer
+    format: int32
+    example: 16
+  settings:
+    $ref: 'canvas.settings.yml'
+  pageStates: 
+    $ref: 'canvas.pageStates.yml'
+  userSettings: 
+    type: object
+    properties: 
+      tlBgColor: 
+        type: string
+        format: hexcolor
+        example: "#000000"
+      tlShowText: 
+        type: boolean
+      recentIcons: 
+        type: array
+        items:
+          type: string
+      DANGEROUSLY_SET_CSS: 
+        type: object
+        properties: 
+          cursor: 
+            type: string
+            example: unset
+  subscribergroups: 
+    type: array
+    items:
+      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+    example: []

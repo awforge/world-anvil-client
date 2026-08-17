@@ -1,0 +1,42 @@
+BaseReference:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: uuid
+      example: "7bdc218a-6303-4d6e-b06a-211e6d515c29"
+      readOnly: true
+    title:
+      type: string
+      example: 'Title of Resource'
+    slug:
+      type: string
+      nullable: true
+    state:
+      type: string
+      enum: [ private, public ]
+    isWip:
+      type: boolean
+      nullable: true
+    isDraft:
+      type: boolean
+      nullable: true
+    entityClass:
+      type: string
+      enum: [ World ]
+      readOnly: true
+    url:
+      type: string
+      example: 'https://worldanvil.com/...'
+      readOnly: true
+    icon:
+      type: string
+      example: 'fa-solid fa-box-archive'
+    folderId:
+      type: string
+      nullable: true
+    tags:
+      type: string
+      nullable: true
+    updateDate:
+      $ref: 'date.yml'

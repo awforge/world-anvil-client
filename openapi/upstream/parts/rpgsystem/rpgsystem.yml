@@ -1,0 +1,42 @@
+rpgsystem:
+  get:
+    tags:
+      - RPG System
+    summary: Read RPG System
+    description: |-
+      Retrieve the metadata of a single RPG system. The returned fields depend on the give granularity.
+    operationId: readRpgSystem
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: granularity
+        in: query
+        required: true
+        schema:
+          type: string
+          enum: [ "-1", "0"]
+    responses:
+      '200':
+        description: 'The RPG system object. The included fields depend on the chosen granularity.'
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: 'schemas/rpgsystem.ref.yml'
+                - $ref: 'schemas/rpgsystem.zero.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

@@ -1,0 +1,110 @@
+manuscript-stat:
+  get:
+    tags:
+      - Manuscript Stat
+    summary: Read Manuscript Stat
+    description: |-
+      Get the data of a single manuscript stat.  
+      Granularity range is -1 to 2.
+    operationId: readManuscriptStat
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: '{{manuscriptStatId}}'
+      - name: granularity
+        in: query
+        schema:
+          type: string
+          example: '-1'
+    requestBody:
+      content:
+        text/plain:
+          example: ''
+    responses:
+      '200':
+        description: ''
+  put:
+    tags:
+      - Manuscript Stat
+    summary: Create Manuscript Stat
+    description: >-
+      Create a new manuscript stat. Required parameters for the creation of
+      this entity are "version" (manuscript version).
+    operationId: createManuscriptStat
+    parameters:
+      - name: ''
+        in: query
+        schema:
+          type: string
+          example: ''
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              notes:
+                type: string
+                example: Some notes.
+              version:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: '{{manuscriptVersionId}}'
+          example:
+            notes: Some notes.
+            version:
+              id: '{{manuscriptVersionId}}'
+    responses:
+      '200':
+        description: ''
+  delete:
+    tags:
+      - Manuscript Stat
+    summary: Delete Manuscript Stat
+    description: Delete a manuscript stat.
+    operationId: deleteManuscriptStat
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: ''
+    requestBody:
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties: {}
+    responses:
+      '200':
+        description: ''
+  patch:
+    tags:
+      - Manuscript Stat
+    summary: Update Manuscript Stat
+    description: Update (patch) the content of a manuscript stat.
+    operationId: updateManuscriptStat
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: '{{manuscriptStatId}}'
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              notes:
+                type: string
+                example: Some more notes.
+          example:
+            notes: Some more notes.
+    responses:
+      '200':
+        description: ''

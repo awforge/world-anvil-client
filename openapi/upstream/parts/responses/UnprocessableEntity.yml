@@ -1,0 +1,32 @@
+description: 'Unprocessable Entity. The request was well-formed but was unable to be followed due to semantic errors. Update the request and try again.'
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        success:
+          type: boolean
+          nullable: false
+          default: false
+        status:
+          type: string
+          nullable: false
+          default: 'Unprocessable Data provided'
+        error:
+          type: object
+          nullable: false
+          properties:
+            summary:
+              type: string
+              nullable: false
+            traceStack:
+              type: string
+              nullable: false
+    example:
+      summary: 'Example of an unprocessable entity response'
+      value:
+        success: false
+        status: Unprocessable Data provided
+        error:
+          summary: 'A short summary of what the error is.'
+          traceStack: 'The tracestack of the error. Use this to report a bug if you cannot figure out what is wrong.'

@@ -1,0 +1,37 @@
+markertypes:
+  post:
+    tags:
+      - Marker Type (Pin)
+    summary: List Marker Types
+    description: Retrieve a list of marker types. Use offset to skip the first n elements of the result, and limit to specify the maximum number of elements to retrieve.
+    operationId: listMarkerTypes
+    requestBody:
+      content:
+        application/json:
+          $ref: '../schemas/limit.yml#/General'
+    responses:
+      '200':
+        description: 'The list of marker types within the limit at the offset.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                entities:
+                  type: array
+                  items:
+                    $ref: 'schemas/markertype.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

@@ -1,0 +1,44 @@
+map-layers:
+  post:
+    tags:
+      - Map Layer
+    summary: List Layers By Map
+    description: Retrieve a list of layers added to a map. Use offset to skip the first n elements of the result, and limit to specify the maximum number of elements to retrieve.
+    operationId: listLayersByMap
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/limit.yml#/General'
+    responses:
+      '200':
+        description: 'The list of layer metadata resources within the limit at the offset.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                entities:
+                  type: array
+                  items:
+                    $ref: 'schemas/layer.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

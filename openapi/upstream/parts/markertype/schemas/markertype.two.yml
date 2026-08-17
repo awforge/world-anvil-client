@@ -1,0 +1,105 @@
+type: object
+title: Marker Type (Pin) Reference Schema - GR 2
+description: The complete marker type (pin) reference schema with all the relations to other resources.
+properties:
+  id: 
+    type: string
+    format: uuid
+  title: 
+    type: string
+    example: "Name of Pin"
+  slug: 
+    type: string
+    nullable: true
+  state: 
+    type: string
+    enum: [ public, private ]
+  isWip: 
+    type: boolean
+    nullable: true
+  isDraft: 
+    type: boolean
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ MarkerType ]
+  icon: 
+    type: string
+    enum: [ "fa-solid fa-map-pin" ]
+  url: 
+    type: string
+    nullable: true
+  subscribergroups:
+    type: array
+    example: []
+  folderId: 
+    type: string
+    nullable: true
+  tags: 
+    type: string
+    example: "tag,tag2"
+  updateDate: 
+    $ref: '../../schemas/date.yml'
+  iconSizeWidth: 
+    type: integer
+    format: int32
+    example: 20
+  iconSizeHeight:
+    type: integer
+    format: int32
+    example: 20
+  shadowSizeWidth:
+    type: integer
+    format: int32
+    example: 21
+  shadowSizeHeight:
+    type: integer
+    format: int32
+    example: 21
+  iconAnchorX:
+    type: integer
+    format: int32
+    example: 0
+  iconAnchorY:
+    type: integer
+    format: int32
+    example: 10
+  popupAnchorX:
+    type: integer
+    format: int32
+    example: 21
+  popupAnchorY:
+    type: integer
+    format: int32
+    example: 10
+  className:
+    type: string
+    nullable: true
+  identifier:
+    type: string
+    example: "<title><username>"
+  isGuild:
+    type: boolean
+    example: true
+  isPublic:
+    type: boolean
+    example: false
+  theme:
+    type: string
+    example: "Star Wars, D&D, etc."
+  creationDate:
+    $ref: '../../schemas/date.yml'
+  pin:
+    $ref: '../../image/schemas/image.yml#/ImageRef'
+  shadow:
+    $ref: '../../image/schemas/image.yml#/ImageRef'
+  world:
+    $ref: '../../world/schemas/world.ref.yml'
+  author:
+    $ref: '../../user/schemas/user.ref.yml'
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true    

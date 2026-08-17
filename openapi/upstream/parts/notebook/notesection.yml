@@ -1,0 +1,144 @@
+notesection:
+  get:
+    tags:
+      - Notesection
+    summary: Read Notesection
+    description: |-
+      Retrieve the metadata of a single notesection. The returned fields depend on the give granularity.
+    operationId: readNotesection
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: granularity
+        in: query
+        required: true
+        schema:
+          type: string
+          enum: [ '-1', '0', '2']
+    responses:
+      '200':
+        description: "The notesection object. The included fields depend on the chosen granularity."
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: 'schemas/notesection.ref.yml'
+                - $ref: 'schemas/notesection.zero.yml'
+                - $ref: 'schemas/notesection.two.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  put:
+    tags:
+      - Notesection
+    summary: Create Notesection
+    description: >-
+      Create a new notesection. The notesection requires a title and a notebook id to be created. Check the notesection schema for the available fields.
+    operationId: createNotesection
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/notesection.create.yml'
+    responses:
+      '200':
+        description: 'Reference object of the created notesection.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/notesection.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  delete:
+    tags:
+      - Notesection
+    summary: Delete Notesection
+    description: Delete a notesection.
+    operationId: deleteNotesection
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    responses:
+      '200':
+        description: 'Deletion was successful.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  patch:
+    tags:
+      - Notesection
+    summary: Update Notesection
+    description: Update a notesection. Only the given fields will be updated. All other fields will remain unchanged. Check the notesection schema for the available fields.
+    operationId: updateNotesection
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/notesection.update.yml'
+    responses:
+      '200':
+        description: 'Reference object of the updated notesection.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/notesection.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

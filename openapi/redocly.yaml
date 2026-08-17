@@ -1,0 +1,13 @@
+extends:
+  - recommended
+
+# These upstream documentation/example issues do not affect generated Rust types.
+# Structural rules inherited from `recommended` remain enabled as errors.
+rules:
+  struct: error
+  spec-strict-refs: error
+  spec-components-invalid-map-name: error
+  nullable-type-sibling: error
+  tag-description: off
+  no-invalid-schema-examples: off
+  no-invalid-media-type-examples: off

@@ -1,0 +1,44 @@
+blocktemplate-blocktemplateparts:
+  post:
+    tags:
+      - Block Template Part
+    summary: List Block Template Parts By BlockTemplate
+    description: Retrieve a list of statblock template parts by blocktemplate. This endpoint is paginated. You can get the part directly from the blocke template get endpoint on granularity 2.
+    operationId: listBlockTemplatePartsByBlocktemplate
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/limit.yml#/General'
+    responses:
+      '200':
+        description: List of statblock template parts
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                entities:
+                  type: array
+                  items:
+                    $ref: 'schemas/blocktemplatepart.yml#/BlockTemplatePartRef'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

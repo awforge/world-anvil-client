@@ -1,0 +1,134 @@
+image:
+  get:
+    tags:
+      - Image
+    summary: Read Image
+    description: |-
+      Retrieve the metadata of any image on your account or public image by its id.
+    operationId: readImage
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: granularity
+        in: query
+        required: true
+        schema:
+          type: string
+          enum: [ '-1', '0', '2']
+    responses:
+      '200':
+        description: 'The requested image metadata.'
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: 'schemas/image.yml#/ImageReturnRef'
+                - $ref: 'schemas/image.yml#/Image'
+                - $ref: 'schemas/image.yml#/ImageFull'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  put:
+    tags:
+      - Image
+    summary: Create Image (NYI)
+    description: This is not yet available. It is currently not possible to upload image binaries via the API.
+    operationId: createImage
+    responses:
+      '200':
+        description: ''
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  delete:
+    tags:
+      - Image
+    summary: Delete Image
+    description: Delete an image. This action is irreversible.
+    operationId: deleteImage
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    responses:
+      '200':
+        description: 'Deleted the image successfully.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  patch:
+    tags:
+      - Image
+    summary: Update Image
+    description: Update the image metadata of a single image. It is currently not possible to change the image binary with the API.
+    operationId: updateImage
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/image.yml#/ImageUpdate'
+    responses:
+      '200':
+        description: 'Reference object of the updated image.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/image.yml#/ImageRef'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

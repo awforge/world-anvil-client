@@ -1,0 +1,54 @@
+world-articles:
+  post:
+    tags:
+      - Article
+    summary: List Articles By World
+    description: >
+      Retrieve a list of all articles within a world, 50 articles at a time.
+
+      Use offset to skip the first n elements of the result, and limit to specify the maximum 
+      number of elements to retrieve. 
+      
+      The optional category body property can be used to filter
+      the results by category. Use the value "-1" to get uncategorized articles. Uncategorized articles includes articles that are not assigned to any category. 
+      This means articles with a parent articles are included as well.
+    operationId: listArticlesByCategory
+    parameters:
+      - name: id
+        in: query
+        description: "The id of the world to retrieve articles from."
+        required: true
+        schema:
+          type: string
+          format: uuid
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/limit.yml#/Articles'
+    responses:
+      '200':
+        description: 'The list of article metadata resources within the limit at the offset.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                entities:
+                  type: array
+                  items:
+                    $ref: 'schemas/article.yml#/ArticleRef'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

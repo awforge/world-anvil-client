@@ -1,0 +1,32 @@
+type: object
+properties: 
+  showGrid: 
+    type: boolean
+  isPenMode: 
+    type: boolean
+  isDarkMode: 
+    type: boolean
+  isSnapping: 
+    type: boolean
+  isZoomSnap: 
+    type: boolean
+  isDebugMode: 
+    type: boolean
+  isFocusMode: 
+    type: boolean
+  isReadonlyMode: 
+    type: boolean
+  showCloneHandles: 
+    type: boolean
+  showRotateHandles: 
+    type: boolean
+  nudgeDistanceLarge: 
+    type: integer
+    format: int32
+    example: 16
+  nudgeDistanceSmall: 
+    type: integer
+    format: int32
+    example: 1
+  showBindingHandles: 
+    type: boolean

@@ -1,0 +1,27 @@
+manuscript-tags-by-manuscript:
+  post:
+    tags:
+      - Manuscript Tag
+    summary: List Manuscript Tags By Manuscript
+    description: >-
+      List all manuscript tags by a manuscript given, filtered with a limit of
+      entities shown and an offset.  
+
+      Limit range is 0-50.  
+
+      Offset should be non-negative.
+    operationId: listManuscriptTagsByManuscript
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: '{{manuscriptId}}'
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/limit.yml#/General'
+    responses:
+      '200':
+        description: ''

@@ -1,0 +1,44 @@
+GalleryRef:
+  type: object
+  title: Gallery
+  description: Metadata of a gallery.
+  properties:
+    id: 
+      type: integer
+      format: int32
+      nullable: false
+    title: 
+      type: string
+      example: "Gallery Title"
+    slug: 
+      type: string
+      nullable: true
+    state: 
+      type: string
+      nullable: true
+    isWip: 
+      type: boolean
+      nullable: true
+    isDraft: 
+      type: boolean
+      nullable: true
+    entityClass: 
+      type: string
+      enum: [ Gallery ]
+    icon: 
+      type: string
+      nullable: true
+    url: 
+      type: string
+      nullable: true
+    subscribergroups:
+      type: array
+      example: []
+    folderId: 
+      type: string
+      nullable: true
+    tags: 
+      type: string
+      nullable: true
+    updateDate: 
+      $ref: '../../schemas/date.yml'

@@ -1,0 +1,148 @@
+map:
+  get:
+    tags:
+      - Map
+    summary: Read Map
+    description: Retrieve the metadata, content and relationships of a single map. The returned fields depend on the given granularity.
+    operationId: readMap
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: granularity
+        in: query
+        required: true
+        schema:
+          type: string
+          enum: [ '-1', '0', '2']
+    responses:
+      '200':
+        description: 'The map metadata, content and relationships.'
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: 'schemas/map.ref.yml'
+                - $ref: 'schemas/map.zero.yml'
+                - $ref: 'schemas/map.two.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'  
+  put:
+    tags:
+      - Map
+    summary: Create Map
+    description: |-
+      Create a new map. Required parameters for the creation of this entity are "title", "image" and "world". Check the schema for all the available fields.
+
+      NOTE - The image is just the id of an already uploaded image or map image file. It is not currently possible to upload a binary with the API and use it as the map image. 
+    operationId: createMap
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/map.create.yml'
+    responses:
+      '200':
+        description: 'Reference to the newly created map.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/map.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  delete:
+    tags:
+      - Map
+    summary: Delete Map
+    description: Delete a map. This process is not reversible. 
+    operationId: deleteMap
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+    responses:
+      '200':
+        description: 'Map was deleted successfully.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  patch:
+    tags:
+      - Map
+    summary: Update Map
+    description: Update the metadata, content and relationships of a map. Check the schema for all the available fields. It is not possible to replace the image of the map with a new binary, but you can use an existing image.
+    operationId: updateMap
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/map.update.yml'
+    responses:
+      '200':
+        description: 'Reference to the updated map.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/map.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

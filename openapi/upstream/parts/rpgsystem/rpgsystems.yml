@@ -1,0 +1,33 @@
+rpgsystems:
+  post:
+    tags:
+      - RPG System
+    summary: List RPG Systems
+    description: Retrieve a list of rpg systems.
+    operationId: listRpgSystems
+    responses:
+      '200':
+        description: 'All the rpg systems available on World Anvil.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                entities:
+                  type: array
+                  items:
+                    $ref: 'schemas/rpgsystem.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

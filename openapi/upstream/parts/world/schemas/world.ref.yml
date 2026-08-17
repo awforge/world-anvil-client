@@ -1,0 +1,51 @@
+type: object
+title: World Reference Schema - GR -1
+description: >-
+  The most basic world schema, it just contains the most basic metadata. Is returned when the granularity is set to -1 and is used as a reference in the other schemas.
+properties:
+  id: 
+    type: string
+    format: uuid
+    nullable: false
+  title: 
+    type: string
+    example: "A Bright New World"
+  slug: 
+    type: string
+    example: "a-bright-new-world-username"
+  state: 
+    type: string
+    enum: [ private, public ]
+  isWip: 
+    type: boolean
+    nullable: true
+  isDraft: 
+    type: boolean
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ World ]
+  icon: 
+    type: string
+    enum: [ "fa-solid fa-globe-stand" ]
+  url: 
+    type: string
+    example: "https://worldanvil.com/w/a-bright-new-world-username"
+  subscribergroups:
+    type: array
+    items:
+      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+  folderId: 
+    type: string
+    example: "-1"
+  tags: 
+    type: string
+    example: "tag1,tag2,tag3"
+  updateDate: 
+    $ref: '../../schemas/date.yml'
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true

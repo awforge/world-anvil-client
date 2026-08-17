@@ -1,0 +1,143 @@
+layer:
+  get:
+    tags:
+      - Map Layer
+    summary: Read Layer
+    description: Retrieve a map layer by its id. The granularity determines the fields that are returned.
+    operationId: readLayer
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: granularity
+        in: query
+        required: true
+        schema:
+          type: string
+          enum: [ '-1', '0', '2']
+    responses:
+      '200':
+        description: 'The map layer metadata.'
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: 'schemas/layer.ref.yml'
+                - $ref: 'schemas/layer.zero.yml'
+                - $ref: 'schemas/layer.two.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  put:
+    tags:
+      - Map Layer
+    summary: Create Layer
+    description: Create a new map layer. Required parameters for the creation of this entity are "title" and "map". It is not possible to upload a new binary for the image. Only existing images can be assigned as the layer image.
+    operationId: createLayer
+    parameters:
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/layer.create.yml'
+    responses:
+      '200':
+        description: 'Reference to the newly created map layer.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/layer.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  delete:
+    tags:
+      - Map Layer
+    summary: Delete Layer
+    description: Delete a map layer. This action is irreversible. No associated groups or markers will be deleted. The layer image will not be deleted.
+    operationId: deleteLayer
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    responses:
+      '200':
+        description: 'Deleted map layer successfully.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  patch:
+    tags:
+      - Map Layer
+    summary: Update Layer
+    description: Update the metadata, content and relationships of a map layer. It is not possible to upload a new binary for the image. Only existing images can be assigned as the layer image.
+    operationId: updateLayer
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/layer.update.yml'
+    responses:
+      '200':
+        description: 'Reference to the updated map layer.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/layer.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

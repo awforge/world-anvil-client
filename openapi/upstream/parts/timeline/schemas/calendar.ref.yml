@@ -1,0 +1,47 @@
+type: object
+title: Calendar Reference Schema
+description: The basic metadata of the calendar.
+properties:
+  id: 
+    type: integer
+    format: int32
+  title: 
+    type: string
+    example: "Test Calendar"
+  slug: 
+    type: string
+    nullable: true
+  state: 
+    type: string
+    nullable: true
+  isWip: 
+    type: boolean
+    nullable: true
+    example: null
+  isDraft: 
+    type: boolean
+    nullable: true
+    example: null
+  entityClass: 
+    type: string
+    enum: [ Calendar ]
+  icon: 
+    type: string
+    enum: ["fa-solid fa-calendar-days"]
+  url: 
+    type: string
+    nullable: true
+  subscribergroups:
+    type: array
+    items:
+      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+    example: []
+  folderId: 
+    type: string
+    enum: ["-1"]
+  tags: 
+    type: string
+    nullable: true
+    example: "tag,tag2"
+  updateDate: 
+    $ref: '../../schemas/date.yml'

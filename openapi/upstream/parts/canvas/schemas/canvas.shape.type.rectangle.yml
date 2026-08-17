@@ -1,0 +1,39 @@
+id: 
+  type: string
+  format: uuid
+name: 
+  type: string
+  enum: [ Rectangle ]
+size: 
+  type: array
+  items:
+    type: integer
+    format: int32
+type: 
+  type: string
+  enum: [ rectangle ]
+label: 
+  type: string
+point: 
+  type: array
+  items:
+    type: integer
+    format: int32
+style:
+  $ref: 'canvas.shape.style.yml'
+parentId: 
+  type: string
+  example: page
+rotation: 
+  type: integer
+  format: int32
+  example: 0
+childIndex: 
+  type: integer
+  format: int32
+  example: 3
+labelPoint: 
+  type: array
+  items:
+    type: integer
+    format: int32

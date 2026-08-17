@@ -1,0 +1,34 @@
+type: object
+title: SubscriberGroup Update Schema
+description: All the fields in subscriber groups that can be updated.
+properties:
+  title: 
+    type: string
+    example: Campaign Players
+  tags: 
+    type: string
+    nullable: true
+    example: "tag1,tag2,tag3"
+  description: 
+    type: string
+    nullable: true
+    example: "A subscriber group for the players of the campaign."
+  position: 
+    type: integer
+    format: int32
+    minimum: 0
+  isDefault: 
+    type: boolean
+    example: false
+  isHidden: 
+    type: boolean
+    example: false
+  isAssignable: 
+    type: boolean
+    example: false
+  paidsubscribers: 
+    type: array
+    items:
+      id: 
+        type: string
+        format: uuid

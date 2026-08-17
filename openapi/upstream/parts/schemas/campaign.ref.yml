@@ -1,0 +1,45 @@
+type: object
+title: Campaign Reference Schema - GR -1
+description: >-
+  The reference schema for an article. Only contains the minimum amount of information to identify the article.
+properties:
+  id: 
+    type: string
+    format: uuid
+  title: 
+    type: string
+  slug: 
+    type: string
+    example: "AkneV6EROWJAg7ifmizDsD7rfiXGHR"
+  state: 
+    type: string
+    enum: [private, public]
+  isWip: 
+    type: boolean
+    nullable: true
+    example: null
+  isDraft: 
+    type: boolean
+    nullable: true
+    example: null
+  entityClass: 
+    type: string
+    enum: [ Campaign ]
+  icon: 
+    type: string
+    enum: ["fa-solid fa-swords"]
+  url: 
+    type: string
+    example: "http://www.worldanvil.com/w/<world-title>-<username>/rpg/<uuid>"
+  subscribergroups:
+    type: array
+    example: []
+  folderId: 
+    type: string
+    enum: ["-1"]
+  tags: 
+    type: string
+    nullable: true
+    example: "tag,tag2"
+  updateDate: 
+    $ref: 'date.yml'

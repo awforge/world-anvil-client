@@ -1,0 +1,72 @@
+type: object
+title: RPG System Reference Schema - GR -1
+description: >-
+  The reference schema for a rpg system. Only contains the minimum amount of information to identify the rpg system.
+properties:
+  id: 
+    type: integer
+    format: int32
+    example: 500
+  title: 
+    type: string
+    example: "Essence and Energy"
+  slug: 
+    type: string
+    nullable: true
+  state: 
+    type: string
+    nullable: true
+  isWip: 
+    type: boolean
+    nullable: true
+  isDraft: 
+    type: boolean
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ RPGSRD ]
+  icon: 
+    type: string
+    enum: [ "fa-solid fa-chess-rook-piece" ]
+  url: 
+    type: string
+    nullable: true
+  subscribergroups:
+    type: array
+    example: []
+  folderId: 
+    type: string
+    nullable: true
+  tags: 
+    type: string
+    nullable: true
+  updateDate: 
+    $ref: '../../schemas/date.yml'
+  reference: 
+    type: string
+    example: "ene"
+  description: 
+    type: string
+  publisher: 
+    type: string
+    example: "Pack Goblin Games"
+  copyright: 
+    type: string
+    example: "Pack Goblin Games, Alexander Foerster"
+  logo: 
+    type: string
+    nullable: true
+  styles: 
+    type: string
+    nullable: true
+  heroesEnabled: 
+    type: boolean
+  weight: 
+    type: string
+    nullable: true
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true  

@@ -1,0 +1,79 @@
+type: object
+title: Notebook Reference Schema - GR 2
+description: >-
+  Adds relationship properties for note sections, cover, campaign, world and author.
+properties:
+  id: 
+    type: string
+    format: uuid
+  title: 
+    type: string
+    example: "Notebook Title"
+  slug: 
+    type: string
+    nullable: true
+  state: 
+    type: string
+    nullable: true
+  isWip: 
+    type: boolean
+    nullable: true
+  isDraft: 
+    type: boolean
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ Notebook ]
+  icon: 
+    type: string
+    nullable: true
+    example: "fa-solid fa-notebook"
+  url: 
+    type: string
+    nullable: true
+    example: "http://www.worldanvil.com/notebook/notebook/<uuid>/load"
+  subscribergroups:
+    type: array
+    items:
+      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+    example: []
+  folderId: 
+    type: string
+    format: uuid
+    nullable: true
+  tags: 
+    type: string
+    nullable: true
+  updateDate: 
+    $ref: '../../schemas/date.yml'
+  creationDate:
+    $ref: '../../schemas/date.yml'
+  color: 
+    type: string
+    format: hexcolor
+    example: "#000000"
+  weight: 
+    type: integer
+    format: int32
+  isSelected: 
+    type: integer
+    format: int32
+  notesections:
+    type: array
+    items:
+      $ref: 'notesection.ref.yml'
+    example: []
+  cover:
+    $ref: '../../image/schemas/image.yml#/ImageRef'
+  campaign:
+    $ref: '../../schemas/campaign.ref.yml'
+  world:
+    $ref: '../../world/schemas/world.ref.yml'
+  author:
+    $ref: '../../user/schemas/user.ref.yml'
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true  

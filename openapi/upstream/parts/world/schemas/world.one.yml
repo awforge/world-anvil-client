@@ -1,0 +1,353 @@
+type: object
+title: World Reference Schema - GR 1
+description: >-
+  The world schema with all of the settings, metadata, homepage content and the world meta content.
+properties:
+  id: 
+    type: string
+    format: uuid
+    nullable: false
+  title: 
+    type: string
+    example: "A Bright New World"
+  slug: 
+    type: string
+    example: "a-bright-new-world-username"
+  state: 
+    type: string
+    enum: [ private, public ]
+  isWip: 
+    type: boolean
+    nullable: true
+  isDraft: 
+    type: boolean
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ World ]
+  icon: 
+    type: string
+    enum: [ "fa-solid fa-globe-stand" ]
+  url: 
+    type: string
+    example: "https://worldanvil.com/w/a-bright-new-world-username"
+  subscribergroups:
+    type: array
+    items:
+      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+  folderId: 
+    type: string
+    example: "-1"
+  tags: 
+    type: string
+    example: "tag1,tag2,tag3"
+  updateDate: 
+    $ref: '../../schemas/date.yml'
+  descriptionParsed: 
+    type: string
+    nullable: true
+    example: "This is a test"
+  owner: 
+    $ref: '../../user/schemas/user.ref.yml'
+  countFollowers: 
+    type: integer
+    format: int32
+  countArticles: 
+    type: integer
+    format: int32
+  countMaps: 
+    type: integer
+    format: int32
+  countTimelines: 
+    type: integer
+    format: int32
+  subtitle: 
+    type: string
+    nullable: true
+  locale: 
+    type: string
+  description: 
+    type: string
+    nullable: true
+  excerpt: 
+    type: string
+    nullable: true
+  isStored: 
+    type: boolean
+  displayCss: 
+    type: string
+    format: css
+    nullable: true
+  displayPanelCss: 
+    type: string
+    format: css
+    nullable: true
+  copyright: 
+    type: string
+    nullable: true
+  worldSidebarContent: 
+    type: string
+    nullable: true
+  globalAnnouncement: 
+    type: string
+    nullable: true
+  globalHeader: 
+    type: string
+    nullable: true
+  globalSidebarFooter: 
+    type: string
+    nullable: true
+  globalArticleIntroduction: 
+    type: string
+    nullable: true
+  cover:
+    $ref: '../../image/schemas/image.yml#/ImageRef'
+  genres:
+    type: array
+    items:
+      $ref: 'genre.ref.yml'
+  theme:
+    $ref: 'theme.ref.yml'
+  activationDescription: 
+    type: string
+    nullable: true
+  weight: 
+    type: integer
+    format: int32
+  creationDate: 
+    $ref: '../../schemas/date.yml'
+  timeNeg: 
+    type: string
+    example: "Before Common Era"
+  timePos: 
+    type: string
+    example: "Common Era"
+  timeNegAbbr: 
+    type: string
+    example: "BCE"
+  timePosAbbr: 
+    type: string
+    example: "CE"
+  timeCurrentYear: 
+    type: string
+    example: "2023"
+  timeCurrentMonth: 
+    type: integer
+    format: int32
+    example: 12
+  timeCurrentDay: 
+    type: integer
+    format: int32
+    example: 1
+  timeCurrentDescription: 
+    type: string
+    example: "December 1st, 2023"
+  worldDateFormat: 
+    type: string
+    nullable: true
+  displayRecentArticles: 
+    type: boolean
+  displayOtherArticles: 
+    type: boolean
+  displayArticleTooltips: 
+    type: boolean
+  displaySharingButtons: 
+    type: boolean
+  displayCommunityFeatures: 
+    type: boolean
+  displayCampaigns: 
+    type: boolean
+  displayHeroes: 
+    type: boolean
+  displayBlockHeaders: 
+    type: boolean
+  displaySecureLinks: 
+    type: boolean
+  placementToc: 
+    type: string
+    enum: [ left, center, right ]
+  placementMaps: 
+    type: string
+    enum: [ left, center, right ]
+  placementTimelines: 
+    type: string
+    enum: [ left, center, right ]
+  homepageContent1: 
+    type: string
+    nullable: true
+  homepageContent2: 
+    type: string
+    nullable: true
+  homepageContent3: 
+    type: string
+    nullable: true
+  homepageContent4: 
+    type: string
+    nullable: true
+  displayJs: 
+    type: string
+    nullable: true
+  displayStyles: 
+    type: object
+    properties: 
+      display_background: 
+        type: string
+      display_background_id: 
+        type: string
+      display_base_font_color: 
+        type: string
+      display_base_font_size: 
+        type: string
+  displayDefaultTheme: 
+    type: boolean
+  displayBootstrapVersion: 
+    type: string
+    enum: [ bs3, bs5 ]
+  twitter: 
+    type: string
+    nullable: true
+  facebook: 
+    type: string
+    nullable: true
+  patreon: 
+    type: string
+    nullable: true
+  twitch: 
+    type: string
+    nullable: true
+  discord: 
+    type: string
+    nullable: true
+  views: 
+    type: integer
+    format: int32
+  isWhitelabel: 
+    type: boolean
+  isCommunity: 
+    type: boolean
+  isFeatured: 
+    type: boolean
+  gatrackingcode: 
+    type: string
+  followersNominal: 
+    type: string
+  followersPlural: 
+    type: string
+  displayWorldMeta: 
+    type: boolean
+  openSecrets: 
+    type: boolean
+  articlesPrivateOnCreation: 
+    type: boolean
+  worldCreditsOverride: 
+    type: string
+    nullable: true
+  accessDeniedPage:
+    $ref: '../../article/schemas/article.yml#/ArticleRef'
+  globalcover:
+    $ref: '../../image/schemas/image.yml#/ImageRef'
+  worldmap:
+    $ref: '../../map/schemas/map.ref.yml'
+  customArticleTemplates: 
+    type: array
+    items:
+      $ref: '../../schemas/customarticletemplate.ref.yml'
+  defaultCalendar: 
+    type: string
+    nullable: true
+  metaTitle: 
+    type: string
+    nullable: true
+  metaDescription: 
+    type: string
+    nullable: true
+  worldScrapBook: 
+    type: string
+    nullable: true
+  foundationMotivation: 
+    type: string
+    nullable: true
+  foundationGoal: 
+    type: string
+    nullable: true
+  foundationUsp: 
+    type: string
+    nullable: true
+  foundationThemeGenre: 
+    type: string
+    nullable: true
+  foundationThemeFeel: 
+    type: string
+    nullable: true
+  foundationThemeTone: 
+    type: string
+    nullable: true
+  foundationThemeThemes: 
+    type: string
+    nullable: true
+  foundationThemeAgency: 
+    type: string
+    nullable: true
+  foundationMetaExpanded: 
+    type: string
+    nullable: true
+  foundationDramaExpanded: 
+    type: string
+    nullable: true
+  settingRules: 
+    type: string
+    nullable: true
+  settingCosmology: 
+    type: string
+    nullable: true
+  settingGeography: 
+    type: string
+    nullable: true
+  settingSize: 
+    type: string
+    nullable: true
+  settingPeopleAndHistory: 
+    type: string
+    nullable: true
+  settingPeopleSpeciesAndCultures: 
+    type: string
+    nullable: true
+  settingNeedsAndRelations: 
+    type: string
+    nullable: true
+  inspirationImages: 
+    type: string
+    nullable: true
+  inspirationMusic: 
+    type: string
+    nullable: true
+  inspirationBooks: 
+    type: string
+    nullable: true
+  inspirationMoviesAndTv: 
+    type: string
+    nullable: true
+  markCompleteWorldMeta: 
+    type: boolean
+  lockSlug: 
+    type: boolean
+  prepareJs: 
+    type: string
+    nullable: true
+  goalWords: 
+    type: integer
+    format: int32
+  webhookGlobal: 
+    type: string
+    example: "https://discord.com/api/webhooks/<id>/<token>"
+  accessCode: 
+    type: string
+    nullable: true
+  activateVisibilityToggle: 
+    type: boolean
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true

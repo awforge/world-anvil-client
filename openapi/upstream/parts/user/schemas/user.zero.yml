@@ -1,0 +1,328 @@
+type: object
+title: User Reference Schema - GR 0
+description: >-
+  The full user schema with all the metadata fields and account settings. Is returned when the granularity is set to 0.
+properties:
+  id: 
+    type: string
+    format: uuid
+    nullable: false
+  title: 
+    type: string
+    example: "Username"
+  slug: 
+    type: string
+    nullable: true
+    readOnly: true
+  state: 
+    type: string
+    nullable: true
+    readOnly: true
+  isWip: 
+    type: boolean
+    nullable: true
+    readOnly: true
+  isDraft: 
+    type: boolean
+    nullable: true
+    readOnly: true
+  entityClass: 
+    type: string
+    enum: [ User ]
+    readOnly: true
+  icon: 
+    type: string
+    enum: [ "fa-solid fa-user" ]
+    readOnly: true
+  url: 
+    type: string
+    example: "https://worldanvil.com/author/username"
+    readOnly: true
+  subscribergroups:
+    type: array
+    items:
+      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+    example: []
+  folderId: 
+    type: string
+    nullable: true
+    example: "-1"
+    readOnly: true
+  tags: 
+    type: string
+    nullable: true
+    readOnly: true
+  updateDate: 
+    $ref: '../../schemas/date.yml'
+  enabled:
+    type: boolean
+    readOnly: true
+  token: 
+    type: string
+    nullable: true
+    readOnly: true
+  username: 
+    type: string
+  firstname: 
+    type: string
+    nullable: true
+  lastname: 
+    type: string
+    nullable: true
+  lastLogin:
+    $ref: '../../schemas/date.yml'
+  bio: 
+    type: string
+  locale: 
+    type: string
+  signature: 
+    type: string
+  customProfileContent: 
+    type: string
+  registerDate:
+    $ref: '../../schemas/date.yml'
+  membershipDate:
+    $ref: '../../schemas/date.yml'
+  membership: 
+    type: boolean
+  membershipType: 
+    type: string
+    readOnly: true
+  websiteurl: 
+    type: string
+    nullable: true
+  favMovies: 
+    type: string
+    nullable: true
+  favSeries: 
+    type: string
+    nullable: true
+  favBooks: 
+    type: string
+    nullable: true
+  favWriters: 
+    type: string
+    nullable: true
+  favGames: 
+    type: string
+    nullable: true
+  interests: 
+    type: string
+    nullable: true
+  nanowrimo: 
+    type: string
+    nullable: true
+  twitter: 
+    type: string
+    nullable: true
+  facebook: 
+    type: string
+    nullable: true
+  reddit: 
+    type: string
+    nullable: true
+  tumblr: 
+    type: string
+    nullable: true
+  pinterest: 
+    type: string
+    nullable: true
+  deviantart: 
+    type: string
+    nullable: true
+  youtube: 
+    type: string
+    nullable: true
+  vimeo: 
+    type: string
+    nullable: true
+  google: 
+    type: string
+    nullable: true
+  steam: 
+    type: string
+    nullable: true
+  twitch: 
+    type: string
+    nullable: true
+  discord: 
+    type: string
+    nullable: true
+  instagram: 
+    type: string
+    nullable: true
+  kofi: 
+    type: string
+  patreon: 
+    type: string
+    nullable: true
+  views: 
+    type: integer
+    format: int32
+    readOnly: true
+  openText: 
+    type: string
+    nullable: true
+  profileMeta: 
+    type: string
+    nullable: true
+  isVenerable: 
+    type: boolean
+    readOnly: true
+  isPremier: 
+    type: boolean
+    readOnly: true
+  isLifetime: 
+    type: boolean
+    readOnly: true
+  anvilCoinsCurrent: 
+    type: integer
+    format: int32
+    readOnly: true
+  email: 
+    type: string
+    readOnly: true
+  timezone: 
+    type: string
+  location: 
+    type: string
+  dob: 
+    type: string
+    nullable: true
+    readOnly: true
+  worldsLimit: 
+    type: integer
+    format: int32
+    readOnly: true
+  campaignsLimit: 
+    type: integer
+    format: int32
+    readOnly: true
+  uploadSizeLimit: 
+    type: integer
+    format: int32
+    readOnly: true
+  storageSpaceLimit: 
+    type: string
+    readOnly: true
+  coauthors: 
+    type: integer
+    format: int32
+    readOnly: true
+  subscriberSlots: 
+    type: integer
+    format: int32
+    readOnly: true
+  allowAdultContent: 
+    type: boolean
+  featureWorldbuilding: 
+    type: integer
+    format: int32
+    enum: [0, 1]
+  featureRPG: 
+    type: integer
+    format: int32
+    enum: [0, 1]
+  featureCommunity: 
+    type: integer
+    format: int32
+    enum: [0, 1]
+  featureHeroes: 
+    type: integer
+    format: int32
+    enum: [0, 1]
+  featureWriting: 
+    type: integer
+    format: int32
+    enum: [0, 1]
+  featurePrompts: 
+    type: integer
+    format: int32
+    enum: [0, 1]
+  featureAutosave: 
+    type: integer
+    format: int32
+    enum: [0, 1]
+  featureExpandedArticle: 
+    type: integer
+    format: int32
+    enum: [0, 1]
+  interfaceVersion: 
+    type: integer
+    format: int32
+    enum: [0, 1, 2]
+  interfaceVignetteRows: 
+    type: string
+  interfaceFormBackground: 
+    type: string
+  interfaceFormColor: 
+    type: string
+  interfaceFormFontSize: 
+    type: string
+  interfaceActivateAdvancedSelect: 
+    type: boolean
+  interfaceActivateAccessibility: 
+    type: boolean
+  manuscriptSettings: 
+    type: object
+    properties: 
+      fontSize: 
+        type: string
+      lineHeight: 
+        type: string
+      paragraphyPadding: 
+        type: string
+      cssRules: 
+        type: string
+      fontTypeface: 
+        type: string
+      paragraphIndent: 
+        type: string
+      backgroundColor: 
+        type: string
+      fontColor: 
+        type: string
+      paragraphPadding: 
+        type: string
+  interfaceTheme: 
+    type: string
+  interfaceEditor: 
+    type: string
+  interfaceEditorMode: 
+    type: string
+  interfaceEditorTheme: 
+    type: string
+  interfaceShowSaveIndicator: 
+    type: boolean
+  discordToken: 
+    type: string
+  discordRefreshToken: 
+    type: string
+  discordTokenExpiry: 
+    type: string
+  discordUserId: 
+    type: string
+  isNewsletter: 
+    type: boolean
+  membershipPrototype:
+    $ref: 'membership.prototype.yml'
+  chapterhouse: 
+    type: string
+    nullable: true
+  activeWorld:
+    $ref: '../../world/schemas/world.ref.yml'
+  activeCampaign: 
+    type: string
+    nullable: true
+  activeCharacter: 
+    type: string
+    nullable: true
+  activeSession: 
+    type: string
+    nullable: true
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true

@@ -1,0 +1,114 @@
+manuscript-version:
+  get:
+    tags:
+      - Manuscript Version
+    summary: Read Manuscript Version
+    description: |-
+      Get the data of a single manuscript version.  
+      Granularity range is -1 to 2.
+    operationId: readManuscriptVersion
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: '{{manuscriptVersionId}}'
+      - name: granularity
+        in: query
+        schema:
+          type: string
+          example: '-1'
+    requestBody:
+      content:
+        text/plain:
+          example: ''
+    responses:
+      '200':
+        description: ''
+  put:
+    tags:
+      - Manuscript Version
+    summary: Create Manuscript Version
+    description: >-
+      Create a new manuscript version. Required parameters for the creation of
+      this entity are "manuscript".
+    operationId: createManuscriptVersion
+    parameters:
+      - name: ''
+        in: query
+        schema:
+          type: string
+          example: ''
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              manuscript:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: '{{manuscriptId}}'
+              title:
+                type: string
+                example: Draft Version
+          example:
+            manuscript:
+              id: '{{manuscriptId}}'
+            title: Draft Version
+    responses:
+      '200':
+        description: ''
+  delete:
+    tags:
+      - Manuscript Version
+    summary: Delete Manuscript Version
+    description: Delete a manuscript version.
+    operationId: deleteManuscriptVersion
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: '{{manuscriptVersionId}}'
+    requestBody:
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties: {}
+    responses:
+      '200':
+        description: ''
+  patch:
+    tags:
+      - Manuscript Version
+    summary: Update Manuscript Version
+    description: Update (patch) the content of a manuscript version.
+    operationId: updateManuscriptVersion
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: '{{manuscriptVersionId}}'
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              activePart:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: '{{manuscriptPartId}}'
+          example:
+            activePart:
+              id: '{{manuscriptPartId}}'
+    responses:
+      '200':
+        description: ''

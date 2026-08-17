@@ -1,0 +1,43 @@
+type: object
+title: Theme
+description: This schema represents a theme of a world. These are predefined and cannot be edited.
+properties:
+  id: 
+    type: integer
+    format: int32
+    nullable: false
+  title: 
+    type: string
+    example: "Image Title"
+  slug: 
+    type: string
+    nullable: true
+  state: 
+    type: string
+    enum: [ private, public ]
+  isWip: 
+    type: boolean
+    nullable: true
+  isDraft: 
+    type: boolean
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ Theme ]
+  icon: 
+    type: string
+    enum: [ "fa-solid fa-palette" ]
+  url: 
+    type: string
+    nullable: true
+  subscribergroups:
+    type: array
+    example: []
+  folderId: 
+    type: string
+    nullable: true
+  tags: 
+    type: string
+    nullable: true
+  updateDate: 
+    $ref: '../../schemas/date.yml'

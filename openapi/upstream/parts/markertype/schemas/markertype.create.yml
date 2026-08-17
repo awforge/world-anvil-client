@@ -1,0 +1,61 @@
+type: object
+title: Marker Type (Pin) Create Schema
+description: All the fields here can added when creating a custom pin and the required fields.
+properties:
+  title: 
+    type: string
+    example: "Name of Pin"
+  tags: 
+    type: string
+    example: "tag,tag2"
+  iconAnchorX:
+    type: integer
+    format: int32
+    example: 0
+  iconAnchorY:
+    type: integer
+    format: int32
+    example: 10
+  popupAnchorX:
+    type: integer
+    format: int32
+    example: 21
+  popupAnchorY:
+    type: integer
+    format: int32
+    example: 10
+  className:
+    type: string
+    nullable: true
+  identifier:
+    type: string
+    example: "<title><username>"
+  theme:
+    type: string
+    example: "Star Wars, D&D, etc."
+  pin:
+    type: object
+    properties:
+      id: 
+        type: integer
+        format: int32
+  shadow:
+    type: object
+    properties:
+      id: 
+        type: integer
+        format: int32
+  world:
+    type: object
+    properties:
+      id: 
+        type: string
+        format: uuid
+  author:
+    type: object
+    properties:
+      id: 
+        type: string
+        format: uuid
+required:
+  - title

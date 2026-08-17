@@ -1,0 +1,47 @@
+type: object
+title: Era Reference Schema
+description: The basic era reference schema with the core metadata
+properties:
+  id: 
+    type: string
+    format: uuid
+  title: 
+    type: string
+    example: "Test Era"
+  slug: 
+    type: string
+    nullable: true
+  state: 
+    type: string
+    enum: [ public, private ]
+  isWip: 
+    type: boolean
+  isDraft: 
+    type: boolean
+  entityClass: 
+    type: string
+    enum: [ Era ]
+  icon: 
+    type: string
+    enum: ["fa-solid fa-timeline"]
+  url: 
+    type: string
+    nullable: true
+  subscribergroups:
+    type: array
+    items:
+      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+  folderId: 
+    type: string
+    nullable: true
+  tags: 
+    type: string
+    nullable: true
+  updateDate: 
+    $ref: '../../schemas/date.yml'
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true  

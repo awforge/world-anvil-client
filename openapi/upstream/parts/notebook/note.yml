@@ -1,0 +1,149 @@
+note:
+  get:
+    tags:
+      - Note
+    summary: Read Note
+    description: |-
+      Retrieve the metadata of a single note. The returned fields depend on the give granularity.
+    operationId: readNote
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: granularity
+        in: query
+        required: true
+        schema:
+          type: string
+          enum: [ '-1', '0', '2']
+    responses:
+      '200':
+        description: 'The note object. The included fields depend on the chosen granularity.'
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: 'schemas/note.ref.yml'
+                - $ref: 'schemas/note.zero.yml'
+                - $ref: 'schemas/note.two.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  put:
+    tags:
+      - Note
+    summary: Create Note
+    description: >-
+      Create a new note. The note requires a title and a notesection id to be created.
+    operationId: createNote
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/note.create.yml'
+          example:
+            title: Character Notes
+            content: 'Background: Acolyte, Class: Sorcerer, Race: Elf '
+            notesection:
+              id: ''
+    responses:
+      '200':
+        description: 'The reference object of the created note.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/note.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  delete:
+    tags:
+      - Note
+    summary: Delete Note
+    description: Delete a note. This action cannot be undone.
+    operationId: deleteNote
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    responses:
+      '200':
+        description: "Delete the note successfully."
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  patch:
+    tags:
+      - Note
+    summary: Update Note
+    description: Change the metadata and content of a note. Check the schema for the available fields.
+    operationId: updateNote
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/note.update.yml'
+    responses:
+      '200':
+        description: 'The reference object of the updated note.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/note.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

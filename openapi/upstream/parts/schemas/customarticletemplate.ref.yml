@@ -1,0 +1,48 @@
+type: object
+title: Custom Article Template Schema
+description: >-
+  The reference schema for a custom article template.
+properties:
+  id: 
+    type: string
+    format: uuid
+    nullable: false
+    isReadOnly: true
+  title: 
+    type: string
+    example: "Custom Article Template Name"
+    isReadOnly: true
+  slug: 
+    type: string
+    nullable: true
+  state: 
+    type: string
+    nullable: true
+  isWip: 
+    type: boolean
+    nullable: true
+  isDraft: 
+    type: boolean
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ CustomArticleTemplate ]
+  icon: 
+    type: string
+    enum: [ "fa-solid fa-flask-round-potion" ]
+  url: 
+    type: string
+    nullable: true
+  subscribergroups:
+    type: array
+    example: []
+  folderId: 
+    type: string
+    nullable: true
+    example: "null"
+  tags: 
+    type: string
+    nullable: true
+    example: "null"
+  updateDate: 
+    $ref: 'date.yml'

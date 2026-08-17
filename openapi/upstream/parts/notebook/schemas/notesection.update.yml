@@ -1,0 +1,29 @@
+type: object
+title: Note Section Update Schema
+description: These are the fields that can be edited on a note section.
+properties:
+  title: 
+    type: string
+    example: "Note Title"
+  color: 
+    type: string
+    format: hexcolor
+    example: "#000000"
+  weight: 
+    type: integer
+    format: int32
+  isSelected: 
+    type: integer
+    format: int32
+  notebook:
+    type: object
+    properties:
+      id: 
+        type: string
+        format: uuid
+  author:
+    type: object
+    properties:
+      id: 
+        type: string
+        format: uuid

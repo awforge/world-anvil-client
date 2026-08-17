@@ -1,0 +1,1719 @@
+diff --git a/openapi.yml b/openapi.yml
+index b18a21f..0c1c64a 100644
+--- a/openapi.yml
++++ b/openapi.yml
+@@ -196,18 +196,18 @@ tags:
+   - name: User
+   - name: World
+ security:
+-  - User Authentication Token: []
+-  - Application Key: []
++  - ApplicationKey: []
++    UserAuthenticationToken: []
+ components:
+   links: {}
+   callbacks: {}
+   schemas: {}
+   securitySchemes:
+-    Application Key:
++    ApplicationKey:
+       type: apiKey
+       name: x-application-key
+       in: header
+-    User Authentication Token:
++    UserAuthenticationToken:
+       type: apiKey
+       name: x-auth-token
+       in: header
+diff --git a/parts/article/article.yml b/parts/article/article.yml
+index 98d27c1..c7afa95 100644
+--- a/parts/article/article.yml
++++ b/parts/article/article.yml
+@@ -37,18 +37,18 @@ article:
+                 - $ref: 'schemas/article.yml#/ArticleGenericFull'
+                 - $ref: 'schemas/article.yml#/ArticleGenericFullPlus'
+                 - $ref: 'schemas/location.yml#/LocationFields'
+-    '400':
+-      $ref: '../responses/BadRequest.yml'
+-    '401':
+-      $ref: '../responses/Unauthorized.yml'
+-    '403':
+-      $ref: '../responses/Forbidden.yml'
+-    '404':
+-      $ref: '../responses/NotFound.yml'
+-    '405':
+-      $ref: '../responses/MethodNotAllowed.yml'
+-    '422':
+-      $ref: '../responses/UnprocessableEntity.yml'
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   put:
+     tags:
+       - Article
+@@ -69,18 +69,18 @@ article:
+           application/json:
+             schema:
+               $ref: 'schemas/article.yml#/ArticleRef'
+-    '400':
+-      $ref: '../responses/BadRequest.yml'
+-    '401':
+-      $ref: '../responses/Unauthorized.yml'
+-    '403':
+-      $ref: '../responses/Forbidden.yml'
+-    '404':
+-      $ref: '../responses/NotFound.yml'
+-    '405':
+-      $ref: '../responses/MethodNotAllowed.yml'
+-    '422':
+-      $ref: '../responses/UnprocessableEntity.yml'
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   delete:
+     tags:
+       - Article
+@@ -104,18 +104,18 @@ article:
+                 success:
+                   type: boolean
+                   default: true
+-    '400':
+-      $ref: '../responses/BadRequest.yml'
+-    '401':
+-      $ref: '../responses/Unauthorized.yml'
+-    '403':
+-      $ref: '../responses/Forbidden.yml'
+-    '404':
+-      $ref: '../responses/NotFound.yml'
+-    '405':
+-      $ref: '../responses/MethodNotAllowed.yml'
+-    '422':
+-      $ref: '../responses/UnprocessableEntity.yml'
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   patch:
+     tags:
+       - Article
+@@ -144,15 +144,15 @@ article:
+           application/json:
+             schema:
+               $ref: 'schemas/article.yml#/ArticleRef'
+-    '400':
+-      $ref: '../responses/BadRequest.yml'
+-    '401':
+-      $ref: '../responses/Unauthorized.yml'
+-    '403':
+-      $ref: '../responses/Forbidden.yml'
+-    '404':
+-      $ref: '../responses/NotFound.yml'
+-    '405':
+-      $ref: '../responses/MethodNotAllowed.yml'
+-    '422':
+-      $ref: '../responses/UnprocessableEntity.yml'
+\ No newline at end of file
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/article/schemas/article.yml b/parts/article/schemas/article.yml
+index 730dbcc..1094a45 100644
+--- a/parts/article/schemas/article.yml
++++ b/parts/article/schemas/article.yml
+@@ -102,9 +102,11 @@ ArticleGenericCore:
+       format: int32
+       readOnly: true
+     userMetadata:
++      type: object
+       nullable: true
+       readOnly: true
+     articleMetadata:
++      type: object
+       nullable: true
+       readOnly: true
+     cssClasses:
+@@ -259,7 +261,8 @@ ArticleGenericObjectProperties:
+       cover:
+         allOf:
+           - $ref: '../../image/schemas/image.yml#/ImageRef'
+-          - nullable: true
++          - type: object
++            nullable: true
+       gallery:
+         allOf:
+           - $ref: '../../image/schemas/gallery.yml#/GalleryRef'
+@@ -306,12 +309,14 @@ ArticleGenericFullPlus:
+                 - $ref: '../../category/schemas/category.yml#/CategoryRef'
+                 - $ref: '../../world/schemas/world.ref.yml'
+             secondUp:
++              type: object
+               nullable: true
+               oneOf:
+                 - $ref: '#/ArticleRef'
+                 - $ref: '../../category/schemas/category.yml#/CategoryRef'
+                 - $ref: '../../world/schemas/world.ref.yml'
+             thirdUp:
++              type: object
+               nullable: true
+               oneOf:
+                 - $ref: '#/ArticleRef'
+diff --git a/parts/block/schemas/block.yml b/parts/block/schemas/block.yml
+index d668fb0..2c3769f 100644
+--- a/parts/block/schemas/block.yml
++++ b/parts/block/schemas/block.yml
+@@ -73,7 +73,8 @@ Block:
+         identifier:
+           type: string
+         dataParser:
+-          type: yaml
++          type: string
++          format: yaml
+         textualdata:
+           type: string
+           format: yaml
+@@ -144,4 +145,4 @@ BlockCreate:
+         - RPGSRD
+ 
+ 
+-          
+\ No newline at end of file
++          
+diff --git a/parts/blocktemplate/blocktemplate.yml b/parts/blocktemplate/blocktemplate.yml
+index 2648a94..f416dae 100644
+--- a/parts/blocktemplate/blocktemplate.yml
++++ b/parts/blocktemplate/blocktemplate.yml
+@@ -47,7 +47,6 @@ blocktemplate:
+     summary: Create Block Template
+     description: Create a new statblock template. Check the schema for the required and optional fields.
+     operationId: createBlockTemplate
+-    parameters:
+     requestBody:
+       content:
+         application/json:
+@@ -141,4 +140,4 @@ blocktemplate:
+       '405':
+         $ref: '../responses/MethodNotAllowed.yml'
+       '422':
+-        $ref: '../responses/UnprocessableEntity.yml'
+\ No newline at end of file
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/blocktemplate/schemas/blocktemplate.yml b/parts/blocktemplate/schemas/blocktemplate.yml
+index ab76484..f9df87d 100644
+--- a/parts/blocktemplate/schemas/blocktemplate.yml
++++ b/parts/blocktemplate/schemas/blocktemplate.yml
+@@ -89,7 +89,6 @@ BlockTemplate:
+           enum: [json, yaml]
+         formSchema:
+           type: string
+-          format: [json, yaml]
+         formDisplayStructure: 
+           type: string
+           nullable: true
+@@ -120,47 +119,51 @@ BlockTemplate:
+         hasRawJson:
+           type: boolean
+ BlockTemplateExtended:
+-  - $ref: '#/BlockTemplate'
+-  - type: object
+-    title: Block Template - GR 1
+-    description: Metadata of a statblock template returned with granularity 1.
+-    properties:
+-      isShared:
+-        type: boolean
+-      isSharedWithPlayers:
+-        type: boolean
+-      heroesEnabled:
+-        type: boolean
+-      systemMeta:
+-        type: string
+-        nullable: true
+-        format: json
++  allOf:
++    - $ref: '#/BlockTemplate'
++    - type: object
++      title: Block Template - GR 1
++      description: Metadata of a statblock template returned with granularity 1.
++      properties:
++        isShared:
++          type: boolean
++        isSharedWithPlayers:
++          type: boolean
++        heroesEnabled:
++          type: boolean
++        systemMeta:
++          type: string
++          nullable: true
++          format: json
+ BlockTemplateFull:
+-  - $ref: '#/BlockTemplateExtended'
+-  - type: object
+-    title: Block Template - GR 2
+-    description: Metadata of a statblock template returned with granularity 2.
+-    properties:
+-      parts:
+-        type: array
+-        items:
+-          $ref: 'blocktemplatepart.yml#/BlockTemplatePartRef'
+-      RPGSRD:
+-        $ref: '../../rpgsystem/schemas/rpgsystem.ref.yml'
+-      author:
+-        $ref: '../../user/schemas/user.ref.yml'
++  allOf:
++    - $ref: '#/BlockTemplateExtended'
++    - type: object
++      title: Block Template - GR 2
++      description: Metadata of a statblock template returned with granularity 2.
++      properties:
++        parts:
++          type: array
++          items:
++            $ref: 'blocktemplatepart.yml#/BlockTemplatePartRef'
++        RPGSRD:
++          $ref: '../../rpgsystem/schemas/rpgsystem.ref.yml'
++        author:
++          $ref: '../../user/schemas/user.ref.yml'
+ BlockTemplateUpdate:
+-  - $ref: '#/BlockTemplate'
+-  - type: object
+-    title: Block Template - Update
+-    description: All the fields that can be updated on a statblock template.
++  allOf:
++    - $ref: '#/BlockTemplate'
++    - type: object
++      title: Block Template - Update
++      description: All the fields that can be updated on a statblock template.
+ BlockTemplateCreate:
+-  - $ref: '#/BlockTemplate'
+-  - type: object
+-    title: Block Template - Create
+-    description: All the fields that can be set on a statblock template when creating it.
+-    required:
+-      - title
+-      - formSchemaParser
+-      - formSchema
+-      - RPGSRD
++  allOf:
++    - $ref: '#/BlockTemplate'
++    - type: object
++      title: Block Template - Create
++      description: All the fields that can be set on a statblock template when creating it.
++      required:
++        - title
++        - formSchemaParser
++        - formSchema
++        - RPGSRD
+diff --git a/parts/canvas/canvas.yml b/parts/canvas/canvas.yml
+index 7af696d..45997b1 100644
+--- a/parts/canvas/canvas.yml
++++ b/parts/canvas/canvas.yml
+@@ -49,6 +49,12 @@ canvas:
+       content:
+         application/json:
+           schema:
++            allOf:
++              - $ref: 'schemas/canvas.two.yml'
++              - type: object
++                required:
++                  - title
++                  - world
+     responses:
+       '200':
+         description: 'Reference to the newly created whiteboard.'
+@@ -135,4 +141,4 @@ canvas:
+       '405':
+         $ref: '../responses/MethodNotAllowed.yml'
+       '422':
+-        $ref: '../responses/UnprocessableEntity.yml'
+\ No newline at end of file
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/canvas/schemas/canvas.pages.yml b/parts/canvas/schemas/canvas.pages.yml
+index 9569068..8f06128 100644
+--- a/parts/canvas/schemas/canvas.pages.yml
++++ b/parts/canvas/schemas/canvas.pages.yml
+@@ -11,16 +11,12 @@ properties:
+         example: Page 1
+       shapes: 
+         type: object
+-        additionalProperties: false
+-        patternProperties:
+-          '^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$':
+-            type: object
+-            description: A shape object.
+-            properties:
+-              oneOf:
+-                - $ref: 'canvas.shape.type.draw.yml'
+-                - $ref: 'canvas.shape.type.arrow.yml'
+-                - $ref: 'canvas.shape.type.sticky.yml'
+-                - $ref: 'canvas.shape.type.text.yml'
+-                - $ref: 'canvas.shape.type.block.yml'
+-                - $ref: 'canvas.shape.type.rectangle.yml'
+\ No newline at end of file
++        additionalProperties:
++          description: A shape object keyed by its UUID.
++          oneOf:
++            - $ref: 'canvas.shape.type.draw.yml'
++            - $ref: 'canvas.shape.type.arrow.yml'
++            - $ref: 'canvas.shape.type.sticky.yml'
++            - $ref: 'canvas.shape.type.text.yml'
++            - $ref: 'canvas.shape.type.block.yml'
++            - $ref: 'canvas.shape.type.rectangle.yml'
+diff --git a/parts/canvas/schemas/canvas.shape.type.arrow.yml b/parts/canvas/schemas/canvas.shape.type.arrow.yml
+index ad67450..8a9fa5e 100644
+--- a/parts/canvas/schemas/canvas.shape.type.arrow.yml
++++ b/parts/canvas/schemas/canvas.shape.type.arrow.yml
+@@ -1,97 +1,98 @@
+-id: 
+-  type: string
+-  format: uuid
+-bend: 
+-  type: integer
+-  format: int32
+-  example: 0
+-name: 
+-  type: string
+-  example: Arrow
+-type: 
+-  type: string
+-  example: arrow
+-label: 
+-  type: string
+-  example: 
+-point: 
+-  type: array
+-  items:
++type: object
++properties:
++  id: 
++    type: string
++    format: uuid
++  bend: 
+     type: integer
+     format: int32
+-style: 
+-  $ref: 'canvas.shape.style.yml'
+-handles: 
+-  type: object
+-  properties: 
+-    end: 
+-      type: object
+-      properties: 
+-        id: 
+-          type: string
+-          example: end
+-        index: 
+-          type: integer
+-          format: int32
+-          example: 1
+-        point: 
+-          type: array
+-          items:
++    example: 0
++  name: 
++    type: string
++    example: Arrow
++  type: 
++    type: string
++    example: arrow
++  label: 
++    type: string
++    example: 
++  point: 
++    type: array
++    items:
++      type: integer
++      format: int32
++  style: 
++    $ref: 'canvas.shape.style.yml'
++  handles: 
++    type: object
++    properties: 
++      end: 
++        type: object
++        properties: 
++          id: 
++            type: string
++            example: end
++          index: 
+             type: integer
+-            format: int32 
+-        canBind: 
+-          type: boolean
+-    bend: 
+-      type: object
+-      properties: 
+-        id: 
+-          type: string
+-          example: bend
+-        index: 
+-          type: integer
+-          format: int32
+-          example: 2
+-        point: 
+-          type: array
+-          items:
++            format: int32
++            example: 1
++          point: 
++            type: array
++            items:
++              type: integer
++              format: int32 
++          canBind: 
++            type: boolean
++      bend: 
++        type: object
++        properties: 
++          id: 
++            type: string
++            example: bend
++          index: 
++            type: integer
++            format: int32
++            example: 2
++          point: 
++            type: array
++            items:
++              type: integer
++              format: int32
++      start: 
++        type: object
++        properties: 
++          id: 
++            type: string
++            example: start
++          index: 
+             type: integer
+             format: int32
+-    start: 
+-      type: object
+-      properties: 
+-        id: 
+-          type: string
+-          example: start
+-        index: 
+-          type: integer
+-          format: int32
+-          example: 0
+-        point: 
+-          type: array
+-          items: 
+-            type: object
+-            properties:  
+-          example: []
+-        canBind: 
+-          type: boolean
+-parentId: 
+-  type: string
+-  example: page
+-rotation: 
+-  type: integer
+-  format: int32
+-  example: 0
+-childIndex: 
+-  type: integer
+-  format: int32
+-  example: 4
+-labelPoint: 
+-  type: array
+-  items:
+-    type: number
+-decorations: 
+-  type: object
+-  properties: 
+-    end: 
+-      type: string
+-      example: arrow
+\ No newline at end of file
++            example: 0
++          point: 
++            type: array
++            items:
++              type: number
++            example: []
++          canBind: 
++            type: boolean
++  parentId: 
++    type: string
++    example: page
++  rotation: 
++    type: integer
++    format: int32
++    example: 0
++  childIndex: 
++    type: integer
++    format: int32
++    example: 4
++  labelPoint: 
++    type: array
++    items:
++      type: number
++  decorations: 
++    type: object
++    properties: 
++      end: 
++        type: string
++        example: arrow
+diff --git a/parts/canvas/schemas/canvas.shape.type.block.yml b/parts/canvas/schemas/canvas.shape.type.block.yml
+index 7fd0aea..ff72b6f 100644
+--- a/parts/canvas/schemas/canvas.shape.type.block.yml
++++ b/parts/canvas/schemas/canvas.shape.type.block.yml
+@@ -1,104 +1,106 @@
+-id: 
+-  type: string
+-  format: uuid
+-name: 
+-  type: string
+-  example: Block
+-size: 
+-  type: array
+-  items:
++type: object
++properties:
++  id: 
++    type: string
++    format: uuid
++  name: 
++    type: string
++    example: Block
++  size: 
++    type: array
++    items:
++      type: integer
++      format: int32
++  type: 
++    type: string
++    enum: [ block ]
++  asset: 
++    type: object
++    properties: 
++      id: 
++        type: string
++        format: uuid
++      src: 
++        type: string
++      size: 
++        type: array
++        items:
++          type: integer
++          format: int32
++      type: 
++        type: string
++        enum: [ block ]
++      block: 
++        type: object
++        properties: 
++          uuid: 
++            type: string
++            format: uuid
++          tlUrl: 
++            type: string
++          tlIcon: 
++            type: string
++          excerpt: 
++            type: string
++          rawData:
++            type: object
++            description: |
++              This is the raw data of the selected resource of this block. It is a JSON object that can be used to render the resource in the frontend. The properties
++              present depend on the type of resource. The id property is always present and is the id of the resource.
++            properties: 
++              id: 
++                type: string
++                format: uuid
++          tlTitle: 
++            type: string
++          template: 
++            type: string
++            enum: [ Event ]
++          tlWaType: 
++            type: string
++            enum: [ events ]
++          blockType: 
++            type: string
++            enum: [ DEFAULT ]
++          tlBgColor: 
++            type: string
++            example: "#000000"
++          tlShowText: 
++            type: boolean
++  point: 
++    type: array
++    items:
++      type: integer
++      format: int32
++  style:
++    $ref: './canvas.shape.style.yml'
++  assetId: 
++    type: string
++    example: assetId
++  maxWidth: 
+     type: integer
+     format: int32
+-type: 
+-  type: string
+-  enum: [ block ]
+-asset: 
+-  type: object
+-  properties: 
+-    id: 
+-      type: string
+-      format: uuid
+-    src: 
+-      type: string
+-    size: 
+-      type: array
+-      items:
+-        type: integer
+-        format: int32
+-    type: 
+-      type: string
+-      enum: [ block ]
+-    block: 
+-      type: object
+-      properties: 
+-        uuid: 
+-          type: string
+-          format: uuid
+-        tlUrl: 
+-          type: string
+-        tlIcon: 
+-          type: string
+-        excerpt: 
+-          type: string
+-        rawData:
+-          type: object
+-          description: |
+-            This is the raw data of the selected resource of this block. It is a JSON object that can be used to render the resource in the frontend. The properties
+-            present depend on the type of resource. The id property is always present and is the id of the resource.
+-          properties: 
+-            id: 
+-              type: string
+-              format: uuid
+-        tlTitle: 
+-          type: string
+-        template: 
+-          type: string
+-          enum: [ Event ]
+-        tlWaType: 
+-          type: string
+-          enum: [ events ]
+-        blockType: 
+-          type: string
+-          enum: [ DEFAULT ]
+-        tlBgColor: 
+-          type: string
+-          example: "#000000"
+-        tlShowText: 
+-          type: boolean
+-point: 
+-  type: array
+-  items:
++    example: 640
++  minWidth: 
+     type: integer
+     format: int32
+-style:
+-  $ref: './canvas.shape.style.yml'
+-assetId: 
+-  type: string
+-  example: assetId
+-maxWidth: 
+-  type: integer
+-  format: int32
+-  example: 640
+-minWidth: 
+-  type: integer
+-  format: int32
+-  example: 320
+-parentId: 
+-  type: string
+-  example: page
+-rotation: 
+-  type: integer
+-  format: int32
+-  example: 0
+-maxHeight: 
+-  type: integer
+-  format: int32
+-  example: 384
+-minHeight: 
+-  type: integer
+-  format: int32
+-  example: 192
+-childIndex: 
+-  type: integer
+-  format: int32
+-  example: 8
+\ No newline at end of file
++    example: 320
++  parentId: 
++    type: string
++    example: page
++  rotation: 
++    type: integer
++    format: int32
++    example: 0
++  maxHeight: 
++    type: integer
++    format: int32
++    example: 384
++  minHeight: 
++    type: integer
++    format: int32
++    example: 192
++  childIndex: 
++    type: integer
++    format: int32
++    example: 8
+diff --git a/parts/canvas/schemas/canvas.shape.type.draw.yml b/parts/canvas/schemas/canvas.shape.type.draw.yml
+index 7cf8487..5cb075d 100644
+--- a/parts/canvas/schemas/canvas.shape.type.draw.yml
++++ b/parts/canvas/schemas/canvas.shape.type.draw.yml
+@@ -1,41 +1,41 @@
+-id: 
+-  type: string
+-  format: uuid
+-name: 
+-  type: string
+-  example: Draw
+-type: 
+-  type: string
+-  example: draw
+-point: 
+-  type: array
+-  items:
+-    type: integer
+-    format: int32
+-style:
+-  $ref: 'canvas.shape.style.yml'
+-points: 
+-  type: array
+-  items: 
++type: object
++properties:
++  id: 
++    type: string
++    format: uuid
++  name: 
++    type: string
++    example: Draw
++  type: 
++    type: string
++    example: draw
++  point: 
++    type: array
++    items:
++      type: integer
++      format: int32
++  style:
++    $ref: 'canvas.shape.style.yml'
++  points: 
+     type: array
+     items: 
+-      - type: integer
+-      - type: integer
+-      - type: number
+-  example: 
+-    - [3, 349, 0.5]
+-    - [3, 349, 0.5]
+-    - [0, 347, 0.5]
+-parentId: 
+-  type: string
+-  example: page
+-rotation: 
+-  type: integer
+-  format: int32
+-  example: 0
+-childIndex: 
+-  type: integer
+-  format: int32
+-  example: 1
+-isComplete: 
+-  type: boolean
+\ No newline at end of file
++      type: array
++      items:
++        type: number
++    example: 
++      - [3, 349, 0.5]
++      - [3, 349, 0.5]
++      - [0, 347, 0.5]
++  parentId: 
++    type: string
++    example: page
++  rotation: 
++    type: integer
++    format: int32
++    example: 0
++  childIndex: 
++    type: integer
++    format: int32
++    example: 1
++  isComplete: 
++    type: boolean
+diff --git a/parts/canvas/schemas/canvas.shape.type.rectangle.yml b/parts/canvas/schemas/canvas.shape.type.rectangle.yml
+index ef09f24..42aafb7 100644
+--- a/parts/canvas/schemas/canvas.shape.type.rectangle.yml
++++ b/parts/canvas/schemas/canvas.shape.type.rectangle.yml
+@@ -1,39 +1,41 @@
+-id: 
+-  type: string
+-  format: uuid
+-name: 
+-  type: string
+-  enum: [ Rectangle ]
+-size: 
+-  type: array
+-  items:
++type: object
++properties:
++  id: 
++    type: string
++    format: uuid
++  name: 
++    type: string
++    enum: [ Rectangle ]
++  size: 
++    type: array
++    items:
++      type: integer
++      format: int32
++  type: 
++    type: string
++    enum: [ rectangle ]
++  label: 
++    type: string
++  point: 
++    type: array
++    items:
++      type: integer
++      format: int32
++  style:
++    $ref: 'canvas.shape.style.yml'
++  parentId: 
++    type: string
++    example: page
++  rotation: 
+     type: integer
+     format: int32
+-type: 
+-  type: string
+-  enum: [ rectangle ]
+-label: 
+-  type: string
+-point: 
+-  type: array
+-  items:
++    example: 0
++  childIndex: 
+     type: integer
+     format: int32
+-style:
+-  $ref: 'canvas.shape.style.yml'
+-parentId: 
+-  type: string
+-  example: page
+-rotation: 
+-  type: integer
+-  format: int32
+-  example: 0
+-childIndex: 
+-  type: integer
+-  format: int32
+-  example: 3
+-labelPoint: 
+-  type: array
+-  items:
+-    type: integer
+-    format: int32
+\ No newline at end of file
++    example: 3
++  labelPoint: 
++    type: array
++    items:
++      type: integer
++      format: int32
+diff --git a/parts/canvas/schemas/canvas.shape.type.sticky.yml b/parts/canvas/schemas/canvas.shape.type.sticky.yml
+index c880932..239e170 100644
+--- a/parts/canvas/schemas/canvas.shape.type.sticky.yml
++++ b/parts/canvas/schemas/canvas.shape.type.sticky.yml
+@@ -1,35 +1,37 @@
+-id: 
+-  type: string
+-  format: uuid
+-name: 
+-  type: string
+-  example: Sticky
+-size: 
+-  type: array
+-  items:
++type: object
++properties:
++  id: 
++    type: string
++    format: uuid
++  name: 
++    type: string
++    example: Sticky
++  size: 
++    type: array
++    items:
++      type: integer
++      format: int32
++  text: 
++    type: string
++    example: "A note to myself"
++  type: 
++    type: string
++    example: sticky
++  point: 
++    type: array
++    items:
++      type: integer
++      format: int32
++  style:
++    $ref: 'canvas.shape.style.yml'
++  parentId: 
++    type: string
++    example: page
++  rotation: 
+     type: integer
+     format: int32
+-text: 
+-  type: string
+-  example: "A note to myself"
+-type: 
+-  type: string
+-  example: sticky
+-point: 
+-  type: array
+-  items:
++    example: 0
++  childIndex: 
+     type: integer
+     format: int32
+-style:
+-  $ref: 'canvas.shape.style.yml'
+-parentId: 
+-  type: string
+-  example: page
+-rotation: 
+-  type: integer
+-  format: int32
+-  example: 0
+-childIndex: 
+-  type: integer
+-  format: int32
+-  example: 6
+\ No newline at end of file
++    example: 6
+diff --git a/parts/canvas/schemas/canvas.shape.type.text.yml b/parts/canvas/schemas/canvas.shape.type.text.yml
+index e5904b0..3111dac 100644
+--- a/parts/canvas/schemas/canvas.shape.type.text.yml
++++ b/parts/canvas/schemas/canvas.shape.type.text.yml
+@@ -1,31 +1,32 @@
+-id: 
+-  type: string
+-  example: 7b2ce8d7-064c-40c9-08eb-a23fe30b9b0f
+-name: 
+-  type: string
+-  example: Text
+-text: 
+-  type: string
+-  example: Hello Warheads
+-type: 
+-  type: string
+-  example: text
+-point: 
+-  type: array
+-  items: 
+-    type: object
+-    properties:  
+-  example: []
+-style:
+-  $ref: 'canvas.shape.styleWithText.yml'
+-parentId: 
+-  type: string
+-  example: page
+-rotation: 
+-  type: integer
+-  format: int32
+-  example: 0
+-childIndex: 
+-  type: integer
+-  format: int32
+-  example: 5
+\ No newline at end of file
++type: object
++properties:
++  id: 
++    type: string
++    example: 7b2ce8d7-064c-40c9-08eb-a23fe30b9b0f
++  name: 
++    type: string
++    example: Text
++  text: 
++    type: string
++    example: Hello Warheads
++  type: 
++    type: string
++    example: text
++  point: 
++    type: array
++    items:
++      type: number
++    example: []
++  style:
++    $ref: 'canvas.shape.styleWithText.yml'
++  parentId: 
++    type: string
++    example: page
++  rotation: 
++    type: integer
++    format: int32
++    example: 0
++  childIndex: 
++    type: integer
++    format: int32
++    example: 5
+diff --git a/parts/manuscript/schemas/manuscript.yml b/parts/manuscript/schemas/manuscript.yml
+index 0a12be4..3856100 100644
+--- a/parts/manuscript/schemas/manuscript.yml
++++ b/parts/manuscript/schemas/manuscript.yml
+@@ -49,8 +49,8 @@ ManuscriptRef:
+       readOnly: true
+     tags:
+       type: object
+-      properties:
++      additionalProperties: true
+       example: {}
+       readOnly: true
+     updateDate:
+-      $ref: '../../schemas/date.yml'
+\ No newline at end of file
++      $ref: '../../schemas/date.yml'
+diff --git a/parts/map/layer.yml b/parts/map/layer.yml
+index 0d074fa..0b3cdba 100644
+--- a/parts/map/layer.yml
++++ b/parts/map/layer.yml
+@@ -45,7 +45,6 @@ layer:
+     summary: Create Layer
+     description: Create a new map layer. Required parameters for the creation of this entity are "title" and "map". It is not possible to upload a new binary for the image. Only existing images can be assigned as the layer image.
+     operationId: createLayer
+-    parameters:
+     requestBody:
+       content:
+         application/json:
+@@ -140,4 +139,4 @@ layer:
+       '405':
+         $ref: '../responses/MethodNotAllowed.yml'
+       '422':
+-        $ref: '../responses/UnprocessableEntity.yml'
+\ No newline at end of file
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/map/marker.yml b/parts/map/marker.yml
+index 198fbf5..c24ace4 100644
+--- a/parts/map/marker.yml
++++ b/parts/map/marker.yml
+@@ -23,7 +23,7 @@ marker:
+         description: 'A marker metadata resource.'
+         content:
+           application/json:
+-            schemas:
++            schema:
+               oneOf:
+                 - $ref: 'schemas/marker.ref.yml'
+                 - $ref: 'schemas/marker.zero.yml'
+@@ -140,4 +140,4 @@ marker:
+       '405':
+         $ref: '../responses/MethodNotAllowed.yml'
+       '422':
+-        $ref: '../responses/UnprocessableEntity.yml'
+\ No newline at end of file
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/map/schemas/markergroup.update.yml b/parts/map/schemas/markergroup.update.yml
+index f49c03b..6fe0a3d 100644
+--- a/parts/map/schemas/markergroup.update.yml
++++ b/parts/map/schemas/markergroup.update.yml
+@@ -15,7 +15,7 @@ properties:
+       properties:
+         id:
+           type: string
+-        format: uuid
++          format: uuid
+     example: []
+   activeOnLoad:
+     type: boolean
+@@ -33,4 +33,4 @@ properties:
+     properties:
+       id:
+         type: string
+-        format: uuid
+\ No newline at end of file
++        format: uuid
+diff --git a/parts/markertype/markertype.yml b/parts/markertype/markertype.yml
+index 954b19f..b6943b2 100644
+--- a/parts/markertype/markertype.yml
++++ b/parts/markertype/markertype.yml
+@@ -45,7 +45,6 @@ markertype:
+     summary: Create Marker Type
+     description: Create a custom marker type (pin). The title is the only required field. Check all the fields in the schema definition.
+     operationId: createMarkerType
+-    parameters:
+     requestBody:
+       content:
+         application/json:
+@@ -140,4 +139,4 @@ markertype:
+       '405':
+         $ref: '../responses/MethodNotAllowed.yml'
+       '422':
+-        $ref: '../responses/UnprocessableEntity.yml'
+\ No newline at end of file
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/markertype/markertypes.yml b/parts/markertype/markertypes.yml
+index 8d3349b..3960885 100644
+--- a/parts/markertype/markertypes.yml
++++ b/parts/markertype/markertypes.yml
+@@ -8,7 +8,8 @@ markertypes:
+     requestBody:
+       content:
+         application/json:
+-          $ref: '../schemas/limit.yml#/General'
++          schema:
++            $ref: '../schemas/limit.yml#/General'
+     responses:
+       '200':
+         description: 'The list of marker types within the limit at the offset.'
+@@ -34,4 +35,4 @@ markertypes:
+       '405':
+         $ref: '../responses/MethodNotAllowed.yml'
+       '422':
+-        $ref: '../responses/UnprocessableEntity.yml'
+\ No newline at end of file
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/notebook/notebook-notesections.yml b/parts/notebook/notebook-notesections.yml
+index de2e348..302c1d0 100644
+--- a/parts/notebook/notebook-notesections.yml
++++ b/parts/notebook/notebook-notesections.yml
+@@ -17,6 +17,7 @@ notebook-notesections:
+         application/json:
+           schema:
+             $ref: '../schemas/limit.yml#/General'
++    responses:
+       '200':
+         description: 'A list of notesection objects. Starting at the offset and limited by the limit.'
+         content:
+@@ -43,4 +44,4 @@ notebook-notesections:
+         $ref: '../responses/MethodNotAllowed.yml'
+       '422':
+         $ref: '../responses/UnprocessableEntity.yml'
+-      
+\ No newline at end of file
++      
+diff --git a/parts/schemas/customarticletemplate.ref.yml b/parts/schemas/customarticletemplate.ref.yml
+index 7598877..d4c68a1 100644
+--- a/parts/schemas/customarticletemplate.ref.yml
++++ b/parts/schemas/customarticletemplate.ref.yml
+@@ -7,11 +7,11 @@ properties:
+     type: string
+     format: uuid
+     nullable: false
+-    isReadOnly: true
++    readOnly: true
+   title: 
+     type: string
+     example: "Custom Article Template Name"
+-    isReadOnly: true
++    readOnly: true
+   slug: 
+     type: string
+     nullable: true
+diff --git a/parts/schemas/orgchart.yml b/parts/schemas/orgchart.yml
+index b78f277..bca5e82 100644
+--- a/parts/schemas/orgchart.yml
++++ b/parts/schemas/orgchart.yml
+@@ -2,55 +2,55 @@ OrgChartRef:
+   type: object
+   title: Org Chart
+   description: Org Chart resource.
+-  isReadOnly: true
++  readOnly: true
+   properties:
+     id: 
+       type: string
+       format: uuid
+       nullable: false
+-      isReadOnly: true
++      readOnly: true
+     title: 
+       type: string
+       example: "Org Chart Name"
+-      isReadOnly: true
++      readOnly: true
+     slug: 
+       type: string
+       nullable: true
+-      isReadOnly: true
++      readOnly: true
+     state: 
+       type: string
+       nullable: true
+-      isReadOnly: true
++      readOnly: true
+     isWip: 
+       type: boolean
+       nullable: true
+-      isReadOnly: true
++      readOnly: true
+     isDraft: 
+       type: boolean
+       nullable: true
+-      isReadOnly: true
++      readOnly: true
+     entityClass: 
+       type: string
+       enum: [ OrgChart ]
+-      isReadOnly: true
++      readOnly: true
+     icon: 
+       type: string
+-      isReadOnly: true
++      readOnly: true
+     url: 
+       type: string
+       nullable: true
+-      isReadOnly: true
++      readOnly: true
+     subscribergroups:
+       type: array
+       example: []
+-      isReadOnly: true
++      readOnly: true
+     folderId: 
+       type: string
+       nullable: true
+-      isReadOnly: true
++      readOnly: true
+     tags: 
+       type: string
+       nullable: true
+-      isReadOnly: true
++      readOnly: true
+     updateDate: 
+       $ref: 'date.yml'
+\ No newline at end of file
+diff --git a/parts/schemas/prompt.yml b/parts/schemas/prompt.yml
+index 2194f60..5bce699 100644
+--- a/parts/schemas/prompt.yml
++++ b/parts/schemas/prompt.yml
+@@ -8,49 +8,49 @@ PromptRef:
+       type: string
+       format: uuid
+       nullable: false
+-      isReadOnly: true
++      readOnly: true
+     title: 
+       type: string
+       example: "Worldbuilding Prompt Name"
+-      isReadOnly: true
++      readOnly: true
+     slug: 
+       type: string
+       nullable: true
+-      isReadOnly: true
++      readOnly: true
+     state: 
+       type: string
+       nullable: true
+-      isReadOnly: true
++      readOnly: true
+     isWip: 
+       type: boolean
+       nullable: true
+-      isReadOnly: true
++      readOnly: true
+     isDraft: 
+       type: boolean
+       nullable: true
+-      isReadOnly: true
++      readOnly: true
+     entityClass: 
+       type: string
+       enum: [ Prompt ]
+-      isReadOnly: true
++      readOnly: true
+     icon: 
+       type: string
+-      isReadOnly: true
++      readOnly: true
+     url: 
+       type: string
+       nullable: true
+-      isReadOnly: true
++      readOnly: true
+     subscribergroups:
+       type: array
+       example: []
+-      isReadOnly: true
++      readOnly: true
+     folderId: 
+       type: string
+       nullable: true
+-      isReadOnly: true
++      readOnly: true
+     tags: 
+       type: string
+       nullable: true
+-      isReadOnly: true
++      readOnly: true
+     updateDate: 
+       $ref: 'date.yml'
+\ No newline at end of file
+diff --git a/parts/subscribergroup/schemas/subscribergroup.update.yml b/parts/subscribergroup/schemas/subscribergroup.update.yml
+index 69e85b3..2a95fc0 100644
+--- a/parts/subscribergroup/schemas/subscribergroup.update.yml
++++ b/parts/subscribergroup/schemas/subscribergroup.update.yml
+@@ -29,6 +29,8 @@ properties:
+   paidsubscribers: 
+     type: array
+     items:
+-      id: 
+-        type: string
+-        format: uuid
+\ No newline at end of file
++      type: object
++      properties:
++        id: 
++          type: string
++          format: uuid
+diff --git a/parts/subscribergroup/subscribergroup.yml b/parts/subscribergroup/subscribergroup.yml
+index 1761e64..a67f67b 100644
+--- a/parts/subscribergroup/subscribergroup.yml
++++ b/parts/subscribergroup/subscribergroup.yml
+@@ -19,7 +19,6 @@ subscribergroup:
+           type: string
+           enum: ['-1', '0', '1']
+           example: '-1'
+-    requestBody:
+     responses:
+       '200':
+         description: 'Returns the requested subscriber group. The included fields depend on the chosen granularity.'
+@@ -49,7 +48,6 @@ subscribergroup:
+     description: >-
+       Create a new subscriber group. To create a subscriber group you need a title and the id of the world it should be created in. Check the schema for all available fields.
+     operationId: createSubscribergroup
+-    parameters:
+     requestBody:
+       content:
+         application/json:
+@@ -82,7 +80,6 @@ subscribergroup:
+         required: true
+         schema:
+           type: string
+-    requestBody:
+     responses:
+       '200':
+         description: 'Deletion of the subscriber group was successful.'
+@@ -144,4 +141,4 @@ subscribergroup:
+       '405':
+         $ref: '../responses/MethodNotAllowed.yml'
+       '422':
+-        $ref: '../responses/UnprocessableEntity.yml'
+\ No newline at end of file
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/timeline/schemas/history.category.schema.yml b/parts/timeline/schemas/history.category.schema.yml
+index e85484b..1a3ba2a 100644
+--- a/parts/timeline/schemas/history.category.schema.yml
++++ b/parts/timeline/schemas/history.category.schema.yml
+@@ -2,45 +2,44 @@ type: object
+ title: History Category Schema
+ description: The reference schema for the category within histories. Does not have it its own endpoint.  
+ properties:
+-    type: object
+-    properties: 
+-      id: 
+-        type: string
+-        example: "b4060135-b751-4a6a-a14b-22090ba9df5e"
+-      title: 
+-        type: string
+-        example: Artistic creation
+-      slug: 
+-        type: string
+-        nullable: true
+-      state: 
+-        type: string
+-        nullable: true
+-      isWip: 
+-        type: string
+-        nullable: true
+-      isDraft: 
+-        type: string
+-        nullable: true
+-      entityClass: 
+-        type: string
+-        enum: [ HistoricalEntryCategory ]
+-      icon: 
+-        type: string
+-        enum: [ "ra ra-3x ra-forging" ]
+-      url: 
+-        type: string
+-        nullable: true
+-      subscribergroups: 
+-        type: array
+-        items:
+-          $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+-        example: []
+-      folderId: 
+-        type: string
+-        nullable: true
+-      tags: 
+-        type: string
+-        nullable: true
+-      updateDate:
+-        $ref: '../../schemas/date.yml'
+\ No newline at end of file
++  id: 
++    type: string
++    format: uuid
++    example: "b4060135-b751-4a6a-a14b-22090ba9df5e"
++  title: 
++    type: string
++    example: Artistic creation
++  slug: 
++    type: string
++    nullable: true
++  state: 
++    type: string
++    nullable: true
++  isWip: 
++    type: string
++    nullable: true
++  isDraft: 
++    type: string
++    nullable: true
++  entityClass: 
++    type: string
++    enum: [ HistoricalEntryCategory ]
++  icon: 
++    type: string
++    enum: [ "ra ra-3x ra-forging" ]
++  url: 
++    type: string
++    nullable: true
++  subscribergroups: 
++    type: array
++    items:
++      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
++    example: []
++  folderId: 
++    type: string
++    nullable: true
++  tags: 
++    type: string
++    nullable: true
++  updateDate:
++    $ref: '../../schemas/date.yml'
+diff --git a/parts/timeline/schemas/timeline.create.yml b/parts/timeline/schemas/timeline.create.yml
+index ca8e4d4..9c2ac77 100644
+--- a/parts/timeline/schemas/timeline.create.yml
++++ b/parts/timeline/schemas/timeline.create.yml
+@@ -11,18 +11,22 @@ properties:
+   subscribergroups:
+     type: array
+     items:
+-      id:
+-        type: string
+-        format: uuid
++      type: object
++      properties:
++        id:
++          type: string
++          format: uuid
+   tags: 
+     type: string
+     example: "tag,tag2"
+   histories:
+     type: array
+     items:
+-      id:
+-        type: string
+-        format: uuid
++      type: object
++      properties:
++        id:
++          type: string
++          format: uuid
+   description:
+     type: string
+     example: "Description"
+@@ -74,4 +78,4 @@ properties:
+         format: uuid
+ required:
+   - title
+-  - world
+\ No newline at end of file
++  - world
+diff --git a/parts/timeline/schemas/timeline.update.yml b/parts/timeline/schemas/timeline.update.yml
+index 85766f8..3bf58b0 100644
+--- a/parts/timeline/schemas/timeline.update.yml
++++ b/parts/timeline/schemas/timeline.update.yml
+@@ -11,18 +11,22 @@ properties:
+   subscribergroups:
+     type: array
+     items:
+-      id:
+-        type: string
+-        format: uuid
++      type: object
++      properties:
++        id:
++          type: string
++          format: uuid
+   tags: 
+     type: string
+     example: "tag,tag2"
+   histories:
+     type: array
+     items:
+-      id:
+-        type: string
+-        format: uuid
++      type: object
++      properties:
++        id:
++          type: string
++          format: uuid
+   description:
+     type: string
+     example: "Description"
+@@ -71,4 +75,4 @@ properties:
+     properties:
+       id:
+         type: string
+-        format: uuid
+\ No newline at end of file
++        format: uuid
+diff --git a/parts/user/schemas/user.two.yml b/parts/user/schemas/user.two.yml
+index b7e343f..038ae9e 100644
+--- a/parts/user/schemas/user.two.yml
++++ b/parts/user/schemas/user.two.yml
+@@ -79,7 +79,8 @@ properties:
+   primaryUseType:
+     type: string
+   onboardingProgress:
+-    type: int32
++    type: integer
++    format: int32
+   signature: 
+     type: string
+   customProfileContent: 
+diff --git a/parts/user/user-identity.yml b/parts/user/user-identity.yml
+index 3db154d..45bc689 100644
+--- a/parts/user/user-identity.yml
++++ b/parts/user/user-identity.yml
+@@ -6,8 +6,6 @@ identity:
+     description: |-
+       Returns the basic user information associated with the authentication token used for this request. This is the first request to start using the API successfully when no other resources are known.
+     operationId: readIdentity
+-    parameters:
+-    requestBody:
+     responses:
+       '200':
+         description: 'Returns the basic user information associated with the authentication token used for this request.'
+@@ -36,4 +34,4 @@ identity:
+       '401':
+         $ref: '../responses/Unauthorized.yml'
+       '405':
+-        $ref: '../responses/MethodNotAllowed.yml'
+\ No newline at end of file
++        $ref: '../responses/MethodNotAllowed.yml'
+diff --git a/parts/user/user.yml b/parts/user/user.yml
+index 916ab7d..bca7d14 100644
+--- a/parts/user/user.yml
++++ b/parts/user/user.yml
+@@ -19,7 +19,6 @@ user:
+           type: string
+           enum: ['-1', '0', '2']
+           example: '-1'
+-    requestBody:
+     responses:
+       '200':
+         description: 'A user object. The included fields depend on the chosen granularity.'
+@@ -63,8 +62,10 @@ user:
+     responses:
+       '200':
+         description: 'Returns the basic reference object of the updated user.'
+-        schema:
+-          $ref: 'schemas/user.ref.yml'
++        content:
++          application/json:
++            schema:
++              $ref: 'schemas/user.ref.yml'
+       '400':
+         $ref: '../responses/BadRequest.yml'
+       '401':
+@@ -76,4 +77,4 @@ user:
+       '405':
+         $ref: '../responses/MethodNotAllowed.yml'
+       '422':
+-        $ref: '../responses/UnprocessableEntity.yml'
+\ No newline at end of file
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/variable/schemas/variablecollection.yml b/parts/variable/schemas/variablecollection.yml
+index c5b9d48..1233543 100644
+--- a/parts/variable/schemas/variablecollection.yml
++++ b/parts/variable/schemas/variablecollection.yml
+@@ -101,10 +101,10 @@ VariableCollectionUpdate:
+           format: uuid
+           example: 00000000-0000-0000-0000-000000000000
+ VariableCollectionCreate:
+-  - allOf:
+-      - $ref: '#/VariableCollectionUpdate'
+-      - type: object
+-        title: Variable Collection - Create
+-        required:
+-          - title
+-          - world
+\ No newline at end of file
++  allOf:
++    - $ref: '#/VariableCollectionUpdate'
++    - type: object
++      title: Variable Collection - Create
++      required:
++        - title
++        - world

@@ -1,0 +1,113 @@
+type: object
+title: Map Update Schema
+description: All the fields that can be updated on a map.
+properties:
+  title: 
+    type: string
+    example: "Map Title"
+  state: 
+    type: string
+    enum: [ private, public ]
+  icon:
+    type: string
+    example: "fa-solid fa-compass"
+  subscribergroups:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+    example: []
+  tags: 
+    type: string
+    example: ""
+  author:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  description: 
+    type: string
+    example: "Description"
+  legend:
+    type: string
+    example: "Legend"
+  isDeleted:
+    type: boolean
+    nullable: true
+  displayOnHomepage:
+    type: boolean
+    example: true
+  views: 
+    type: integer
+    format: int32
+    nullable: true
+  position:
+    type: integer
+    format: int32
+    example: 1233
+  zoomOriginal:
+    type: integer
+    format: int32
+    example: 0
+  zoomMin:
+    type: integer
+    format: int32
+    example: -2
+  zoomMax:
+    type: integer
+    format: int32
+    example: 0
+  centerY:
+    type: integer
+    format: int32
+    example: 1
+  centerX:
+    type: integer
+    format: int32
+    example: 1
+  category:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  image:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+  compass:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+  thumbnail:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+  organization:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  location:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  world:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid

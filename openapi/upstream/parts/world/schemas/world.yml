@@ -1,0 +1,21 @@
+WorldReference:
+  allOf:
+    - $ref: '../../schemas/base.yml#/BaseReference'
+    - type: object
+      title: World Reference
+      properties:
+        ownership:
+          type: string
+          enum: [ owner ]
+WorldsByUser:
+  type: object
+  properties:
+    success:
+      type: boolean
+      example: true
+    entities:
+      type: array
+      items:
+        $ref: '#/WorldReference'
+
+

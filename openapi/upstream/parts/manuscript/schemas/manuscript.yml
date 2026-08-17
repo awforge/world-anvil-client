@@ -1,0 +1,56 @@
+ManuscriptRef:
+  type: object
+  title: ManuscriptRef
+  description: Schema of a manuscript reference object.
+  properties:
+    id:
+      type: string
+      format: uuid
+      readOnly: true
+    title:
+      type: string
+      example: "Manuscript Title"
+    slug:
+      type: string
+      example: "<rand_int>-<user-slug>-manuscript-title"
+      readOnly: true
+    state:
+      type: string
+      enum: [ public, private ]
+    isWip:
+      type: boolean
+      nullable: true
+      example: null
+      readOnly: true
+    isDraft:
+      type: boolean
+      nullable: true
+      example: null
+      readOnly: true
+    entityClass:
+      type: string
+      readOnly: true
+      enum: [ Manuscript ]
+    icon:
+      type: string
+      readOnly: true
+      example: ["fa-solid fa-book"]
+    url:
+      type: string
+      readOnly: true
+      example: "http://www.worldanvil.com/community/manuscripts/read/<manuscript-slug>"
+    subscribergroups:
+      type: array
+      items:
+        $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+    folderId:
+      type: string
+      example: "-1"
+      readOnly: true
+    tags:
+      type: object
+      properties:
+      example: {}
+      readOnly: true
+    updateDate:
+      $ref: '../../schemas/date.yml'

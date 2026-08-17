@@ -1,0 +1,31 @@
+id: 
+  type: string
+  example: 7b2ce8d7-064c-40c9-08eb-a23fe30b9b0f
+name: 
+  type: string
+  example: Text
+text: 
+  type: string
+  example: Hello Warheads
+type: 
+  type: string
+  example: text
+point: 
+  type: array
+  items: 
+    type: object
+    properties:  
+  example: []
+style:
+  $ref: 'canvas.shape.styleWithText.yml'
+parentId: 
+  type: string
+  example: page
+rotation: 
+  type: integer
+  format: int32
+  example: 0
+childIndex: 
+  type: integer
+  format: int32
+  example: 5

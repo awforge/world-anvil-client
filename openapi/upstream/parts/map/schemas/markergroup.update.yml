@@ -1,0 +1,36 @@
+type: object
+title: Marker Group Update Schema
+description: All the fields that can be updated on a marker group.
+properties:
+  title: 
+    type: string
+    example: "Marker Group Title"
+  state: 
+    type: string
+    enum: [ private, public ]
+  subscribergroups:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+        format: uuid
+    example: []
+  activeOnLoad:
+    type: boolean
+  position:
+    type: integer
+    format: int32
+  map:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  author:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid

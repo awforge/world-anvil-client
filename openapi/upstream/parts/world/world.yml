@@ -1,0 +1,151 @@
+world:
+  get:
+    tags:
+      - World
+    summary: Read World
+    description: |-
+      Retrieve the metadata of a world, content for the homepage, global fields and the world meta. Use the granularity parameter to specify the amount of data you want to receive.
+    operationId: readWorld
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: granularity
+        in: query
+        required: true
+        schema:
+          type: string
+          enum: ['-1', '0', '1']
+          example: '-1'
+    responses:
+      '200':
+        description: 'Returns the requested world. The included fields depend on the chosen granularity.'
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: 'schemas/world.ref.yml'
+                - $ref: 'schemas/world.zero.yml'
+                - $ref: 'schemas/world.one.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  put:
+    tags:
+      - World
+    summary: Create World
+    description: >-
+      Create a new world in your account for a new project. The world only requires a title. Check the schema for all available fields.
+    operationId: createWorld
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/world.one.yml'
+          example:
+            title: A bright new World
+    responses:
+      '200':
+        description: 'Returns the reference object of the new world.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/world.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+
+  delete:
+    tags:
+      - World
+    summary: Delete World
+    description: "Delete a world with the given ID. This will also delete all articles, characters, locations, items, etc. that are associated with this world and cannot be reversed!!"
+    operationId: deleteWorld
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    responses:
+      '200':
+        description: "The world was successfully deleted."
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+
+  patch:
+    tags:
+      - World
+    summary: Update World
+    description: Update the content and settings of the world. Check the schema for all available fields.
+    operationId: updateWorld
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/world.one.yml'
+          example:
+            title: A Bright New World        
+    responses:
+      '200':
+        description: 'Successfully executed the request.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/world.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

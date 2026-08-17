@@ -1,0 +1,50 @@
+type: object
+title: Map Marker (Pin) - GR -1
+description: Basic metadata of a map marker (pin).
+properties:
+  id: 
+    type: string
+    format: uuid
+  title: 
+    type: string
+    example: "Marker Title"
+  slug: 
+    type: string
+    nullable: true
+  state: 
+    type: string
+    enum: [ private, public ]
+  isWip: 
+    type: boolean
+    nullable: true
+  isDraft: 
+    type: boolean
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ Marker ]
+  icon: 
+    type: string
+    enum: [ "fa-solid fa-location-dot" ]
+  url: 
+    type: string
+    nullable: true
+  subscribergroups:
+    type: array
+    items:
+      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+    example: []
+  folderId: 
+    type: string
+    nullable: true
+  tags: 
+    type: string
+    example: "#tag,#tags2"
+  updateDate: 
+    $ref: '../../schemas/date.yml'
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true  

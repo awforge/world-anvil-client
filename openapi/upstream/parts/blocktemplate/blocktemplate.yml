@@ -1,0 +1,144 @@
+blocktemplate:
+  get:
+    tags:
+      - Block Template
+    summary: Read Block Template
+    description: Retrieve a statblock template by id. Use the granularity parameter to determine the amount of data returned.
+    operationId: readBlockTemplate
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: granularity
+        in: query
+        required: true
+        schema:
+          type: string
+          enum: ["-1", "0", "1", "2"]
+    responses:
+      '200':
+        description: 'Successful operation.'
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: 'schemas/blocktemplate.yml#/BlockTemplateReturnRef'
+                - $ref: 'schemas/blocktemplate.yml#/BlockTemplate'
+                - $ref: 'schemas/blocktemplate.yml#/BlockTemplateExtended'
+                - $ref: 'schemas/blocktemplate.yml#/BlockTemplateFull'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  put:
+    tags:
+      - Block Template
+    summary: Create Block Template
+    description: Create a new statblock template. Check the schema for the required and optional fields.
+    operationId: createBlockTemplate
+    parameters:
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/blocktemplate.yml#/BlockTemplateCreate'
+    responses:
+      '200':
+        description: 'Created statblock template.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/blocktemplate.yml#/BlockTemplateRef'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  delete:
+    tags:
+      - Block Template
+    summary: Delete Block Template
+    description: Delete a statblock template. This will also delete all the statblock template parts that belong to this statblock template. This action cannot be undone.
+    operationId: deleteBlockTemplate
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    responses:
+      '200':
+        description: 'Deleted statblock template.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  patch:
+    tags:
+      - Block Template
+    summary: Update Block Template
+    description: Update a statblock template. Check the schema for the required and optional fields.
+    operationId: updateBlockTemplate
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/blocktemplate.yml#/BlockTemplateUpdate'
+    responses:
+      '200':
+        description: 'Updated statblock template.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/blocktemplate.yml#/BlockTemplateRef'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

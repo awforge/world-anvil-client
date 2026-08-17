@@ -1,0 +1,147 @@
+subscribergroup:
+  get:
+    tags:
+      - Subscribergroup
+    summary: Read Subscribergroup
+    description: |-
+      Retrieve the metadata of a subscriber group. Use the granularity parameter to specify the amount of data you want to receive.
+    operationId: readSubscribergroup
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: granularity
+        in: query
+        required: true
+        schema:
+          type: string
+          enum: ['-1', '0', '1']
+          example: '-1'
+    requestBody:
+    responses:
+      '200':
+        description: 'Returns the requested subscriber group. The included fields depend on the chosen granularity.'
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: 'schemas/subscribergroup.ref.yml'
+                - $ref: 'schemas/subscribergroup.zero.yml'
+                - $ref: 'schemas/subscribergroup.one.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  put:
+    tags:
+      - Subscribergroup
+    summary: Create Subscribergroup
+    description: >-
+      Create a new subscriber group. To create a subscriber group you need a title and the id of the world it should be created in. Check the schema for all available fields.
+    operationId: createSubscribergroup
+    parameters:
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/subscribergroup.create.yml'
+    responses:
+      '200':
+        description: ''
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  delete:
+    tags:
+      - Subscribergroup
+    summary: Delete Subscribergroup
+    description: Delete a subscriber group. This action is not reversible.
+    operationId: deleteSubscribergroup
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    requestBody:
+    responses:
+      '200':
+        description: 'Deletion of the subscriber group was successful.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  patch:
+    tags:
+      - Subscribergroup
+    summary: Update Subscribergroup
+    description: >-
+      Update the metadata of a subscriber group. Check the schema for all available fields.
+    operationId: updateSubscribergroup
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/subscribergroup.update.yml'
+          example:
+            title: Campaign Players
+    responses:
+      '200':
+        description: 'Updated the subscriber group successfully.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/subscribergroup.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

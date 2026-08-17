@@ -1,0 +1,33 @@
+markergroup-markers:
+  post:
+    tags:
+      - Marker
+    summary: List Markers By Marker Group
+    description: Retrieve a list of markers within a marker group. The list is limited by the limit and offset parameters.
+    operationId: listMarkersByMarkerGroup
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/limit.yml#/General'
+    responses:
+      '200':
+        description: ''
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

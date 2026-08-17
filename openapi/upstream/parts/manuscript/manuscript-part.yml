@@ -1,0 +1,122 @@
+manuscript-part:
+  get:
+    tags:
+      - Manuscript Part
+    summary: Read Manuscript Part
+    description: |-
+      Get the data of a single manuscript part.  
+      Granularity range is -1 to 2.
+    operationId: readManuscriptPart
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: '{{manuscriptPartId}}'
+      - name: granularity
+        in: query
+        schema:
+          type: string
+          example: '-1'
+    requestBody:
+      content:
+        text/plain:
+          example: ''
+    responses:
+      '200':
+        description: ''
+  put:
+    tags:
+      - Manuscript Part
+    summary: Create Manuscript Part
+    description: >-
+      Create a new manuscript part. Required parameters for the creation of
+      this entity are "type" and "version" (manuscript version).
+    operationId: createManuscriptPart
+    parameters:
+      - name: ''
+        in: query
+        schema:
+          type: string
+          example: ''
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              image:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: '{{imageId}}'
+              title:
+                type: string
+                example: Chapter 1
+              type:
+                type: string
+                example: manuscript
+              version:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: '{{manuscriptVersionId}}'
+          example:
+            image:
+              id: '{{imageId}}'
+            title: Chapter 1
+            type: manuscript
+            version:
+              id: '{{manuscriptVersionId}}'
+    responses:
+      '200':
+        description: ''
+  delete:
+    tags:
+      - Manuscript Part
+    summary: Delete Manuscript Part
+    description: Delete a manuscript part.
+    operationId: deleteManuscriptPart
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: ''
+    requestBody:
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties: {}
+    responses:
+      '200':
+        description: ''
+  patch:
+    tags:
+      - Manuscript Part
+    summary: Update Manuscript Part
+    description: Update (patch) the content of a manuscript part.
+    operationId: updateManuscriptPart
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: '{{manuscriptPartId}}'
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              synopsis:
+                type: string
+                example: A short synopsis.
+          example:
+            synopsis: A short synopsis.
+    responses:
+      '200':
+        description: ''

@@ -1,0 +1,39 @@
+type: object
+title: Marker Group Create Schema
+description: All the fields that a marker group can be created with and the required fields.
+properties:
+  title: 
+    type: string
+    example: "Marker Group Title"
+  state: 
+    type: string
+    enum: [ private, public ]
+  subscribergroups:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+    example: []
+  activeOnLoad:
+    type: boolean
+  position:
+    type: integer
+    format: int32
+  map:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  author:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+required:
+  - title
+  - map

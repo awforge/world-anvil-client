@@ -1,0 +1,166 @@
+BlockTemplateRef:
+  type: object
+  title: Block Template
+  description: Basic identifing metadata of a statblock template.
+  properties:
+    id: 
+      type: integer
+      format: int32
+      readOnly: true
+    title:
+      type: string
+      example: Block Template
+    slug:
+      type: string
+      nullable: true
+      readOnly: true
+    state:
+      type: string
+      nullable: true
+      readOnly: true
+    isWip:
+      type: string
+      nullable: true
+      readOnly: true
+    isDraft:
+      type: string
+      nullable: true
+      readOnly: true
+    entityClass:
+      type: string
+      enum: [BlockTemplate]
+      readOnly: true
+    icon:
+      type: string
+      enum: ["fa-solid fa-box-archive"]
+      readOnly: true
+    url:
+      type: string
+      nullable: true
+      readOnly: true
+    subscribergroups:
+      type: array
+      readOnly: true
+      example: []
+    folderId:
+      type: string
+      nullable: true
+      readOnly: true
+    tags:
+      type: string
+      nullable: true
+      readOnly: true
+    updateDate:
+      $ref: '../../schemas/date.yml'
+BlockTemplateReturnRef:
+  allOf:
+    - $ref: '#/BlockTemplateRef'
+    - type: object
+      title: Block Template - GR -1
+      properties:
+        isEditable:
+          type: string
+          nullable: true
+          readOnly: true
+        success:
+          type: string
+          nullable: true
+          readOnly: true
+BlockTemplate:
+  allOf: 
+    - $ref: '#/BlockTemplateReturnRef'
+    - type: object
+      title: Block Template - GR 0
+      description: Metadata of a statblock template.
+      properties:
+        listtitle:
+          type: string
+          nullable: true
+        identifier:
+          type: string
+        description:
+          type: string
+          nullable: true
+        articleTemplate:
+          type: string
+          nullable: true
+        formSchemaParser:
+          type: string
+          enum: [json, yaml]
+        formSchema:
+          type: string
+          format: [json, yaml]
+        formDisplayStructure: 
+          type: string
+          nullable: true
+          format: twig
+        displayStructure:
+          type: string
+          nullable: true
+          format: twig
+        displayBadge:
+          type: string
+          nullable: true
+          format: twig
+        displayStyling:
+          type: string
+          nullable: true
+          format: css
+        displayScripting:
+          type: string
+          nullable: true
+        displayTrackable:
+          type: string
+          nullable: true
+          format: twig
+        displayStylingRaw:
+          type: string
+          nullable: true
+          format: css
+        hasRawJson:
+          type: boolean
+BlockTemplateExtended:
+  - $ref: '#/BlockTemplate'
+  - type: object
+    title: Block Template - GR 1
+    description: Metadata of a statblock template returned with granularity 1.
+    properties:
+      isShared:
+        type: boolean
+      isSharedWithPlayers:
+        type: boolean
+      heroesEnabled:
+        type: boolean
+      systemMeta:
+        type: string
+        nullable: true
+        format: json
+BlockTemplateFull:
+  - $ref: '#/BlockTemplateExtended'
+  - type: object
+    title: Block Template - GR 2
+    description: Metadata of a statblock template returned with granularity 2.
+    properties:
+      parts:
+        type: array
+        items:
+          $ref: 'blocktemplatepart.yml#/BlockTemplatePartRef'
+      RPGSRD:
+        $ref: '../../rpgsystem/schemas/rpgsystem.ref.yml'
+      author:
+        $ref: '../../user/schemas/user.ref.yml'
+BlockTemplateUpdate:
+  - $ref: '#/BlockTemplate'
+  - type: object
+    title: Block Template - Update
+    description: All the fields that can be updated on a statblock template.
+BlockTemplateCreate:
+  - $ref: '#/BlockTemplate'
+  - type: object
+    title: Block Template - Create
+    description: All the fields that can be set on a statblock template when creating it.
+    required:
+      - title
+      - formSchemaParser
+      - formSchema
+      - RPGSRD

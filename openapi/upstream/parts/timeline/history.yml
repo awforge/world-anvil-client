@@ -1,0 +1,143 @@
+history:
+  get:
+    tags:
+      - History
+    summary: Read History
+    description: Retrieve the metadata and content of a historical event. Fields returned are determined by the granularity.
+    operationId: readHistory
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: granularity
+        in: query
+        required: true
+        schema:
+          type: string
+          enum: [ '-1', '0', '1', '2']
+    responses:
+      '200':
+        description: 'The requested historical entry resource.'
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: 'schemas/history.ref.yml'
+                - $ref: 'schemas/history.zero.yml'
+                - $ref: 'schemas/history.one.yml'
+                - $ref: 'schemas/history.two.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  put:
+    tags:
+      - History
+    summary: Create History
+    description: Create a historical event. The title, year and world are required fields. Check all the fields in the schema definition. To add an event to a timeline you have to update the timeline object.
+    operationId: createHistory
+    requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/history.ref.yml'
+    responses:
+      '200':
+        description: 'The reference object of the created historical event.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/history.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  delete:
+    tags:
+      - History
+    summary: Delete History
+    description: Delete a historical event with its id.
+    operationId: deleteHistory
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    responses:
+      '200':
+        description: 'Historical event deleted successfully.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  patch:
+    tags:
+      - History
+    summary: Update History
+    description: Update the historical event with a specific id. Check the schema for all the fields available.
+    operationId: updateHistory
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/history.update.yml'
+    responses:
+      '200':
+        description: 'Event was updated successfully.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/history.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

@@ -1,0 +1,160 @@
+type: object
+title: Map Marker (Pin) - Update
+description: All the properties of a map marker (pin) that can be updated. Ensure all the correct properties are updated as there are a few different marker types.
+properties:
+  title: 
+    type: string
+    example: "Marker Title"
+  state: 
+    type: string
+    enum: [ private, public ]
+  subscribergroups:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+  tags: 
+    type: string
+    example: "#tag,#tags2"
+  description: 
+    type: string
+    example: "Description"
+  position:
+    type: integer
+    example: 121
+  htmlMarker:
+    type: string
+    example: "<i class='fa-solid fa-location-dot'></i>"
+  seeded:
+    type: string
+    example: "Storyteller Seeds. Secret information only visible to the author."
+  isDirectLink:
+    type: boolean
+    example: false
+  isDraggable:
+    type: boolean
+    example: true
+  labelTitle:
+    type: string
+    nullable: true
+  labelType:
+    type: string
+    enum: [ "label-default", "label-primary", "label-success", "label-info", "label-warning", "label-danger" ]
+  className:  
+    type: string
+    example: "css-class-name"
+  geoX: 
+    type: integer
+    minimum: 0
+    example: 2004
+  geoY:
+    type: integer
+    minimum: 0
+    example: 2341
+  polygonPoints:
+    type: string
+    nullable: true
+    example: "2004,2341 2004,2341 2004,2341"
+  circleRadius:
+    type: integer
+    nullable: true
+    example: 200
+  linePoints:
+    type: string
+    nullable: true
+    example: "2004,2341 2004,2341 2004,2341"
+  lineColor:
+    type: string
+    nullable: true
+    example: "#ff0000"
+  lineWeight:
+    type: integer
+    nullable: true
+    example: 2
+  lineOpacity:
+    type: integer
+    nullable: true
+    example: 50
+  lineDash:
+    type: string
+    nullable: true
+    example: "20"
+  colorOutline:
+    type: string
+    nullable: true
+    example: "#ff0000"
+  colorFill:
+    type: string
+    nullable: true
+    example: "#ff0000"
+  opacityOutline:
+    type: integer
+    nullable: true
+    example: 50
+  opacityFill:
+    type: integer
+    nullable: true
+    example: 50
+  markertype:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  group:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  targetLocation:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  targetMap:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  targetOrganization:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  targetArticle:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  targetCategory:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  targetHistoricalEntry:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  map:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  world:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid

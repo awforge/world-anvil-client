@@ -1,0 +1,143 @@
+category:
+  get:
+    tags:
+      - Category
+    summary: Read Category
+    description: Retrieve the metadata, content and relationships of a category. The returned fields are determined by the granularity parameter. Check the schemas for details.
+    operationId: readCategory
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: granularity
+        in: query
+        required: true
+        schema:
+          type: string
+          enum: ['-1', '0', '1', '2']
+    responses:
+      '200':
+        description: 'The requested category.'
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: 'schemas/category.yml#/CategoryReturnRef'
+                - $ref: 'schemas/category.yml#/Category'
+                - $ref: 'schemas/category.yml#/CategoryExtended'
+                - $ref: 'schemas/category.yml#/CategoryFull'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  put:
+    tags:
+      - Category
+    summary: Create Category
+    description: Create a new category. Required parameters for the creation of this entity are "title" and "world".
+    operationId: createCategory
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/category.yml#/CategoryCreate'
+    responses:
+      '200':
+        description: 'The reference to the newly created category.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/category.yml#/CategoryRef'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  delete:
+    tags:
+      - Category
+    summary: Delete Category
+    description: Delete a category and all its content. This action is irreversible.
+    operationId: deleteCategory
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    responses:
+      '200':
+        description: 'Category deleted.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  patch:
+    tags:
+      - Category
+    summary: Update Category
+    description: Update the metadata, content and relationships of a category. Check the schemas for the fields that can be updated.
+    operationId: updateCategory
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/category.yml#/CategoryUpdate'
+    responses:
+      '200':
+        description: 'The updated category.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/category.yml#/CategoryRef'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

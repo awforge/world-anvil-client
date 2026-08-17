@@ -1,0 +1,46 @@
+type: object
+title: History Category Schema
+description: The reference schema for the category within histories. Does not have it its own endpoint.  
+properties:
+    type: object
+    properties: 
+      id: 
+        type: string
+        example: "b4060135-b751-4a6a-a14b-22090ba9df5e"
+      title: 
+        type: string
+        example: Artistic creation
+      slug: 
+        type: string
+        nullable: true
+      state: 
+        type: string
+        nullable: true
+      isWip: 
+        type: string
+        nullable: true
+      isDraft: 
+        type: string
+        nullable: true
+      entityClass: 
+        type: string
+        enum: [ HistoricalEntryCategory ]
+      icon: 
+        type: string
+        enum: [ "ra ra-3x ra-forging" ]
+      url: 
+        type: string
+        nullable: true
+      subscribergroups: 
+        type: array
+        items:
+          $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+        example: []
+      folderId: 
+        type: string
+        nullable: true
+      tags: 
+        type: string
+        nullable: true
+      updateDate:
+        $ref: '../../schemas/date.yml'

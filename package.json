@@ -1,0 +1,12 @@
+{
+  "name": "world-anvil-client-codegen",
+  "private": true,
+  "scripts": {
+    "openapi:fetch": "cargo xtask openapi fetch",
+    "openapi:bundle": "cargo xtask openapi bundle",
+    "openapi:check": "cargo xtask openapi check"
+  },
+  "devDependencies": {
+    "@redocly/cli": "2.46.1"
+  }
+}

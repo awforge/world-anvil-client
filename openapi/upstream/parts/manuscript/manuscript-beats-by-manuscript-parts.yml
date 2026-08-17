@@ -1,0 +1,27 @@
+manuscript-beats-by-manuscript-parts:
+  post:
+    tags:
+      - Manuscript Beat
+    summary: List Manuscript Beats By Manuscript Part
+    description: >-
+      List all manuscript beats by a manuscript part given, filtered with a
+      limit of entities shown and an offset.  
+
+      Limit range is 0-50.  
+
+      Offset should be non-negative.
+    operationId: listManuscriptBeatsByManuscriptPart
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: '{{manuscriptPartId}}'
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/limit.yml#/General'
+    responses:
+      '200':
+        description: ''

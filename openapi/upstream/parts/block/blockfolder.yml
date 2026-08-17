@@ -1,0 +1,142 @@
+blockfolder:
+  get:
+    tags:
+      - Block Folder
+    summary: Read Block Folder
+    description: Read the content of an block folder.
+    operationId: readBlockFolder
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: granularity
+        in: query
+        required: true
+        schema:
+          type: string
+          enum: ["-1", "0", "2"]
+    responses:
+      '200':
+        description: 'Block folder metadata resource.'
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: 'schemas/blockfolder.yml#/BlockFolderReturnRef'
+                - $ref: 'schemas/blockfolder.yml#/BlockFolder'
+                - $ref: 'schemas/blockfolder.yml#/BlockFolderFull'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+
+  put:
+    tags:
+      - Block Folder
+    summary: Create Block Folder
+    description: Create a new block folder. Check the schema for the available and required fields.
+    operationId: createBlockFolder
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/blockfolder.yml#/BlockFolderCreate'
+    responses:
+      '200':
+        description: 'The created block folder reference.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/blockfolder.yml#/BlockFolderRef'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  delete:
+    tags:
+      - Block Folder
+    summary: Delete Block Folder
+    description: Delete a block folder. This action is irreversible. The blocks within the folder are NOT deleted.
+    operationId: deleteBlockFolder
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    responses:
+      '200':
+        description: 'Deleted the block folder.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  patch:
+    tags:
+      - Block Folder
+    summary: Update Block Folder
+    description: Update the block folder metadata. Check the schema for the available fields.
+    operationId: updateBlockFolder
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/blockfolder.yml#/BlockFolder'
+    responses:
+      '200':
+        description: 'Updated the block folder.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/blockfolder.yml#/BlockFolderRef'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

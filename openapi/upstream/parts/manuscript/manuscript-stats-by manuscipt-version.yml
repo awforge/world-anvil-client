@@ -1,0 +1,27 @@
+manuscript-stats-by manuscipt-version:
+  post:
+    tags:
+      - Manuscript Stat
+    summary: List Manuscript Stats By Manuscript Version
+    description: >-
+      List all manuscript stats by a manuscript version given, filtered with a
+      limit of entities shown and an offset.  
+
+      Limit range is 0-50.  
+
+      Offset should be non-negative.
+    operationId: listManuscriptStatsByManuscriptVersion
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: '{{manuscriptVersionId}}'
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/limit.yml#/General'
+    responses:
+      '200':
+        description: ''

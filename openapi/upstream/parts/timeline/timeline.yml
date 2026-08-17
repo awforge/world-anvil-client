@@ -1,0 +1,146 @@
+timeline:
+  get:
+    tags:
+      - Timeline
+    summary: Read Timeline
+    description: Retrieve the metadata, content and relations of a timeline. The granularity determines the fields included in the returned object.
+    operationId: readTimeline
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: granularity
+        in: query
+        required: true
+        schema:
+          type: string
+          enum: [ "-1", "0", "1", "2" ]
+    responses:
+      '200':
+        description: 'The timeline object.'
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: 'schemas/timeline.ref.yml'
+                - $ref: 'schemas/timeline.zero.yml'
+                - $ref: 'schemas/timeline.one.yml'
+                - $ref: 'schemas/timeline.two.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  put:
+    tags:
+      - Timeline
+    summary: Create Timeline
+    description: Create a new timeline. The timeline requires a title and a world id to be created.
+    operationId: createTimeline
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/timeline.create.yml'
+    responses:
+      '200':
+        description: 'Returns the reference object of the created timeline.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/timeline.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  delete:
+    tags:
+      - Timeline
+    summary: Delete Timeline
+    description: Delete a timeline. This action is irreversible.
+    operationId: deleteTimeline
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+    responses:
+      '200':
+        description: 'The timeline was deleted successfully.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  patch:
+    tags:
+      - Timeline
+    summary: Update Timeline
+    description: Update the metadata, content and relationships of a timeline.
+    operationId: updateTimeline
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/timeline.update.yml'
+    responses:
+      '200':
+        description: 'Returns the reference object of the updated timeline.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/timeline.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

@@ -1,0 +1,158 @@
+article:
+  get:
+    tags:
+      - Article
+    summary: Read Article
+    description: >
+      Retrieve an article with the given id. The granularity query parameter can be used to specify 
+      the level of detail of the article. The default is 0. 
+      The higher the granularity, the more fields are returned.
+      
+      Check the schemas for the available fields. The generic fields are listed per granularity level.
+      The template specific fields are listed per template (not complete). They appear on granularity level 0, 1 or 2.
+    operationId: readArticle
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: granularity
+        in: query
+        required: true
+        schema:
+          type: string
+          enum: ["-1", "0", "1", "2", "3"]
+    responses:
+      '200':
+        description: 'Requested article resource.'
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: 'schemas/article.yml#/ArticleReturnRef'
+                - $ref: 'schemas/article.yml#/ArticleGeneric'
+                - $ref: 'schemas/article.yml#/ArticleGenericExtended'
+                - $ref: 'schemas/article.yml#/ArticleGenericFull'
+                - $ref: 'schemas/article.yml#/ArticleGenericFullPlus'
+                - $ref: 'schemas/location.yml#/LocationFields'
+    '400':
+      $ref: '../responses/BadRequest.yml'
+    '401':
+      $ref: '../responses/Unauthorized.yml'
+    '403':
+      $ref: '../responses/Forbidden.yml'
+    '404':
+      $ref: '../responses/NotFound.yml'
+    '405':
+      $ref: '../responses/MethodNotAllowed.yml'
+    '422':
+      $ref: '../responses/UnprocessableEntity.yml'
+  put:
+    tags:
+      - Article
+    summary: Create Article
+    description: > 
+      Create an article. Check the schemas for the required fields to create an article. To add
+      template specific fields check the template schemas in the article GET endpoint.
+    operationId: createArticle
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/article.yml#/ArticleGenericCreate'
+    responses:
+      '200':
+        description: 'The created article resource.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/article.yml#/ArticleRef'
+    '400':
+      $ref: '../responses/BadRequest.yml'
+    '401':
+      $ref: '../responses/Unauthorized.yml'
+    '403':
+      $ref: '../responses/Forbidden.yml'
+    '404':
+      $ref: '../responses/NotFound.yml'
+    '405':
+      $ref: '../responses/MethodNotAllowed.yml'
+    '422':
+      $ref: '../responses/UnprocessableEntity.yml'
+  delete:
+    tags:
+      - Article
+    summary: Delete Article
+    description: Delete an article. This action is irreversible.
+    operationId: deleteArticle
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    responses:
+      '200':
+        description: 'Article deleted.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  default: true
+    '400':
+      $ref: '../responses/BadRequest.yml'
+    '401':
+      $ref: '../responses/Unauthorized.yml'
+    '403':
+      $ref: '../responses/Forbidden.yml'
+    '404':
+      $ref: '../responses/NotFound.yml'
+    '405':
+      $ref: '../responses/MethodNotAllowed.yml'
+    '422':
+      $ref: '../responses/UnprocessableEntity.yml'
+  patch:
+    tags:
+      - Article
+    summary: Update Article
+    description:
+      Update the metadata, content and relationships of an article. Check the schemas for 
+      the required fields to update an article.  To add template specific fields check the template schemas 
+      in the article GET endpoint.
+    operationId: updateArticle
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/article.yml#/ArticleGenericUpdate'
+    responses:
+      '200':
+        description: 'The updated article resource.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/article.yml#/ArticleRef'
+    '400':
+      $ref: '../responses/BadRequest.yml'
+    '401':
+      $ref: '../responses/Unauthorized.yml'
+    '403':
+      $ref: '../responses/Forbidden.yml'
+    '404':
+      $ref: '../responses/NotFound.yml'
+    '405':
+      $ref: '../responses/MethodNotAllowed.yml'
+    '422':
+      $ref: '../responses/UnprocessableEntity.yml'

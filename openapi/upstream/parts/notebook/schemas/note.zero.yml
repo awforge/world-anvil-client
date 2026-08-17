@@ -1,0 +1,71 @@
+type: object
+title: Note Reference Schema - GR 0
+description: >-
+  Contains all the content and metadata fields of a note.
+properties:
+  id: 
+    type: string
+    format: uuid
+  title: 
+    type: string
+    example: "Note Title"
+  slug: 
+    type: string
+    nullable: true
+  state: 
+    type: string
+    nullable: true
+  isWip: 
+    type: boolean
+    nullable: true
+  isDraft: 
+    type: boolean
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ Note ]
+  icon: 
+    type: string
+    nullable: true
+    example: "fa-solid fa-notes"
+  url: 
+    type: string
+    nullable: true
+  subscribergroups:
+    type: array
+    items:
+      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+    example: []
+  folderId: 
+    type: string
+    format: uuid
+    nullable: true
+  tags: 
+    type: string
+    nullable: true
+  updateDate: 
+    $ref: '../../schemas/date.yml'
+  content: 
+    type: string
+    example: "Note Content"
+  importance: 
+    type: string
+    nullable: true
+  creationDate:
+    $ref: '../../schemas/date.yml'
+  color: 
+    type: string
+    nullable: true
+  weight: 
+    type: string
+    nullable: true
+  isSelected: 
+    type: integer
+    format: int32
+    enum: [ 0, 1 ]
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true  

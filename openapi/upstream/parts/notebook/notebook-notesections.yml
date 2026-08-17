@@ -1,0 +1,46 @@
+notebook-notesections:
+  post:
+    tags:
+      - Notesection
+    summary: List Notesections By Notebook
+    description: >-
+      Retrieve a list of notesections within a notebook. The list is limited by the limit and offset parameters.
+    operationId: listNotesectionsByNotebook
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/limit.yml#/General'
+      '200':
+        description: 'A list of notesection objects. Starting at the offset and limited by the limit.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+                entities:
+                  type: array
+                  items:
+                    $ref: 'schemas/notesection.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+      

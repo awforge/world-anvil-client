@@ -1,0 +1,17 @@
+type: object
+nullable: true
+readOnly: true
+properties:
+  date:
+    type: string
+    format: date-time
+    nullable: false
+    example: '2022-08-23 14:00:42.000000'
+  timezone:
+    type: string
+    nullable: false
+    example: UTC
+  timezone_type:
+    type: number
+    nullable: false
+    example: 3

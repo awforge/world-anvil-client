@@ -1,0 +1,14 @@
+description: 'Not found. The URI requested is invalid or the resource requested, such as a world, does not exists.'
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        success:
+          type: boolean
+          nullable: false
+          default: false
+        error:
+          type: string
+          nullable: false
+          default: 'resource_not_found'

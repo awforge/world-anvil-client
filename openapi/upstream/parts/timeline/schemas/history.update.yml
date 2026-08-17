@@ -1,0 +1,170 @@
+type: object
+title: History Update Schema
+description: This schema contains all the fields that can be updated on a historical event.
+properties:
+  title: 
+    type: string
+    example: "History Title"
+  state: 
+    type: string
+    enum: [ private, public ]
+  icon: 
+    type: string
+    enum: [ "fa-solid fa-calendar-lines-pen" ]
+  subscribergroups:
+    type: array
+    items:
+      type: object
+      properties:
+        id: 
+          type: string
+          format: uuid
+  folderId: 
+    type: string
+    nullable: true
+  tags: 
+    type: string
+    nullable: true
+    example: "tag1,tag2,tag3"
+  significance: 
+    type: integer
+    format: int32
+    minimum: 0
+    maximum: 5
+    example: 2
+  year: 
+    type: string
+    example: "1"
+  month: 
+    type: integer
+    nullable: true
+    format: int32
+    example: 1
+  day: 
+    type: integer
+    nullable: true
+    format: int32
+    example: 1
+  hour: 
+    type: integer
+    nullable: true
+    format: int32
+    example: 1
+  minute: 
+    type: string
+    nullable: true
+    format: int32
+    example: 1
+  endingYear: 
+    type: string
+    example: "2"
+  endingMonth: 
+    type: integer
+    nullable: true
+    format: int32
+    example: 1
+  endingDay: 
+    type: integer
+    nullable: true
+    format: int32
+    example: 1
+  endingHour: 
+    type: integer
+    nullable: true
+    format: int32
+    example: 1
+  endingMinute: 
+    type: integer
+    nullable: true
+    format: int32
+    example: 1
+  lane:
+    type: string
+    nullable: true
+  backgroundColor: 
+    type: string
+    nullable: true
+  category:
+    type: object
+    properties:
+      id: 
+        type: string
+        enum: [""]
+  content:
+    type: string
+    example: "Short Description"
+  fullcontent:
+    type: string
+    example: "Full content"
+  displayDateName:
+    type: string
+    nullable: true
+  meta:
+    type: string
+    nullable: true
+    example: "Secret information"
+  world:
+    type: object
+    properties:
+      id: 
+        type: string
+        format: uuid
+  author:
+    type: object
+    properties:
+      id: 
+        type: string
+        format: uuid
+  article:
+    type: object
+    properties:
+      id: 
+        type: string
+        format: uuid
+  location:
+    type: object
+    properties:
+      id: 
+        type: string
+        format: uuid
+  species:
+    type: object
+    properties:
+      id: 
+        type: string
+        format: uuid
+  report:
+    type: object
+    properties:
+      id: 
+        type: string
+        format: uuid
+  cover:
+    type: object
+    properties:
+      id: 
+        type: integer
+        format: int32
+  characters:
+    type: array
+    items:
+      type: object
+      properties:
+        id: 
+          type: string
+          format: uuid
+    example: []
+  organizations:
+    type: array
+    items:
+      type: object
+      properties:
+        id: 
+          type: string
+          format: uuid
+    example: []
+  displayRange: 
+    type: boolean
+  alternativeDisplayRange: 
+    type: string
+    example: Alternative display name

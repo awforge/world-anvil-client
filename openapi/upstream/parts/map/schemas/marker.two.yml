@@ -1,0 +1,162 @@
+type: object
+title: Map Marker (Pin) - GR 2
+description: Metadata, content and relationships of a map marker (pin).
+properties:
+  id: 
+    type: string
+    format: uuid
+  title: 
+    type: string
+    example: "Marker Title"
+  slug: 
+    type: string
+    nullable: true
+  state: 
+    type: string
+    enum: [ private, public ]
+  isWip: 
+    type: boolean
+    nullable: true
+  isDraft: 
+    type: boolean
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ Marker ]
+  icon: 
+    type: string
+    enum: [ "fa-solid fa-location-dot" ]
+  url: 
+    type: string
+    nullable: true
+  subscribergroups:
+    type: array
+    items:
+      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+    example: []
+  folderId: 
+    type: string
+    nullable: true
+  tags: 
+    type: string
+    example: "#tag,#tags2"
+  updateDate: 
+    $ref: '../../schemas/date.yml'
+  description: 
+    type: string
+    example: "Description"
+  position:
+    type: integer
+    example: 121
+  htmlMarker:
+    type: string
+    example: "<i class='fa-solid fa-location-dot'></i>"
+  seeded:
+    type: string
+    example: "Storyteller Seeds. Secret information only visible to the author."
+  creationDate:
+    $ref: '../../schemas/date.yml'
+  isDeleted:
+    type: boolean
+    nullable: true
+  type:
+    type: string
+    nullable: true
+    example: null
+  isDirectLink:
+    type: boolean
+    example: false
+  isDraggable:
+    type: boolean
+    example: true
+  labelTitle:
+    type: string
+    nullable: true
+  labelType:
+    type: string
+    enum: [ "label-default", "label-primary", "label-success", "label-info", "label-warning", "label-danger" ]
+  className:  
+    type: string
+    example: "css-class-name"
+  geoX: 
+    type: integer
+    minimum: 0
+    example: 2004
+  geoY:
+    type: integer
+    minimum: 0
+    example: 2341
+  geoZ:
+    type: integer
+    nullable: true
+    example: null
+  polygonPoints:
+    type: string
+    nullable: true
+    example: "2004,2341 2004,2341 2004,2341"
+  circleRadius:
+    type: integer
+    nullable: true
+    example: 200
+  linePoints:
+    type: string
+    nullable: true
+    example: "2004,2341 2004,2341 2004,2341"
+  lineColor:
+    type: string
+    nullable: true
+    example: "#ff0000"
+  lineWeight:
+    type: integer
+    nullable: true
+    example: 2
+  lineOpacity:
+    type: integer
+    nullable: true
+    example: 50
+  lineDash:
+    type: string
+    nullable: true
+    example: "20"
+  colorOutline:
+    type: string
+    nullable: true
+    example: "#ff0000"
+  colorFill:
+    type: string
+    nullable: true
+    example: "#ff0000"
+  opacityOutline:
+    type: integer
+    nullable: true
+    example: 50
+  opacityFill:
+    type: integer
+    nullable: true
+    example: 50
+  markertype:
+    $ref: '../../markertype/schemas/markertype.ref.yml'
+  group:
+    $ref: 'markergroup.ref.yml'
+  targetLocation:
+    $ref: '../../article/schemas/article.yml#/ArticleRef'
+  targetMap:
+    $ref: 'map.ref.yml'
+  targetOrganization:
+    $ref: '../../article/schemas/article.yml#/ArticleRef'
+  targetArticle:
+    $ref: '../../article/schemas/article.yml#/ArticleRef'
+  targetCategory:
+    $ref: '../../category/schemas/category.yml#/CategoryRef'
+  targetHistoricalEntry:
+    $ref: '../../timeline/schemas/history.ref.yml'
+  map:
+    $ref: 'map.ref.yml'
+  world:
+    $ref: '../../world/schemas/world.ref.yml'
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true  

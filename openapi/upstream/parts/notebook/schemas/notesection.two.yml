@@ -1,0 +1,58 @@
+type: object
+title: Note Section Reference Schema - GR 2
+description: >-
+  Adds the notes, parent notebook and author to the output.
+properties:
+  id: 
+    type: string
+    format: uuid
+  title: 
+    type: string
+    example: "Note Title"
+  slug: 
+    type: string
+    nullable: true
+  state: 
+    type: string
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ Notesection ]
+  icon: 
+    type: string
+    nullable: true
+    example: "fas fa-notes"
+  url: 
+    type: string
+    nullable: true
+  subscribergroups:
+    type: array
+    items:
+      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+    example: []
+  creationDate:
+    $ref: '../../schemas/date.yml'
+  color: 
+    type: string
+    format: hexcolor
+    example: "#000000"
+  weight: 
+    type: integer
+    format: int32
+  isSelected: 
+    type: integer
+    format: int32
+  notes:
+    type: array
+    items:
+      $ref: 'note.ref.yml'
+  notebook:
+    $ref: 'notebook.ref.yml'
+  author:
+    $ref: '../../user/schemas/user.ref.yml'
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true  

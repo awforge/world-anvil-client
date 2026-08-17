@@ -1,0 +1,52 @@
+type: object
+title: Canvas Schema - GR 0
+description: Full metadata and content of a canvas.
+properties:
+  id: 
+    type: string
+    format: uuid
+  title: 
+    type: string
+    example: Canvas Title
+  slug: 
+    type: string
+    nullable: true
+  state: 
+    type: string
+    enum: [ public, private ]
+  isWip: 
+    type: string
+    nullable: true
+  isDraft: 
+    type: string
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ Canvas ]
+  icon: 
+    type: string
+    enum: [ "fa-solid fa-chalkboard" ]
+  url: 
+    type: string
+    nullable: true
+  subscribergroups: 
+    type: array
+    items: 
+      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+    example: []
+  folderId: 
+    type: string
+    example: "-1"
+  tags: 
+    type: string
+    nullable: true
+  updateDate:
+    $ref: '../../schemas/date.yml'
+  creationDate:
+    $ref: '../../schemas/date.yml'
+  data:
+    $ref: 'canvas.data.yml'
+  isEditable: 
+    type: boolean
+  success: 
+    type: boolean

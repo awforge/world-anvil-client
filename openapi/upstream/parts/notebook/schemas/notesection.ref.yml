@@ -1,0 +1,38 @@
+type: object
+title: Note Section Reference Schema - GR -1
+description: >-
+  The reference schema for an note section. Only contains the minimum amount of information to identify the note section.
+properties:
+  id: 
+    type: string
+    format: uuid
+  title: 
+    type: string
+    example: "Note Section Title"
+  slug: 
+    type: string
+    nullable: true
+  state: 
+    type: string
+    nullable: true
+  url: 
+    type: string
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ Notesection ]
+  icon: 
+    type: string
+    nullable: true
+    example: "fas fa-notes"
+  subscribergroups:
+    type: array
+    items:
+      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+    example: []
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true  

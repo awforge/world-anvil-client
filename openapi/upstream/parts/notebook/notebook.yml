@@ -1,0 +1,144 @@
+notebook:
+  get:
+    tags:
+      - Notebook
+    summary: Read Notebook
+    description: |-
+      Retrieve the metadata of a single notebook. The returned fields depend on the give granularity.
+    operationId: readNotebook
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: granularity
+        in: query
+        required: true
+        schema:
+          type: string
+          enum: [ '-1', '0', '2']
+    responses:
+      '200':
+        description: 'The notebook object. The included fields depend on the chosen granularity.'
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: 'schemas/notebook.ref.yml'
+                - $ref: 'schemas/notebook.zero.yml'
+                - $ref: 'schemas/notebook.two.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  put:
+    tags:
+      - Notebook
+    summary: Create Notebook
+    description: >-
+      Create a new notebook. The notebook requires a title to be created.
+    operationId: createNotebook
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/notebook.create.yml'
+    responses:
+      '200':
+        description: 'Reference object of the created notebook.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/notebook.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  delete:
+    tags:
+      - Notebook
+    summary: Delete Notebook
+    description: Delete a notebook.
+    operationId: deleteNotebook
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    responses:
+      '200':
+        description: 'Notebook was deleted with success.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  patch:
+    tags:
+      - Notebook
+    summary: Update Notebook
+    description: Update (patch) the content of a notebook.
+    operationId: updateNotebook
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/notebook.update.yml'
+    responses:
+      '200':
+        description: 'Reference object of the updated notebook.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/notebook.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

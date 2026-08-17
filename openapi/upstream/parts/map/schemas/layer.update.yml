@@ -1,0 +1,56 @@
+type: object
+title: Map Layer Update Schema
+description: All the fields that can be updated on a map layer.
+properties:
+  title: 
+    type: string
+    example: "Layer Title"
+  state: 
+    type: string
+    enum: [ private, public ]
+  subscribergroups:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+    example: []
+  description: 
+    type: string
+    example: "Description"
+  position: 
+    type: integer
+    format: int32
+    example: 0
+  image:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int32
+  map:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  group:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  world:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  author:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid

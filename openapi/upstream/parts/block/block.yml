@@ -1,0 +1,141 @@
+block:
+  get:
+    tags:
+      - Block
+    summary: Read Block
+    description: Read the content of a statblock.
+    operationId: readBlock
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: granularity
+        in: query
+        required: true
+        schema:
+          type: string
+          enum: ["-1", "0", "2"]
+    responses:
+      '200':
+        description: 'Statblock metadata resource.'
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: 'schemas/block.yml#/BlockReturnRef'
+                - $ref: 'schemas/block.yml#/Block'
+                - $ref: 'schemas/block.yml#/BlockFull'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  put:
+    tags:
+      - Block
+    summary: Create Block
+    description: Create a new statblock. Check the schema for the available and required fields.
+    operationId: createBlock
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/block.yml#/BlockCreate'
+    responses:
+      '200':
+        description: 'The created statblock.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/block.yml#/BlockRef'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  delete:
+    tags:
+      - Block
+    summary: Delete Block
+    description: Delete a statblock. This action is irreversible.
+    operationId: deleteBlock
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    responses:
+      '200':
+        description: 'Deleted statblock.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  patch:
+    tags:
+      - Block
+    summary: Update Block
+    description: Update the statblock metadata. Check the schema for the available fields.
+    operationId: updateBlock
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/block.yml#/BlockUpdate'
+    responses:
+      '200':
+        description: 'Updated statblock.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/block.yml#/BlockRef'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

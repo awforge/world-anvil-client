@@ -1,0 +1,97 @@
+id: 
+  type: string
+  format: uuid
+bend: 
+  type: integer
+  format: int32
+  example: 0
+name: 
+  type: string
+  example: Arrow
+type: 
+  type: string
+  example: arrow
+label: 
+  type: string
+  example: 
+point: 
+  type: array
+  items:
+    type: integer
+    format: int32
+style: 
+  $ref: 'canvas.shape.style.yml'
+handles: 
+  type: object
+  properties: 
+    end: 
+      type: object
+      properties: 
+        id: 
+          type: string
+          example: end
+        index: 
+          type: integer
+          format: int32
+          example: 1
+        point: 
+          type: array
+          items:
+            type: integer
+            format: int32 
+        canBind: 
+          type: boolean
+    bend: 
+      type: object
+      properties: 
+        id: 
+          type: string
+          example: bend
+        index: 
+          type: integer
+          format: int32
+          example: 2
+        point: 
+          type: array
+          items:
+            type: integer
+            format: int32
+    start: 
+      type: object
+      properties: 
+        id: 
+          type: string
+          example: start
+        index: 
+          type: integer
+          format: int32
+          example: 0
+        point: 
+          type: array
+          items: 
+            type: object
+            properties:  
+          example: []
+        canBind: 
+          type: boolean
+parentId: 
+  type: string
+  example: page
+rotation: 
+  type: integer
+  format: int32
+  example: 0
+childIndex: 
+  type: integer
+  format: int32
+  example: 4
+labelPoint: 
+  type: array
+  items:
+    type: number
+decorations: 
+  type: object
+  properties: 
+    end: 
+      type: string
+      example: arrow

@@ -1,0 +1,60 @@
+type: object
+title: Marker Group Reference Schema - GR 2
+description: Marker group metadata and relationships.
+properties:
+  id: 
+    type: string
+    format: uuid
+    nullable: false
+  title: 
+    type: string
+    example: "Marker Group Title"
+  slug: 
+    type: string
+    nullable: true
+  state: 
+    type: string
+    enum: [ private, public ]
+  isWip: 
+    type: boolean
+    nullable: true
+  isDraft: 
+    type: boolean
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ MarkerGroup ]
+  icon: 
+    type: string
+    enum: [ "fa-solid fa-map-location-dot" ]
+  url: 
+    type: string
+    nullable: true
+  subscribergroups:
+    type: array
+    items:
+      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+    example: []
+  folderId: 
+    type: string
+    example: "-1"
+  tags: 
+    type: string
+    example: ""
+  updateDate: 
+    $ref: '../../schemas/date.yml'
+  activeOnLoad:
+    type: boolean
+  position:
+    type: integer
+    format: int32
+  map:
+    $ref: 'map.ref.yml'
+  author:
+    $ref: '../../user/schemas/user.ref.yml'
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true  

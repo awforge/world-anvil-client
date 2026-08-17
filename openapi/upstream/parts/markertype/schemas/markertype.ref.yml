@@ -1,0 +1,48 @@
+type: object
+title: Marker Type (Pin) Reference Schema - GR -1
+description: The basic marker type (pin) reference schema with the core metadata
+properties:
+  id: 
+    type: string
+    format: uuid
+  title: 
+    type: string
+    example: "Name of Pin"
+  slug: 
+    type: string
+    nullable: true
+  state: 
+    type: string
+    enum: [ public, private ]
+  isWip: 
+    type: boolean
+    nullable: true
+  isDraft: 
+    type: boolean
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ MarkerType ]
+  icon: 
+    type: string
+    enum: [ "fa-solid fa-map-pin" ]
+  url: 
+    type: string
+    nullable: true
+  subscribergroups:
+    type: array
+    example: []
+  folderId: 
+    type: string
+    nullable: true
+  tags: 
+    type: string
+    example: "tag,tag2"
+  updateDate: 
+    $ref: '../../schemas/date.yml'
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true  

@@ -1,0 +1,110 @@
+VariableCollectionRef:
+  type: object
+  title: Variable Collection - GR -1
+  description: Basic metadata of a variable collection.
+  properties:
+    id:
+      type: string
+      format: uuid
+      readOnly: true
+    title:
+      type: string
+      example: Variable Collection Title
+    slug:
+      type: string
+      nullable: true
+      readOnly: true
+    state:
+      type: string
+      enum: [ public ]
+    isWip:
+      type: string
+      nullable: true
+      readOnly: true
+    isDraft:
+      type: string
+      nullable: true
+      readOnly: true
+    entityClass:
+      type: string
+      enum: [ VariableCollection ]
+      readOnly: true
+    icon:
+      type: string
+      enum: [ "fa-solid fa-abacus" ]
+      readOnly: true
+    url:
+      type: string
+      example: http://www.worldanvil.com/world/variables/collection/<collection-id>/variables
+      readOnly: true
+    subscribergroups:
+      type: array
+      example: []
+      readOnly: true
+    folderId:
+      type: string
+      nullable: true
+      readOnly: true
+    tags:
+      type: string
+      nullable: true
+      readOnly: true
+    updateDate:
+      $ref: '../../schemas/date.yml'
+VariableCollectionReturnRef:
+  allOf:
+    - $ref: '#/VariableCollectionRef'
+    - type: object
+      properties:
+        isEditable:
+          type: boolean
+          example: true
+        success:
+          type: boolean
+          example: true
+VariableCollection:
+  allOf:
+    - $ref: '#/VariableCollectionReturnRef'
+    - type: object
+      properties:
+        description:
+          type: string
+          example: This description describes the purpose of this collection.
+        prefix:
+          type: string
+          example: prefix
+VariableCollectionFull:
+  allOf:
+    - $ref: '#/VariableCollection'
+    - type: object
+      properties:
+        world:
+          $ref: '../../world/schemas/world.ref.yml'
+VariableCollectionUpdate:
+  type: object
+  title: Variable Collection - Update
+  properties:
+    title:
+      type: string
+      example: Variable Collection Title
+    description:
+      type: string
+      example: This description describes the purpose of this collection.
+    prefix:
+      type: string
+      example: prefix
+    world:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 00000000-0000-0000-0000-000000000000
+VariableCollectionCreate:
+  - allOf:
+      - $ref: '#/VariableCollectionUpdate'
+      - type: object
+        title: Variable Collection - Create
+        required:
+          - title
+          - world

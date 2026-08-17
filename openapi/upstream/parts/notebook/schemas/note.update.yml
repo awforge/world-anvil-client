@@ -1,0 +1,64 @@
+type: object
+title: Note Update Schema
+description: >-
+  The fields that can be used updated on a note.
+properties:
+  title: 
+    type: string
+    example: "Note Title"
+  tags: 
+    type: string
+    nullable: true
+  content: 
+    type: string
+    example: "Note Content"
+  importance: 
+    type: string
+    nullable: true
+  color: 
+    type: string
+    nullable: true
+    format: hexcolor
+  weight: 
+    type: number
+    format: int32
+  isSelected: 
+    type: integer
+    format: int32
+    enum: [ 0, 1 ]
+  campaign:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  session:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  author:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  world:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  article:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+  notesection:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid

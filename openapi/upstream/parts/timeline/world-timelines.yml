@@ -1,0 +1,45 @@
+world-timelines:
+  post:
+    tags:
+      - Timeline
+    summary: List Timelines By World
+    description: Retrieve a list of timelines within a world. Use offset to skip the first n elements of the result, and limit to specify the maximum number of elements to retrieve.
+    operationId: listTimelinesByWorld
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/limit.yml#/General'
+    responses:
+      '200': 
+        description: 'The list of timeline metadata resources within the limit at the offset.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                entities:
+                  type: array
+                  items:
+                    $ref: 'schemas/timeline.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+          

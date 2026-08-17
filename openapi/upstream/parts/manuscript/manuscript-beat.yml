@@ -1,0 +1,110 @@
+manuscript-beat:
+  get:
+    tags:
+      - Manuscript Beat
+    summary: Read Manuscript Beat
+    description: |-
+      Get the data of a single manuscript beat.  
+      Granularity range is -1 to 2.
+    operationId: readManuscriptBeat
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: '{{manuscriptBeatId}}'
+      - name: granularity
+        in: query
+        schema:
+          type: string
+          example: '-1'
+    requestBody:
+      content:
+        text/plain:
+          example: ''
+    responses:
+      '200':
+        description: ''
+  put:
+    tags:
+      - Manuscript Beat
+    summary: Create Manuscript Beat
+    description: >-
+      Create a new manuscript beat. Required parameters for the creation of
+      this entity are "content" and "part" (manuscript part).
+    operationId: createManuscriptBeat
+    parameters:
+      - name: ''
+        in: query
+        schema:
+          type: string
+          example: ''
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              content:
+                type: string
+                example: Some content here.
+              part:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: '{{manuscriptPartId}}'
+          example:
+            content: Some content here.
+            part:
+              id: '{{manuscriptPartId}}'
+    responses:
+      '200':
+        description: ''
+  delete:
+    tags:
+      - Manuscript Beat
+    summary: Delete Manuscript Beat
+    description: Delete a manuscript beat.
+    operationId: deleteManuscriptBeat
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: '{{manuscriptBeatId}}'
+    requestBody:
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties: {}
+    responses:
+      '200':
+        description: ''
+  patch:
+    tags:
+      - Manuscript Beat
+    summary: Update Manuscript Beat
+    description: Update (patch) the content of a manuscript beat.
+    operationId: updateManuscriptBeat
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: '{{manuscriptBeatId}}'
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              position:
+                type: string
+                example: '1'
+          example:
+            position: '1'
+    responses:
+      '200':
+        description: ''

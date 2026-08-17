@@ -1,0 +1,410 @@
+ArticleRef:
+  allOf:
+    - $ref: '#/ArticleRefCore'
+    - $ref: '#/ArticleRefSubscriberGroups'
+ArticleRefCore:
+  type: object
+  title: Article (Any)
+  description: Schema of an article.
+  properties:
+    id:
+      type: string
+      format: uuid
+      readOnly: true
+    title:
+      type: string
+      example: "Article Title"
+    slug:
+      type: string
+      example: "article-title-landmark"
+      readOnly: true
+    state:
+      type: string
+      enum: [ public, private ]
+    isWip:
+      type: boolean
+    isDraft:
+      type: boolean
+    entityClass:
+      type: string
+      readOnly: true
+      enum: [ Ethnicity, Article, Landmark, Location, Ritual, Myth, Technology, Spell, Law, Prose, MilitaryConflict, Language, Document, Person, Organization, Plot, Species, Vehicle, Profession, Item, Formation, Rank, Condition, Material, Settlement, Report ]
+    icon:
+      type: string
+      nullable: true
+      example: "ra ra-dragon"
+    url:
+      type: string
+      readOnly: true
+      example: "http://www.worldanvil.com/w/<world-slug>/a/<article-slug>"
+    folderId:
+      type: string
+      readOnly: true
+      format: uuid
+    tags:
+      type: string
+      example: "tag,tag2"
+    updateDate:
+      $ref: '../../schemas/date.yml'
+ArticleRefSubscriberGroups:
+  type: object
+  properties:
+    subscribergroups:
+      type: array
+      items:
+        $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+ArticleReturnRef:
+  allOf:
+    - $ref: '#/ArticleRef'
+    - type: object
+      title: Article (Any) - GR -1
+      properties:
+        isEditable: 
+          type: boolean
+          readOnly: true
+        success: 
+          type: boolean
+          readOnly: true
+ArticleGeneric:
+  allOf:
+    - $ref: '#/ArticleReturnRef'
+    - $ref: '#/ArticleGenericCore'
+    - title: Article (Generic) - GR 0
+      description: Schema of a generic article with the core properties.
+ArticleGenericCore:
+  type: object
+  properties:
+    position:
+      type: integer
+      format: int32
+      example: 1000
+    excerpt:
+      type: string
+      example: "Excerpt"
+    wordcount:
+      type: integer
+      format: int32
+      example: 37
+      readOnly: true
+    creationDate:
+      $ref: '../../schemas/date.yml'
+    publicationDate:
+      $ref: '../../schemas/date.yml'
+    notificationDate:
+      $ref: '../../schemas/date.yml'
+    likes:
+      type: array
+      items:
+        $ref: '../../user/schemas/user.ref.yml'
+      readOnly: true
+    views:
+      type: integer
+      format: int32
+      readOnly: true
+    userMetadata:
+      nullable: true
+      readOnly: true
+    articleMetadata:
+      nullable: true
+      readOnly: true
+    cssClasses:
+      type: string
+      example: "a-css-class"
+    displayCss:
+      type: string
+      format: css
+    templateType:
+      type: string
+      enum: [ article ]
+    customArticleTemplate:
+      type: string
+      nullable: true
+ArticleGenericExtended:
+  allOf:
+    - $ref: '#/ArticleGeneric'
+    - type: object
+      title: Article (Generic) - GR 1
+      properties:
+        content:
+          type: string
+          example: "Content"
+        author:
+          $ref: '../../user/schemas/user.ref.yml'
+        category:
+          allOf:
+            - $ref: '../../category/schemas/category.yml#/CategoryRef'
+            - type: object
+              nullable: true
+        world: 
+          $ref: '../../world/schemas/world.ref.yml'
+ArticleGenericFull:
+  allOf:
+    - $ref: '#/ArticleGenericExtended'
+    - $ref: '#/ArticleGenericFullProperties'
+    - $ref: '#/ArticleGenericObjectProperties'
+ArticleGenericFullProperties:
+  type: object
+  title: Article (Generic) - GR 2
+  properties:
+    pronunciation:
+      type: string
+      example: "Pronunciation"
+    snippet:
+      type: string
+      example: "Mouseover Snippet"
+    seeded:
+      type: string
+      example: "STORYTELLER SEEDS"
+    sidebarcontent:
+      type: string
+      example: "Sidebar: Top"
+    sidepanelcontenttop:
+      type: string
+      example: "Sidebar: Content Panel Top"
+    sidepanelcontent:
+      type: string
+      example: "Sidebar: Content Panel Bottom"
+    sidebarcontentbottom:
+      type: string
+      example: "Sidebar: Bottom"
+    footnotes:
+      type: string
+      example: "Footnotes"
+    fullfooter:
+      type: string
+      example: "Full Width Footer"
+    authornotes:
+      type: string
+      example: "Author's Notes"
+    scrapbook:
+      type: string
+      example: "Scrapbook"
+    credits:
+      type: string
+      example: "Credits"
+    displaySidebar:
+      type: boolean
+    timeline:
+      allOf:
+        - $ref: '../../timeline/schemas/timeline.ref.yml'
+        - readOnly: true
+    prompt:
+      $ref: '../../schemas/prompt.yml#/PromptRef'
+    showSeeded:
+      type: boolean
+    webhookUpdate:
+      type: boolean
+    communityUpdate:
+      type: boolean
+    commentPlaceholder:
+      type: string
+      nullable: true
+      example: "Comment Feedback Placeholder"
+    metaTitle:
+      type: string
+      nullable: true
+      example: "Page Title (SEO Metadata)"
+    metadDescription:
+      type: string
+      nullable: true
+      example: "Page Description (SEO Metadata)"
+    subheading:
+      type: string
+      nullable: true
+      example: "Subheading"
+    coverIsMap:
+      type: boolean
+    isFeaturedArticle:
+      type: boolean
+    isAdultContent:
+      type: boolean
+    isLocked:
+      type: boolean
+    allowComments:
+      type: boolean
+    showInToc:
+      type: boolean
+    isEmphasized:
+      type: boolean
+    displayAuthor:
+      type: boolean
+    displayChildrenUnder:
+      type: boolean
+    displayTitle:
+      type: boolean
+    displaySheet:
+      type: boolean
+    badge:
+      type: string
+      nullable: true
+      readOnly: true
+    secrets:
+      type: array
+      items:
+        $ref: '../../secret/schemas/secret.ref.yml'
+      readOnly: true
+    histories:
+      type: array
+      items:
+        $ref: '../../timeline/schemas/history.ref.yml'
+      readOnly: true
+    editURL:
+      type: string
+      example: "http://www.worldanvil.com/world/article/<id>/edit"
+      readOnly: true
+ArticleGenericObjectProperties:
+  type: object
+  description: These are the object properties of the article which can be updated.
+  properties:
+      cover:
+        allOf:
+          - $ref: '../../image/schemas/image.yml#/ImageRef'
+          - nullable: true
+      gallery:
+        allOf:
+          - $ref: '../../image/schemas/gallery.yml#/GalleryRef'
+          - type: object
+            nullable: true
+      articleNext:
+        type: string
+        format: uuid
+      articlePrevious:
+        type: string
+        format: uuid
+      block:
+        allOf:
+          - $ref: '../../block/schemas/block.yml#/BlockRef'
+          - type: object
+            nullable: true
+      orgchart:
+        allOf:
+          - $ref: '../../schemas/orgchart.yml#/OrgChartRef'
+          - type: object
+            nullable: true
+      manuscripts:
+        type: array
+        items:
+          $ref: '../../manuscript/schemas/manuscript.yml#/ManuscriptRef'
+        example: []
+
+ArticleGenericFullPlus:
+  allOf:
+    - $ref: '#/ArticleGenericFull'
+    - type: object
+      title: Article (Generic) - GR 3
+      properties:
+        ancestry:
+          type: object
+          description: >
+            The ancestry of the article. The firstUp, secondUp, and thirdUp fields are the first, second, and third 
+            parent article category or world of the article. Note that secondUp and thirdUp are nullable.
+          readOnly: true
+          properties:
+            firstUp:
+              oneOf:
+                - $ref: '#/ArticleRef'
+                - $ref: '../../category/schemas/category.yml#/CategoryRef'
+                - $ref: '../../world/schemas/world.ref.yml'
+            secondUp:
+              nullable: true
+              oneOf:
+                - $ref: '#/ArticleRef'
+                - $ref: '../../category/schemas/category.yml#/CategoryRef'
+                - $ref: '../../world/schemas/world.ref.yml'
+            thirdUp:
+              nullable: true
+              oneOf:
+                - $ref: '#/ArticleRef'
+                - $ref: '../../category/schemas/category.yml#/CategoryRef'
+                - $ref: '../../world/schemas/world.ref.yml'
+ArticleGenericUpdate:
+  allOf:
+    - $ref: '#/ArticleRefCore'
+    - $ref: '#/ArticleGenericCore'
+    - $ref: '#/ArticleGenericFullProperties'
+    - $ref: '#/ArticleGenericUpdateObjectProperties'
+    - title: "Article (Generic) - Update"
+      description: "All fields are optional. Only the fields that are provided will be updated."
+ArticleGenericUpdateObjectProperties:
+  type: object
+  properties:
+    manuscripts:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+    block:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+    articleParent:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+    gallery:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+    articlePrevious:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+    articleNext:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+    cover:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+    world:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+    category:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+    author:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+    subscribergroups:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+ArticleGenericCreate:
+  allOf:
+    - $ref: '#/ArticleGenericUpdate'
+    - type: object
+      title: Article (Generic) - Create
+      description: The fields to create a new article. The fields with a * are required.
+      required:
+        - title
+        - templateType
+        - world

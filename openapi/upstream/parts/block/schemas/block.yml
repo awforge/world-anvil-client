@@ -1,0 +1,147 @@
+BlockRef:
+  type: object
+  title: Block
+  description: Metdata of a block.
+  properties:
+    id: 
+      type: integer
+      format: int32
+      readOnly: true
+    title:
+      type: string
+      example: Block
+    slug:
+      type: string
+      nullable: true
+      readOnly: true
+    state:
+      type: string
+      enum: [private, public]
+    isWip:
+      type: string
+      nullable: true
+      readOnly: true
+    isDraft:
+      type: string
+      nullable: true
+      readOnly: true
+    entityClass:
+      type: string
+      enum: [Block]
+      readOnly: true
+    icon:
+      type: string
+      readOnly: true
+      example: "fa-solid fa-cube"
+    url:
+      type: string
+      example: "http://www.worldanvil.com/sheet/<id>/view"
+      readOnly: true
+    subscribergroups:
+      type: array
+      readOnly: true
+      example: []
+    folderId:
+      type: string
+      nullable: true
+      readOnly: true
+    tags:
+      type: string
+      example: "#character,#npc"
+    updateDate:
+      $ref: '../../schemas/date.yml'
+BlockReturnRef:
+  allOf:
+    - $ref: '#/BlockRef'
+    - type: object
+      title: Block - GR -1
+      properties:
+        isEditable:
+          type: boolean
+          readOnly: true
+          example: true
+        success:
+          type: boolean
+          readOnly: true
+          example: true
+Block:
+  allOf:
+    - $ref: '#/BlockReturnRef'
+    - type: object
+      title: Block - GR 0
+      properties:
+        identifier:
+          type: string
+        dataParser:
+          type: yaml
+        textualdata:
+          type: string
+          format: yaml
+        tabulardata:
+          type: string
+          nullable: true
+        jsondata:
+          type: string
+          nullable: true
+          format: json
+        isShared:
+          type: boolean
+        isSRD:
+          type: boolean
+BlockFull:
+  allOf:
+    - $ref: '#/Block'
+    - type: object
+      title: Block - GR 2
+      properties:
+        template:
+          $ref: '../../blocktemplate/schemas/blocktemplate.yml#/BlockTemplateRef'
+        RPGSRD:
+          $ref: '../../rpgsystem/schemas/rpgsystem.ref.yml'
+        author:
+          $ref: '../../user/schemas/user.ref.yml'
+        folder:
+          $ref: 'blockfolder.yml#/BlockFolderRef'
+BlockUpdate:
+  allOf:
+    - $ref: '#/Block'
+    - type: object
+      title: Block - Update
+      description: The update schema for a block.
+      properties:
+        template:
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int32
+        RPGSRD:
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int32
+        author:
+          type: object
+          properties:
+            id:
+              type: string
+              format: uuid
+        folder:
+          type: object
+          properties:
+            id:
+              type: integer
+              format: int32
+BlockCreate:
+  allOf:
+    - $ref: '#/BlockUpdate'
+    - title: Block - Create
+      description: The fields you can set when creating a block. The required fields have a star.
+      required:
+        - title
+        - template
+        - RPGSRD
+
+
+          

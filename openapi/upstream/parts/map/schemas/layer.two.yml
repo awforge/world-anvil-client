@@ -1,0 +1,68 @@
+type: object
+title: Map Layer Reference Schema - GR 2
+description: Returned map layer resource when the granularity is set to 2.
+properties:
+  id: 
+    type: string
+    format: uuid
+    nullable: false
+  title: 
+    type: string
+    example: "Layer Title"
+  slug: 
+    type: string
+    nullable: true
+  state: 
+    type: string
+    enum: [ private, public ]
+  isWip: 
+    type: boolean
+    nullable: true
+  isDraft: 
+    type: boolean
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ Layer ]
+  icon: 
+    type: string
+    enum: [ "fa-solid fa-layer-group" ]
+  url: 
+    type: string
+    nullable: true
+  subscribergroups:
+    type: array
+    items:
+      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+    example: []
+  folderId: 
+    type: string
+    example: "-1"
+  tags: 
+    type: string
+    example: ""
+  updateDate: 
+    $ref: '../../schemas/date.yml'
+  description: 
+    type: string
+    example: "Description"
+  position: 
+    type: integer
+    format: int32
+    example: 0
+  image:
+    $ref: '../../image/schemas/image.yml#/ImageRef'
+  map:
+    $ref: 'map.ref.yml'
+  group:
+    $ref: 'markergroup.ref.yml'
+  world:
+    $ref: '../../world/schemas/world.ref.yml'
+  author:
+    $ref: '../../user/schemas/user.ref.yml'
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true  

@@ -1,0 +1,143 @@
+markertype:
+  get:
+    tags:
+      - Marker Type (Pin)
+    summary: Read Marker Type
+    description: Read the content of a custom marker type (pin).
+    operationId: readMarkerType
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: granularity
+        in: query
+        required: true
+        schema:
+          type: string
+          enum: [ "-1", "0", "2" ]
+    responses:
+      '200':
+        description: 'The requested marker type resource.'
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: 'schemas/markertype.ref.yml'
+                - $ref: 'schemas/markertype.zero.yml'
+                - $ref: 'schemas/markertype.two.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  put:
+    tags:
+      - Marker Type (Pin)
+    summary: Create Marker Type
+    description: Create a custom marker type (pin). The title is the only required field. Check all the fields in the schema definition.
+    operationId: createMarkerType
+    parameters:
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/markertype.create.yml'
+    responses:
+      '200':
+        description: 'The updated marker type resource.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/markertype.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  delete:
+    tags:
+      - Marker Type (Pin)
+    summary: Delete Marker Type
+    description: Delete custom marker type (pin).
+    operationId: deleteMarkerType
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    responses:
+      '200':
+        description: 'Deleted marker type successfully.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  patch:
+    tags:
+      - Marker Type (Pin)
+    summary: Update Marker Type
+    description: Update the metadata, content and relationships of a custom marker type (pin).
+    operationId: updateMarkerType
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/markertype.update.yml'
+    responses:
+      '200':
+        description: 'The updated marker type resource.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/markertype.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

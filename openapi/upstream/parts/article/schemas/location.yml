@@ -1,0 +1,170 @@
+LocationFields:
+  type: object
+  title: Location Template Fields
+  description: All the fields available for the location template. Combine this with the generic article fields for a complete list of fields.
+  properties:
+    alternativename:
+      type: string
+      nullable: true
+      example: Alternative Name(s)
+    geography:
+      type: string
+      nullable: true
+    naturalresources:
+      type: string
+      nullable: true
+    population:
+      type: string
+      nullable: true
+    areaSize:
+      type: string
+      nullable: true
+    demographics:
+      type: string
+      nullable: true
+    demonym:
+      type: string
+      nullable: true
+    defences:
+      type: string
+      nullable: true
+      example: Defenses
+    infrastructure:
+      type: string
+      nullable: true
+    guilds:
+      type: string
+      nullable: true
+    history:
+      type: string
+      nullable: true
+      example: History
+    tourism:
+      type: string
+      nullable: true
+      example: Tourism
+    industry:
+      type: string
+      nullable: true
+    architecture:
+      type: string
+      nullable: true
+      example: Architecture
+    government:
+      type: string
+      nullable: true
+    assets:
+      type: string
+      nullable: true
+    locationTemplateType:
+      type: string
+      nullable: true
+    constructed:
+      type: string
+      nullable: true
+      example: 2020
+    ruined:
+      type: string
+      nullable: true
+      example: 2314
+    florafauna:
+      type: string
+      nullable: true
+    ecosystem:
+      type: string
+      nullable: true
+    ecosystemCycles:
+      type: string
+      nullable: true
+    localizedPhenomena:
+      type: string
+      nullable: true
+    climate:
+      type: string
+      nullable: true
+    alterations:
+      type: string
+      nullable: true
+      example: Alterations
+    purpose:
+      type: string
+      nullable: true
+      example: Purpose
+    design:
+      type: string
+      nullable: true
+      example: Design
+    entries:
+      type: string
+      nullable: true
+      example: Entries
+    denizens:
+      type: string
+      nullable: true
+      example: Denizens
+    valuables:
+      type: string
+      nullable: true
+      example: Valuables & Treasure
+    hazards:
+      type: string
+      nullable: true
+      example: Hazards & Traps
+    effects:
+      type: string
+      nullable: true
+      example: Environment & Effects
+    sensory:
+      type: string
+      nullable: true
+      example: Sensory & Appearances
+    properties:
+      type: string
+      nullable: true
+      example: Special Properties
+    contents:
+      type: string
+      nullable: true
+      example: Contents & Furnishings
+    pointOfInterest:
+      type: string
+      nullable: true
+    district:
+      type: string
+      nullable: true
+    parent:
+      $ref: 'article.yml#/ArticleRef'
+    type:
+      $ref: '#/LocationType'
+    person:
+      $ref: 'article.yml#/ArticleRef'
+    vehicle:
+      $ref: 'article.yml#/ArticleRef'
+    rank:
+      $ref: 'article.yml#/ArticleRef'
+    organization:
+      $ref: 'article.yml#/ArticleRef'
+    additionalRulers:
+      type: array
+      items:
+        $ref: 'article.yml#/ArticleRef'
+    contenders:
+      type: array
+      items:
+        $ref: 'article.yml#/ArticleRef'
+    connectedRooms:
+      type: array
+      items:
+        $ref: 'article.yml#/ArticleRef'
+LocationType:
+  type: object
+  title: LocationType
+  description: Types associated with the three location templates.
+  properties:
+    id:
+      type: string
+      format: uuid
+    title:
+      type: string
+      example: "Abbey"
+

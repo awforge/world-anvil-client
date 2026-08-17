@@ -1,0 +1,4 @@
+openapi/patches/*.patch text eol=lf
+openapi/upstream/**/*.yml -text diff
+openapi/upstream/SHA256SUMS text eol=lf
+openapi/world-anvil.openapi.json text eol=lf

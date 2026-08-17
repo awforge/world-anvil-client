@@ -1,0 +1,89 @@
+type: object
+title: Note Reference Schema - GR 2
+description: >-
+  Contains all the fields of the note, including its relations to other entities.
+properties:
+  id: 
+    type: string
+    format: uuid
+  title: 
+    type: string
+    example: "Note Title"
+  slug: 
+    type: string
+    nullable: true
+  state: 
+    type: string
+    nullable: true
+  isWip: 
+    type: boolean
+    nullable: true
+  isDraft: 
+    type: boolean
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ Note ]
+  icon: 
+    type: string
+    nullable: true
+    example: "fa-solid fa-notes"
+  url: 
+    type: string
+    nullable: true
+  subscribergroups:
+    type: array
+    items:
+      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+    example: []
+  folderId: 
+    type: string
+    format: uuid
+    nullable: true
+  tags: 
+    type: string
+    nullable: true
+  updateDate: 
+    $ref: '../../schemas/date.yml'
+  content: 
+    type: string
+    example: "Note Content"
+  importance: 
+    type: string
+    nullable: true
+  creationDate:
+    $ref: '../../schemas/date.yml'
+  color: 
+    type: string
+    nullable: true
+  weight: 
+    type: string
+    nullable: true
+  isSelected: 
+    type: integer
+    format: int32
+    enum: [ 0, 1 ]
+  image:
+    type: string
+    nullable: true
+  campaign: 
+    type: string
+    nullable: true
+  session: 
+    type: string
+    nullable: true
+  author:
+    $ref: '../../user/schemas/user.ref.yml'
+  world:
+    $ref: '../../world/schemas/world.ref.yml'
+  article:
+    type: string
+    nullable: true
+  notesection:
+    $ref: 'notesection.ref.yml'
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true  

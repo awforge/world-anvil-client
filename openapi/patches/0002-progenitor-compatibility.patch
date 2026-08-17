@@ -1,0 +1,498 @@
+diff --git a/parts/blocktemplate/schemas/blocktemplate.yml b/parts/blocktemplate/schemas/blocktemplate.yml
+index f9df87d..e030a57 100644
+--- a/parts/blocktemplate/schemas/blocktemplate.yml
++++ b/parts/blocktemplate/schemas/blocktemplate.yml
+@@ -162,6 +162,13 @@ BlockTemplateCreate:
+     - type: object
+       title: Block Template - Create
+       description: All the fields that can be set on a statblock template when creating it.
++      properties:
++        RPGSRD:
++          type: object
++          properties:
++            id:
++              type: integer
++              format: int32
+       required:
+         - title
+         - formSchemaParser
+diff --git a/parts/manuscript/manuscript-beat.yml b/parts/manuscript/manuscript-beat.yml
+index 9ffd602..e0b09ff 100644
+--- a/parts/manuscript/manuscript-beat.yml
++++ b/parts/manuscript/manuscript-beat.yml
+@@ -18,10 +18,6 @@ manuscript-beat:
+         schema:
+           type: string
+           example: '-1'
+-    requestBody:
+-      content:
+-        text/plain:
+-          example: ''
+     responses:
+       '200':
+         description: ''
+@@ -33,12 +29,6 @@ manuscript-beat:
+       Create a new manuscript beat. Required parameters for the creation of
+       this entity are "content" and "part" (manuscript part).
+     operationId: createManuscriptBeat
+-    parameters:
+-      - name: ''
+-        in: query
+-        schema:
+-          type: string
+-          example: ''
+     requestBody:
+       content:
+         application/json:
+@@ -73,12 +63,6 @@ manuscript-beat:
+         schema:
+           type: string
+           example: '{{manuscriptBeatId}}'
+-    requestBody:
+-      content:
+-        multipart/form-data:
+-          schema:
+-            type: object
+-            properties: {}
+     responses:
+       '200':
+         description: ''
+@@ -107,4 +91,4 @@ manuscript-beat:
+             position: '1'
+     responses:
+       '200':
+-        description: ''
+\ No newline at end of file
++        description: ''
+diff --git a/parts/manuscript/manuscript-bookmark.yml b/parts/manuscript/manuscript-bookmark.yml
+index d09184d..a1f9dbc 100644
+--- a/parts/manuscript/manuscript-bookmark.yml
++++ b/parts/manuscript/manuscript-bookmark.yml
+@@ -18,10 +18,6 @@ manuscript-bookmark:
+         schema:
+           type: string
+           example: '-1'
+-    requestBody:
+-      content:
+-        text/plain:
+-          example: ''
+     responses:
+       '200':
+         description: ''
+@@ -33,12 +29,6 @@ manuscript-bookmark:
+       Create a new manuscript bookmark. Required parameters for the creation
+       of this entity are "manuscript".
+     operationId: createManuscriptBookmark
+-    parameters:
+-      - name: ''
+-        in: query
+-        schema:
+-          type: string
+-          example: ''
+     requestBody:
+       content:
+         application/json:
+@@ -69,12 +59,6 @@ manuscript-bookmark:
+         schema:
+           type: string
+           example: '{{manuscriptBookmarkId}}'
+-    requestBody:
+-      content:
+-        multipart/form-data:
+-          schema:
+-            type: object
+-            properties: {}
+     responses:
+       '200':
+         description: ''
+@@ -107,4 +91,4 @@ manuscript-bookmark:
+               id: '{{manuscriptPartId}}'
+     responses:
+       '200':
+-        description: ''
+\ No newline at end of file
++        description: ''
+diff --git a/parts/manuscript/manuscript-label.yml b/parts/manuscript/manuscript-label.yml
+index e10c121..827cb7a 100644
+--- a/parts/manuscript/manuscript-label.yml
++++ b/parts/manuscript/manuscript-label.yml
+@@ -18,10 +18,6 @@ manuscript-label:
+         schema:
+           type: string
+           example: '-1'
+-    requestBody:
+-      content:
+-        text/plain:
+-          example: ''
+     responses:
+       '200':
+         description: ''
+@@ -33,12 +29,6 @@ manuscript-label:
+       Create a new manuscript label. Required parameters for the creation of
+       this entity are "manuscript".
+     operationId: createManuscriptLabel
+-    parameters:
+-      - name: ''
+-        in: query
+-        schema:
+-          type: string
+-          example: ''
+     requestBody:
+       content:
+         application/json:
+@@ -73,12 +63,6 @@ manuscript-label:
+         schema:
+           type: string
+           example: '{{manuscriptLabelId}}'
+-    requestBody:
+-      content:
+-        multipart/form-data:
+-          schema:
+-            type: object
+-            properties: {}
+     responses:
+       '200':
+         description: ''
+@@ -107,4 +91,4 @@ manuscript-label:
+             fontcolor: White
+     responses:
+       '200':
+-        description: ''
+\ No newline at end of file
++        description: ''
+diff --git a/parts/manuscript/manuscript-part.yml b/parts/manuscript/manuscript-part.yml
+index fbcb8ac..3bbd184 100644
+--- a/parts/manuscript/manuscript-part.yml
++++ b/parts/manuscript/manuscript-part.yml
+@@ -18,10 +18,6 @@ manuscript-part:
+         schema:
+           type: string
+           example: '-1'
+-    requestBody:
+-      content:
+-        text/plain:
+-          example: ''
+     responses:
+       '200':
+         description: ''
+@@ -33,12 +29,6 @@ manuscript-part:
+       Create a new manuscript part. Required parameters for the creation of
+       this entity are "type" and "version" (manuscript version).
+     operationId: createManuscriptPart
+-    parameters:
+-      - name: ''
+-        in: query
+-        schema:
+-          type: string
+-          example: ''
+     requestBody:
+       content:
+         application/json:
+@@ -85,12 +75,6 @@ manuscript-part:
+         schema:
+           type: string
+           example: ''
+-    requestBody:
+-      content:
+-        multipart/form-data:
+-          schema:
+-            type: object
+-            properties: {}
+     responses:
+       '200':
+         description: ''
+@@ -119,4 +103,4 @@ manuscript-part:
+             synopsis: A short synopsis.
+     responses:
+       '200':
+-        description: ''
+\ No newline at end of file
++        description: ''
+diff --git a/parts/manuscript/manuscript-plot.yml b/parts/manuscript/manuscript-plot.yml
+index ea6b4c9..6c22a8a 100644
+--- a/parts/manuscript/manuscript-plot.yml
++++ b/parts/manuscript/manuscript-plot.yml
+@@ -18,10 +18,6 @@ manuscript-plot:
+         schema:
+           type: string
+           example: '-1'
+-    requestBody:
+-      content:
+-        text/plain:
+-          example: ''
+     responses:
+       '200':
+         description: ''
+@@ -33,12 +29,6 @@ manuscript-plot:
+       Create a new manuscript plot. Required parameters for the creation of
+       this entity are "version" (manuscript version).
+     operationId: createManuscriptPlot
+-    parameters:
+-      - name: ''
+-        in: query
+-        schema:
+-          type: string
+-          example: ''
+     requestBody:
+       content:
+         application/json:
+@@ -73,12 +63,6 @@ manuscript-plot:
+         schema:
+           type: string
+           example: '{{manuscriptPlotId}}'
+-    requestBody:
+-      content:
+-        multipart/form-data:
+-          schema:
+-            type: object
+-            properties: {}
+     responses:
+       '200':
+         description: ''
+@@ -107,4 +91,4 @@ manuscript-plot:
+             description: A description.
+     responses:
+       '200':
+-        description: ''
+\ No newline at end of file
++        description: ''
+diff --git a/parts/manuscript/manuscript-stat.yml b/parts/manuscript/manuscript-stat.yml
+index 3b83497..feaf522 100644
+--- a/parts/manuscript/manuscript-stat.yml
++++ b/parts/manuscript/manuscript-stat.yml
+@@ -18,10 +18,6 @@ manuscript-stat:
+         schema:
+           type: string
+           example: '-1'
+-    requestBody:
+-      content:
+-        text/plain:
+-          example: ''
+     responses:
+       '200':
+         description: ''
+@@ -33,12 +29,6 @@ manuscript-stat:
+       Create a new manuscript stat. Required parameters for the creation of
+       this entity are "version" (manuscript version).
+     operationId: createManuscriptStat
+-    parameters:
+-      - name: ''
+-        in: query
+-        schema:
+-          type: string
+-          example: ''
+     requestBody:
+       content:
+         application/json:
+@@ -73,12 +63,6 @@ manuscript-stat:
+         schema:
+           type: string
+           example: ''
+-    requestBody:
+-      content:
+-        multipart/form-data:
+-          schema:
+-            type: object
+-            properties: {}
+     responses:
+       '200':
+         description: ''
+@@ -107,4 +91,4 @@ manuscript-stat:
+             notes: Some more notes.
+     responses:
+       '200':
+-        description: ''
+\ No newline at end of file
++        description: ''
+diff --git a/parts/manuscript/manuscript-tag.yml b/parts/manuscript/manuscript-tag.yml
+index acf5124..cbd5fbc 100644
+--- a/parts/manuscript/manuscript-tag.yml
++++ b/parts/manuscript/manuscript-tag.yml
+@@ -18,10 +18,6 @@ manuscript-tag:
+         schema:
+           type: string
+           example: '-1'
+-    requestBody:
+-      content:
+-        text/plain:
+-          example: ''
+     responses:
+       '200':
+         description: ''
+@@ -33,12 +29,6 @@ manuscript-tag:
+       Create a new manuscript tag. Required parameters for the creation of
+       this entity are "manuscript".
+     operationId: createManuscriptTag
+-    parameters:
+-      - name: ''
+-        in: query
+-        schema:
+-          type: string
+-          example: ''
+     requestBody:
+       content:
+         application/json:
+@@ -73,12 +63,6 @@ manuscript-tag:
+         schema:
+           type: string
+           example: '{{manuscriptTagId}}'
+-    requestBody:
+-      content:
+-        multipart/form-data:
+-          schema:
+-            type: object
+-            properties: {}
+     responses:
+       '200':
+         description: ''
+@@ -107,4 +91,4 @@ manuscript-tag:
+             title: Gothic Horror
+     responses:
+       '200':
+-        description: ''
+\ No newline at end of file
++        description: ''
+diff --git a/parts/manuscript/manuscript-version.yml b/parts/manuscript/manuscript-version.yml
+index 808854e..d0bdfd7 100644
+--- a/parts/manuscript/manuscript-version.yml
++++ b/parts/manuscript/manuscript-version.yml
+@@ -18,10 +18,6 @@ manuscript-version:
+         schema:
+           type: string
+           example: '-1'
+-    requestBody:
+-      content:
+-        text/plain:
+-          example: ''
+     responses:
+       '200':
+         description: ''
+@@ -33,12 +29,6 @@ manuscript-version:
+       Create a new manuscript version. Required parameters for the creation of
+       this entity are "manuscript".
+     operationId: createManuscriptVersion
+-    parameters:
+-      - name: ''
+-        in: query
+-        schema:
+-          type: string
+-          example: ''
+     requestBody:
+       content:
+         application/json:
+@@ -73,12 +63,6 @@ manuscript-version:
+         schema:
+           type: string
+           example: '{{manuscriptVersionId}}'
+-    requestBody:
+-      content:
+-        multipart/form-data:
+-          schema:
+-            type: object
+-            properties: {}
+     responses:
+       '200':
+         description: ''
+@@ -111,4 +95,4 @@ manuscript-version:
+               id: '{{manuscriptPartId}}'
+     responses:
+       '200':
+-        description: ''
+\ No newline at end of file
++        description: ''
+diff --git a/parts/manuscript/manuscript.yml b/parts/manuscript/manuscript.yml
+index c43c818..3112afa 100644
+--- a/parts/manuscript/manuscript.yml
++++ b/parts/manuscript/manuscript.yml
+@@ -18,10 +18,6 @@ manuscript:
+         schema:
+           type: string
+           example: '-1'
+-    requestBody:
+-      content:
+-        text/plain:
+-          example: ''
+     responses:
+       '200':
+         description: ''
+@@ -33,12 +29,6 @@ manuscript:
+       Create a new manuscipt. Required parameters for the creation of this
+       entity are "title" and "world".
+     operationId: createManuscript
+-    parameters:
+-      - name: ''
+-        in: query
+-        schema:
+-          type: string
+-          example: ''
+     requestBody:
+       content:
+         application/json:
+@@ -73,12 +63,6 @@ manuscript:
+         schema:
+           type: string
+           example: '{{manuscriptId}}'
+-    requestBody:
+-      content:
+-        multipart/form-data:
+-          schema:
+-            type: object
+-            properties: {}
+     responses:
+       '200':
+         description: ''
+@@ -107,4 +91,4 @@ manuscript:
+             state: public
+     responses:
+       '200':
+-        description: ''
+\ No newline at end of file
++        description: ''
+diff --git a/parts/variable/variable.yml b/parts/variable/variable.yml
+index bb82882..15a9333 100644
+--- a/parts/variable/variable.yml
++++ b/parts/variable/variable.yml
+@@ -18,10 +18,6 @@ variable:
+         schema:
+           type: string
+           example: '-1'
+-    requestBody:
+-      content:
+-        text/plain:
+-          example: ''
+     responses:
+       '200':
+         description: ''
+@@ -45,12 +41,6 @@ variable:
+       Create a new variable. Required parameters for the creation of this
+       entity are "title", "templateType" and "world".
+     operationId: createVariable
+-    parameters:
+-      - name: ''
+-        in: query
+-        schema:
+-          type: string
+-          example: ''
+     requestBody:
+       content:
+         application/json:
+@@ -105,12 +95,6 @@ variable:
+         schema:
+           type: string
+           example: '{{variableId}}'
+-    requestBody:
+-      content:
+-        multipart/form-data:
+-          schema:
+-            type: object
+-            properties: {}
+     responses:
+       '200':
+         description: ''
+@@ -163,4 +147,4 @@ variable:
+       '405':
+         $ref: '../responses/MethodNotAllowed.yml'
+       '422':
+-        $ref: '../responses/UnprocessableEntity.yml'
+\ No newline at end of file
++        $ref: '../responses/UnprocessableEntity.yml'

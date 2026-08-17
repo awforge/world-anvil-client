@@ -1,0 +1,145 @@
+variable-collection:
+  get:
+    tags:
+      - Variable Collection
+    summary: Read Variable Collection
+    description: Retrieve the metadata, content and relationships of a variable collection. The returned fields are determined by the granularity parameter.
+    operationId: readVariableCollection
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: granularity
+        in: query
+        required: true
+        schema:
+          type: string
+          enum: ['-1', '0', '2']
+    responses:
+      '200':
+        description: 'The requested variable collection.'
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: 'schemas/variablecollection.yml#/VariableCollectionReturnRef'
+                - $ref: 'schemas/variablecollection.yml#/VariableCollection'
+                - $ref: 'schemas/variablecollection.yml#/VariableCollectionFull'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  put:
+    tags:
+      - Variable Collection
+    summary: Create Variable Collection
+    description: Create a new variable collection. Required parameters for the creation of this entity are "title" and "world".
+    operationId: createVariableCollection
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/variablecollection.yml#/VariableCollectionCreate'
+    responses:
+      '200':
+        description: 'The reference to the newly created variable collection.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/variablecollection.yml#/VariableCollectionRef'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  delete:
+    tags:
+      - Variable Collection
+    summary: Delete Variable Collection
+    description: Delete a variable collection. This will also delete all variables that are part of this collection.
+    operationId: deleteVariableCollection
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+    responses:
+      '200':
+        description: 'Variable collection deleted.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  patch:
+    tags:
+      - Variable Collection
+    summary: Update Variable Collection
+    description: Update the metadata, content and relationships of a variable collection. Check the schemas for the fields that can be updated.
+    operationId: updateVariableCollection
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/variablecollection.yml#/VariableCollectionUpdate'
+    responses:
+      '200':
+        description: 'The updated variable collection.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/variablecollection.yml#/VariableCollectionUpdate'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

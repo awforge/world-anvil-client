@@ -1,0 +1,31 @@
+type: object
+properties: 
+  page: 
+    type: object
+    properties: 
+      id: 
+        type: string
+        example: page
+      camera: 
+        type: object
+        properties: 
+          zoom: 
+            type: integer
+            format: int32
+            example: 1
+          point: 
+            type: array
+            items: 
+              type: integer
+              format: int32
+      editingId: 
+        type: string
+        format: uuid
+      hoveredId: 
+        type: string
+        format: uuid
+      selectedIds: 
+        type: array
+        items: 
+          type: string
+          format: uuid

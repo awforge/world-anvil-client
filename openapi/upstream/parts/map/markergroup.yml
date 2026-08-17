@@ -1,0 +1,144 @@
+markergroup:
+  get:
+    tags:
+      - Marker Group
+    summary: Read Marker Group
+    description: Retrieve the metadata of a single marker group. The returned fields depend on the given granularity.
+    operationId: readMarkerGroup
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: granularity
+        in: query
+        required: true
+        schema:
+          type: string
+          enum: [ '-1', '0', '2']
+    responses:
+      '200':
+        description: 'The marker group metadata.'
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: 'schemas/markergroup.ref.yml'
+                - $ref: 'schemas/markergroup.zero.yml'
+                - $ref: 'schemas/markergroup.two.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  put:
+    tags:
+      - Marker Group
+    summary: Create Marker Group
+    description: Create a new marker group. Required parameters for the creation of this entity are "title" and "map".
+    operationId: createMarkerGroup
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/markergroup.create.yml'
+    responses:
+      '200':
+        description: 'Reference to the newly created marker group.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/markergroup.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  delete:
+    tags:
+      - Marker Group
+    summary: Delete Marker Group
+    description: Delete a marker group. This action is irreversible.
+    operationId: deleteMarkerGroup
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+    responses:
+      '200':
+        description: 'Deleted marker group successfully.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+                  example: true
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  patch:
+    tags:
+      - Marker Group
+    summary: Update Marker Group
+    description: Update marker group metadata. Check the schema for all the available fields.
+    operationId: updateMarkerGroup
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/markergroup.update.yml'
+    responses:
+      '200':
+        description: 'Reference to the updated marker group.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/markergroup.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

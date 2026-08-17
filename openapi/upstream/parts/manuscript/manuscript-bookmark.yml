@@ -1,0 +1,110 @@
+manuscript-bookmark:
+  get:
+    tags:
+      - Manuscript Bookmark
+    summary: Read Manuscript Bookmark
+    description: |-
+      Get the data of a single manuscript bookmark.  
+      Granularity range is -1 to 2.
+    operationId: readManuscriptBookmark
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: '{{manuscriptBookmarkId}}'
+      - name: granularity
+        in: query
+        schema:
+          type: string
+          example: '-1'
+    requestBody:
+      content:
+        text/plain:
+          example: ''
+    responses:
+      '200':
+        description: ''
+  put:
+    tags:
+      - Manuscript Bookmark
+    summary: Create Manuscript Bookmark
+    description: >-
+      Create a new manuscript bookmark. Required parameters for the creation
+      of this entity are "manuscript".
+    operationId: createManuscriptBookmark
+    parameters:
+      - name: ''
+        in: query
+        schema:
+          type: string
+          example: ''
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              manuscript:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: '{{manuscriptId}}'
+          example:
+            manuscript:
+              id: '{{manuscriptId}}'
+    responses:
+      '200':
+        description: ''
+  delete:
+    tags:
+      - Manuscript Bookmark
+    summary: Delete Manuscript Bookmark
+    description: Delete a manuscript bookmark.
+    operationId: deleteManuscriptBookmark
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: '{{manuscriptBookmarkId}}'
+    requestBody:
+      content:
+        multipart/form-data:
+          schema:
+            type: object
+            properties: {}
+    responses:
+      '200':
+        description: ''
+  patch:
+    tags:
+      - Manuscript Bookmark
+    summary: Update Manuscript Bookmark
+    description: Update (patch) the content of a manuscript bookmark.
+    operationId: updateManuscriptBookmark
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: '{{manuscriptBookmarkId}}'
+    requestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              part:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: '{{manuscriptPartId}}'
+          example:
+            part:
+              id: '{{manuscriptPartId}}'
+    responses:
+      '200':
+        description: ''

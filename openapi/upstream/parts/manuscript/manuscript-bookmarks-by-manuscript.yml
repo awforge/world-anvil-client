@@ -1,0 +1,27 @@
+manuscript-bookmarks-by-manuscript:
+  post:
+    tags:
+      - Manuscript Bookmark
+    summary: List Manuscript Bookmarks By Manuscript
+    description: >-
+      List all manuscript bookmarks by a manuscript given, filtered with a
+      limit of entities shown and an offset.  
+
+      Limit range is 0-50.  
+
+      Offset should be non-negative.
+    operationId: listManuscriptBookmarksByManuscript
+    parameters:
+      - name: id
+        in: query
+        schema:
+          type: string
+          example: '{{manuscriptId}}'
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/limit.yml#/General'
+    responses:
+      '200':
+        description: ''

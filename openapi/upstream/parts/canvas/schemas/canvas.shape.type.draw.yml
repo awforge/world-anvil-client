@@ -1,0 +1,41 @@
+id: 
+  type: string
+  format: uuid
+name: 
+  type: string
+  example: Draw
+type: 
+  type: string
+  example: draw
+point: 
+  type: array
+  items:
+    type: integer
+    format: int32
+style:
+  $ref: 'canvas.shape.style.yml'
+points: 
+  type: array
+  items: 
+    type: array
+    items: 
+      - type: integer
+      - type: integer
+      - type: number
+  example: 
+    - [3, 349, 0.5]
+    - [3, 349, 0.5]
+    - [0, 347, 0.5]
+parentId: 
+  type: string
+  example: page
+rotation: 
+  type: integer
+  format: int32
+  example: 0
+childIndex: 
+  type: integer
+  format: int32
+  example: 1
+isComplete: 
+  type: boolean

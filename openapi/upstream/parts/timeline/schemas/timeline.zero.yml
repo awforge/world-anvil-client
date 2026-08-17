@@ -1,0 +1,71 @@
+type: object
+title: Timeline Reference Schema - GR 0
+description: Adds all of the metadata and content fields to the timeline.
+properties:
+  id: 
+    type: string
+    format: uuid
+  title: 
+    type: string
+    example: "Test Timeline Creation"
+  slug: 
+    type: string
+    example: "test-timeline-creation-timeline"
+  state: 
+    type: string
+    enum: [ public, private ]
+  isWip: 
+    type: boolean
+  isDraft: 
+    type: boolean
+  entityClass: 
+    type: string
+    enum: [ Timeline ]
+  icon: 
+    type: string
+    enum: ["fa-solid fa-timeline"]
+  url: 
+    type: string
+    example: "http://www.worldanvil.com/w/<world-slug>/t/<timeline-slug>"
+  subscribergroups:
+    type: array
+    items:
+      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+  folderId: 
+    type: string
+    format: uuid
+  tags: 
+    type: string
+    example: "tag,tag2"
+  updateDate: 
+    $ref: '../../schemas/date.yml'
+  description:
+    type: string
+    example: "Description"
+  creationDate:
+    $ref: '../../schemas/date.yml'
+  utdOffset:
+    type: string
+    example: "0"
+  type:
+    type: string
+    enum: [ parallel, master ]
+  showInToc:
+    type: boolean
+  views:
+    type: integer
+    format: int32
+    nullable: true
+  likes:
+    type: integer
+    format: int32
+    nullable: true
+  presentationParameters:
+    type: string
+    nullable: true
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true  

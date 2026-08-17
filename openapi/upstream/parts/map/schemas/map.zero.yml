@@ -1,0 +1,95 @@
+type: object
+title: Map Reference Schema - GR -1
+description: Reference object of a map resource. Used as a reference in the other schemas and returned when the granularity is set to -1.
+properties:
+  id: 
+    type: string
+    format: uuid
+    nullable: false
+  title: 
+    type: string
+    example: "Map Title"
+  slug: 
+    type: string
+    enum: [ private, public ]
+  state: 
+    type: string
+    nullable: true
+  isWip: 
+    type: boolean
+    nullable: true
+  isDraft: 
+    type: boolean
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ Map ]
+  icon: 
+    type: string
+    enum: [ "fa-solid fa-compass" ]
+  url: 
+    type: string
+    nullable: true
+  subscribergroups:
+    type: array
+    items:
+      $ref: '../../subscribergroup/schemas/subscribergroup.ref.yml'
+    example: []
+  folderId: 
+    type: string
+    example: "-1"
+  tags: 
+    type: string
+    example: ""
+  author:
+    $ref: '../../user/schemas/user.ref.yml'
+  updateDate: 
+    $ref: '../../schemas/date.yml'
+  description: 
+    type: string
+    example: "Description"
+  legend:
+    type: string
+    example: "Legend"
+  creationDate:
+    $ref: '../../schemas/date.yml'
+  isDeleted:
+    type: boolean
+    nullable: true
+  displayOnHomepage:
+    type: boolean
+    example: true
+  views: 
+    type: integer
+    format: int32
+    nullable: true
+  position:
+    type: integer
+    format: int32
+    example: 1233
+  zoomOriginal:
+    type: integer
+    format: int32
+    example: 0
+  zoomMin:
+    type: integer
+    format: int32
+    example: -2
+  zoomMax:
+    type: integer
+    format: int32
+    example: 0
+  centerY:
+    type: integer
+    format: int32
+    example: 1
+  centerX:
+    type: integer
+    format: int32
+    example: 1
+  isEditable: 
+    type: boolean
+    readOnly: true
+  success: 
+    type: boolean
+    readOnly: true  

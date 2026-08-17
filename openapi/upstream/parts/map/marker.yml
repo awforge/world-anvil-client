@@ -1,0 +1,143 @@
+marker:
+  get:
+    tags:
+      - Marker
+    summary: Read Marker
+    description: Retrieve the metadata, content and relationships of a marker (pin). The returned fields are determined by the granularity parameter.
+    operationId: readMarker
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: granularity
+        in: query
+        required: true
+        schema:
+          type: string
+          enum: [ '-1', '0', '1', '2' ]
+    responses:
+      '200':
+        description: 'A marker metadata resource.'
+        content:
+          application/json:
+            schemas:
+              oneOf:
+                - $ref: 'schemas/marker.ref.yml'
+                - $ref: 'schemas/marker.zero.yml'
+                - $ref: 'schemas/marker.one.yml'
+                - $ref: 'schemas/marker.two.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  put:
+    tags:
+      - Marker
+    summary: Create Marker
+    description: Create a new marker (pin). Check the schema for the possible and required fields.
+    operationId: createMarker
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/marker.create.yml'
+    responses:
+      '200':
+        description: 'The created marker metadata resource.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/marker.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  delete:
+    tags:
+      - Marker
+    summary: Delete Marker
+    description: Delete a marker. This action is irreversible.
+    operationId: deleteMarker
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    responses:
+      '200':
+        description: 'Deletion was successful.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                success:
+                  type: boolean
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'
+  patch:
+    tags:
+      - Marker
+    summary: Update Marker
+    description: Update the metadata and content of a marker (pin). Check the schema for the possible fields.
+    operationId: updateMarker
+    parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas/marker.update.yml'
+    responses:
+      '200':
+        description: 'The updated marker metadata resource.'
+        content:
+          application/json:
+            schema:
+              $ref: 'schemas/marker.ref.yml'
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '403':
+        $ref: '../responses/Forbidden.yml'
+      '404':
+        $ref: '../responses/NotFound.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'
+      '422':
+        $ref: '../responses/UnprocessableEntity.yml'

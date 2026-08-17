@@ -1,0 +1,39 @@
+identity:
+  get:
+    tags:
+      - User
+    summary: Read Token User
+    description: |-
+      Returns the basic user information associated with the authentication token used for this request. This is the first request to start using the API successfully when no other resources are known.
+    operationId: readIdentity
+    parameters:
+    requestBody:
+    responses:
+      '200':
+        description: 'Returns the basic user information associated with the authentication token used for this request.'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  format: uuid
+                  nullable: false
+                success:
+                  type: boolean
+                  example: true
+                username:
+                  type: string
+                  nullable: false
+                  example: "Username"
+                userhash:
+                  type: string
+                  nullable: false
+                  example: "userhash"
+      '400':
+        $ref: '../responses/BadRequest.yml'
+      '401':
+        $ref: '../responses/Unauthorized.yml'
+      '405':
+        $ref: '../responses/MethodNotAllowed.yml'

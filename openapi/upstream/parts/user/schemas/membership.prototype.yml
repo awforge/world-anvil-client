@@ -1,0 +1,42 @@
+type: object
+title: Membership Prototype Schema
+description: >-
+  This schema represents a membership prototype. These are predefined and cannot be edited.
+properties:
+  id: 
+    type: string
+    format: uuid
+    nullable: false
+  title: 
+    type: string
+    example: "Councilor of the Inner Sanctum"
+  slug: 
+    type: string
+    nullable: true
+  state: 
+    type: string
+    nullable: true
+  isWip: 
+    type: boolean
+    nullable: true
+  isDraft: 
+    type: boolean
+    nullable: true
+  entityClass: 
+    type: string
+    enum: [ MembershipType ]
+  icon: 
+    type: string
+    nullable: true
+  url: 
+    type: string
+    nullable: true
+  subscribergroups:
+    type: array
+    example: []
+  folderId: 
+    type: string
+  tags: 
+    type: string
+  updateDate: 
+    $ref: '../../schemas/date.yml'

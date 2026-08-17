@@ -1,0 +1,26 @@
+type: object
+properties: 
+  dash: 
+    type: string
+    example: solid
+  size: 
+    type: string
+    example: small
+  color: 
+    type: string
+    example: "#000000"
+  scale: 
+    type: integer
+    format: int32
+    example: 1
+  bgColor: 
+    type: string
+    example: "#ffffff"
+  isFilled: 
+    type: boolean
+  font: 
+    type: string
+    example: sans
+  textAlign: 
+    type: string
+    example: middle
