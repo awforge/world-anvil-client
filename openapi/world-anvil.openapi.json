@@ -224,6 +224,7 @@
         "description": "Create an article. Check the schemas for the required fields to create an article. To add template specific fields check the template schemas in the article GET endpoint.\n",
         "operationId": "createArticle",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -336,6 +337,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -397,6 +399,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -528,6 +531,7 @@
         "description": "Create a new statblock. Check the schema for the available and required fields.",
         "operationId": "createBlock",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -638,6 +642,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -697,6 +702,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -828,6 +834,7 @@
         "description": "Create a new block folder. Check the schema for the available and required fields.",
         "operationId": "createBlockFolder",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -938,6 +945,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -997,6 +1005,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -1133,6 +1142,7 @@
         "description": "Create a new statblock template. Check the schema for the required and optional fields.",
         "operationId": "createBlockTemplate",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -1243,6 +1253,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -1302,6 +1313,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -1433,6 +1445,7 @@
         "description": "Create a statblock template part. Check the schema of the block template to see which fields are required and which are optional.",
         "operationId": "createBlockTemplatePart",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -1544,6 +1557,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -1603,6 +1617,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -1738,6 +1753,7 @@
         "description": "Create a new category. Required parameters for the creation of this entity are \"title\" and \"world\".",
         "operationId": "createCategory",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -1849,6 +1865,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -1908,6 +1925,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -2039,6 +2057,7 @@
         "description": "Create a new whiteboard. Required parameters for the creation of this entity are \"title\" and \"world\".",
         "operationId": "createCanvas",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -2213,6 +2232,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -2470,6 +2490,7 @@
         "description": "Create a new timeline. The timeline requires a title and a world id to be created.",
         "operationId": "createTimeline",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -2583,6 +2604,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -2642,6 +2664,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -2777,6 +2800,7 @@
         "description": "Create a historical event. The title, year and world are required fields. Check all the fields in the schema definition. To add an event to a timeline you have to update the timeline object.",
         "operationId": "createHistory",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -2888,6 +2912,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -2947,6 +2972,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -3173,6 +3199,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -3232,6 +3259,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -3364,6 +3392,7 @@
         "description": "Create a new map. Required parameters for the creation of this entity are \"title\", \"image\" and \"world\". Check the schema for all the available fields.\n\nNOTE - The image is just the id of an already uploaded image or map image file. It is not currently possible to upload a binary with the API and use it as the map image. ",
         "operationId": "createMap",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -3477,6 +3506,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -3537,6 +3567,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -3668,6 +3699,7 @@
         "description": "Create a new map layer. Required parameters for the creation of this entity are \"title\" and \"map\". It is not possible to upload a new binary for the image. Only existing images can be assigned as the layer image.",
         "operationId": "createLayer",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -3779,6 +3811,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -3838,6 +3871,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -3969,6 +4003,7 @@
         "description": "Create a new marker group. Required parameters for the creation of this entity are \"title\" and \"map\".",
         "operationId": "createMarkerGroup",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -4082,6 +4117,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -4142,6 +4178,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -4278,6 +4315,7 @@
         "description": "Create a new marker (pin). Check the schema for the possible and required fields.",
         "operationId": "createMarker",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -4388,6 +4426,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -4448,6 +4487,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -4518,6 +4558,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -4631,6 +4672,7 @@
         "description": "Create a custom marker type (pin). The title is the only required field. Check all the fields in the schema definition.",
         "operationId": "createMarkerType",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -4742,6 +4784,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -4791,6 +4834,7 @@
         "description": "Retrieve a list of marker types. Use offset to skip the first n elements of the result, and limit to specify the maximum number of elements to retrieve.",
         "operationId": "listMarkerTypes",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -4882,6 +4926,7 @@
         "description": "Create a new manuscipt. Required parameters for the creation of this entity are \"title\" and \"world\".",
         "operationId": "createManuscript",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -4958,6 +5003,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -5001,6 +5047,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -5092,6 +5139,7 @@
         "description": "Create a new manuscript beat. Required parameters for the creation of this entity are \"content\" and \"part\" (manuscript part).",
         "operationId": "createManuscriptBeat",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -5168,6 +5216,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -5211,6 +5260,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -5266,6 +5316,7 @@
         "description": "Create a new manuscript bookmark. Required parameters for the creation of this entity are \"manuscript\".",
         "operationId": "createManuscriptBookmark",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -5337,6 +5388,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -5387,6 +5439,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -5442,6 +5495,7 @@
         "description": "Create a new manuscript part. Required parameters for the creation of this entity are \"type\" and \"version\" (manuscript version).",
         "operationId": "createManuscriptPart",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -5535,6 +5589,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -5578,6 +5633,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -5633,6 +5689,7 @@
         "description": "Create a new manuscript version. Required parameters for the creation of this entity are \"manuscript\".",
         "operationId": "createManuscriptVersion",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -5709,6 +5766,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -5759,6 +5817,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -5814,6 +5873,7 @@
         "description": "Create a new manuscript tag. Required parameters for the creation of this entity are \"manuscript\".",
         "operationId": "createManuscriptTag",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -5890,6 +5950,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -5933,6 +5994,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -5988,6 +6050,7 @@
         "description": "Create a new manuscript stat. Required parameters for the creation of this entity are \"version\" (manuscript version).",
         "operationId": "createManuscriptStat",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -6064,6 +6127,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -6107,6 +6171,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -6162,6 +6227,7 @@
         "description": "Create a new manuscript label. Required parameters for the creation of this entity are \"manuscript\".",
         "operationId": "createManuscriptLabel",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -6238,6 +6304,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -6281,6 +6348,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -6336,6 +6404,7 @@
         "description": "Create a new manuscript plot. Required parameters for the creation of this entity are \"version\" (manuscript version).",
         "operationId": "createManuscriptPlot",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -6412,6 +6481,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -6455,6 +6525,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -6550,6 +6621,7 @@
         "description": "Create a new notebook. The notebook requires a title to be created.",
         "operationId": "createNotebook",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -6661,6 +6733,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -6720,6 +6793,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -6852,6 +6926,7 @@
         "description": "Create a new notesection. The notesection requires a title and a notebook id to be created. Check the notesection schema for the available fields.",
         "operationId": "createNotesection",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -6963,6 +7038,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -7022,6 +7098,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -7154,6 +7231,7 @@
         "description": "Create a new note. The note requires a title and a notesection id to be created.",
         "operationId": "createNote",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -7272,6 +7350,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -7331,6 +7410,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -7463,6 +7543,7 @@
         "description": "Create a new secret. The secret requires a title and a world id to be created.",
         "operationId": "createSecret",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -7573,6 +7654,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -7632,6 +7714,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -7764,6 +7847,7 @@
         "description": "Create a new subscriber group. To create a subscriber group you need a title and the id of the world it should be created in. Check the schema for all available fields.",
         "operationId": "createSubscribergroup",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -7868,6 +7952,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -7930,6 +8015,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -8039,6 +8125,7 @@
         "description": "Create a new variable. Required parameters for the creation of this entity are \"title\", \"templateType\" and \"world\".",
         "operationId": "createVariable",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -8159,6 +8246,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -8221,6 +8309,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -8353,6 +8442,7 @@
         "description": "Create a new variable collection. Required parameters for the creation of this entity are \"title\" and \"world\".",
         "operationId": "createVariableCollection",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -8466,6 +8556,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -8526,6 +8617,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -8668,6 +8760,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -8841,6 +8934,7 @@
         "description": "Create a new world in your account for a new project. The world only requires a title. Check the schema for all available fields.",
         "operationId": "createWorld",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -8955,6 +9049,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -9017,6 +9112,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {

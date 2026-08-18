@@ -1,0 +1,1032 @@
+diff --git a/parts/article/article.yml b/parts/article/article.yml
+index c7afa95..3909e2c 100644
+--- a/parts/article/article.yml
++++ b/parts/article/article.yml
+@@ -58,6 +58,7 @@ article:
+       template specific fields check the template schemas in the article GET endpoint.
+     operationId: createArticle
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -133,6 +134,7 @@ article:
+           type: string
+           format: uuid
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/article/world-articles.yml b/parts/article/world-articles.yml
+index f5f2acc..990de7a 100644
+--- a/parts/article/world-articles.yml
++++ b/parts/article/world-articles.yml
+@@ -22,6 +22,7 @@ world-articles:
+           type: string
+           format: uuid
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/block/block.yml b/parts/block/block.yml
+index 2a108bc..779aad8 100644
+--- a/parts/block/block.yml
++++ b/parts/block/block.yml
+@@ -46,6 +46,7 @@ block:
+     description: Create a new statblock. Check the schema for the available and required fields.
+     operationId: createBlock
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -116,6 +117,7 @@ block:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/block/blockfolder-blocks.yml b/parts/block/blockfolder-blocks.yml
+index 5b59afe..a1dd20e 100644
+--- a/parts/block/blockfolder-blocks.yml
++++ b/parts/block/blockfolder-blocks.yml
+@@ -12,6 +12,7 @@ blockfolder-blocks:
+           type: string
+           example: '{{blockFolderId}}'
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/block/blockfolder.yml b/parts/block/blockfolder.yml
+index 6ebcf0a..736ddf7 100644
+--- a/parts/block/blockfolder.yml
++++ b/parts/block/blockfolder.yml
+@@ -47,6 +47,7 @@ blockfolder:
+     description: Create a new block folder. Check the schema for the available and required fields.
+     operationId: createBlockFolder
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -117,6 +118,7 @@ blockfolder:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/block/world-blockfolders.yml b/parts/block/world-blockfolders.yml
+index 2960e72..de29bed 100644
+--- a/parts/block/world-blockfolders.yml
++++ b/parts/block/world-blockfolders.yml
+@@ -12,6 +12,7 @@ world-blockfolders:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/blocktemplate/blocktemplate-blocktemplateparts.yml b/parts/blocktemplate/blocktemplate-blocktemplateparts.yml
+index eca8cfb..feeff25 100644
+--- a/parts/blocktemplate/blocktemplate-blocktemplateparts.yml
++++ b/parts/blocktemplate/blocktemplate-blocktemplateparts.yml
+@@ -12,6 +12,7 @@ blocktemplate-blocktemplateparts:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/blocktemplate/blocktemplate.yml b/parts/blocktemplate/blocktemplate.yml
+index f416dae..9302f0d 100644
+--- a/parts/blocktemplate/blocktemplate.yml
++++ b/parts/blocktemplate/blocktemplate.yml
+@@ -48,6 +48,7 @@ blocktemplate:
+     description: Create a new statblock template. Check the schema for the required and optional fields.
+     operationId: createBlockTemplate
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -118,6 +119,7 @@ blocktemplate:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/blocktemplate/blocktemplatepart.yml b/parts/blocktemplate/blocktemplatepart.yml
+index 91ab662..e0148bf 100644
+--- a/parts/blocktemplate/blocktemplatepart.yml
++++ b/parts/blocktemplate/blocktemplatepart.yml
+@@ -46,6 +46,7 @@ blocktemplatepart:
+     description: Create a statblock template part. Check the schema of the block template to see which fields are required and which are optional.
+     operationId: createBlockTemplatePart
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -117,6 +118,7 @@ blocktemplatepart:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/blocktemplate/user-blocktemplates.yml b/parts/blocktemplate/user-blocktemplates.yml
+index d4c9762..da6b900 100644
+--- a/parts/blocktemplate/user-blocktemplates.yml
++++ b/parts/blocktemplate/user-blocktemplates.yml
+@@ -12,6 +12,7 @@ user-blocktemplates:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/canvas/canvas.yml b/parts/canvas/canvas.yml
+index 45997b1..3ece182 100644
+--- a/parts/canvas/canvas.yml
++++ b/parts/canvas/canvas.yml
+@@ -46,6 +46,7 @@ canvas:
+     description: Create a new whiteboard. Required parameters for the creation of this entity are "title" and "world".
+     operationId: createCanvas
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/canvas/world-canvases.yml b/parts/canvas/world-canvases.yml
+index 1302466..848ea43 100644
+--- a/parts/canvas/world-canvases.yml
++++ b/parts/canvas/world-canvases.yml
+@@ -12,6 +12,7 @@ world-canvases:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/category/category.yml b/parts/category/category.yml
+index 46d7381..c4f83ec 100644
+--- a/parts/category/category.yml
++++ b/parts/category/category.yml
+@@ -47,6 +47,7 @@ category:
+     description: Create a new category. Required parameters for the creation of this entity are "title" and "world".
+     operationId: createCategory
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -118,6 +119,7 @@ category:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/category/world-categories.yml b/parts/category/world-categories.yml
+index 300b358..d0db78b 100644
+--- a/parts/category/world-categories.yml
++++ b/parts/category/world-categories.yml
+@@ -12,6 +12,7 @@ world-categories:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/image/image.yml b/parts/image/image.yml
+index 502da59..80a887e 100644
+--- a/parts/image/image.yml
++++ b/parts/image/image.yml
+@@ -109,6 +109,7 @@ image:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/image/world-images.yml b/parts/image/world-images.yml
+index 28374e2..bd6bd3c 100644
+--- a/parts/image/world-images.yml
++++ b/parts/image/world-images.yml
+@@ -12,6 +12,7 @@ world-images:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/manuscript/manuscript-beat.yml b/parts/manuscript/manuscript-beat.yml
+index e0b09ff..c272bdc 100644
+--- a/parts/manuscript/manuscript-beat.yml
++++ b/parts/manuscript/manuscript-beat.yml
+@@ -30,6 +30,7 @@ manuscript-beat:
+       this entity are "content" and "part" (manuscript part).
+     operationId: createManuscriptBeat
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -79,6 +80,7 @@ manuscript-beat:
+           type: string
+           example: '{{manuscriptBeatId}}'
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/manuscript/manuscript-beats-by-manuscript-parts.yml b/parts/manuscript/manuscript-beats-by-manuscript-parts.yml
+index 2bc1379..88be0de 100644
+--- a/parts/manuscript/manuscript-beats-by-manuscript-parts.yml
++++ b/parts/manuscript/manuscript-beats-by-manuscript-parts.yml
+@@ -18,6 +18,7 @@ manuscript-beats-by-manuscript-parts:
+           type: string
+           example: '{{manuscriptPartId}}'
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/manuscript/manuscript-bookmark.yml b/parts/manuscript/manuscript-bookmark.yml
+index a1f9dbc..67b7a4b 100644
+--- a/parts/manuscript/manuscript-bookmark.yml
++++ b/parts/manuscript/manuscript-bookmark.yml
+@@ -30,6 +30,7 @@ manuscript-bookmark:
+       of this entity are "manuscript".
+     operationId: createManuscriptBookmark
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -75,6 +76,7 @@ manuscript-bookmark:
+           type: string
+           example: '{{manuscriptBookmarkId}}'
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/manuscript/manuscript-bookmarks-by-manuscript.yml b/parts/manuscript/manuscript-bookmarks-by-manuscript.yml
+index 5c4248b..691737d 100644
+--- a/parts/manuscript/manuscript-bookmarks-by-manuscript.yml
++++ b/parts/manuscript/manuscript-bookmarks-by-manuscript.yml
+@@ -18,6 +18,7 @@ manuscript-bookmarks-by-manuscript:
+           type: string
+           example: '{{manuscriptId}}'
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/manuscript/manuscript-label.yml b/parts/manuscript/manuscript-label.yml
+index 827cb7a..ecc5d45 100644
+--- a/parts/manuscript/manuscript-label.yml
++++ b/parts/manuscript/manuscript-label.yml
+@@ -30,6 +30,7 @@ manuscript-label:
+       this entity are "manuscript".
+     operationId: createManuscriptLabel
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -79,6 +80,7 @@ manuscript-label:
+           type: string
+           example: '{{manuscriptLabelId}}'
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/manuscript/manuscript-labels-by-manuscript.yml b/parts/manuscript/manuscript-labels-by-manuscript.yml
+index 11b15f0..bca1c96 100644
+--- a/parts/manuscript/manuscript-labels-by-manuscript.yml
++++ b/parts/manuscript/manuscript-labels-by-manuscript.yml
+@@ -18,6 +18,7 @@ manuscript-labels-by-manuscript:
+           type: string
+           example: '{{manuscriptId}}'
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/manuscript/manuscript-part.yml b/parts/manuscript/manuscript-part.yml
+index 3bbd184..96fc149 100644
+--- a/parts/manuscript/manuscript-part.yml
++++ b/parts/manuscript/manuscript-part.yml
+@@ -30,6 +30,7 @@ manuscript-part:
+       this entity are "type" and "version" (manuscript version).
+     operationId: createManuscriptPart
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -91,6 +92,7 @@ manuscript-part:
+           type: string
+           example: '{{manuscriptPartId}}'
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/manuscript/manuscript-parts-by-manuscript-version.yml b/parts/manuscript/manuscript-parts-by-manuscript-version.yml
+index fb9d233..e6a5732 100644
+--- a/parts/manuscript/manuscript-parts-by-manuscript-version.yml
++++ b/parts/manuscript/manuscript-parts-by-manuscript-version.yml
+@@ -18,6 +18,7 @@ manuscript-parts-by-manuscript-version:
+           type: string
+           example: '{{manuscriptVersionId}}'
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/manuscript/manuscript-plot.yml b/parts/manuscript/manuscript-plot.yml
+index 6c22a8a..ee1cf83 100644
+--- a/parts/manuscript/manuscript-plot.yml
++++ b/parts/manuscript/manuscript-plot.yml
+@@ -30,6 +30,7 @@ manuscript-plot:
+       this entity are "version" (manuscript version).
+     operationId: createManuscriptPlot
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -79,6 +80,7 @@ manuscript-plot:
+           type: string
+           example: '{{manuscriptPlotId}}'
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/manuscript/manuscript-plots-by-manuscript-version.yml b/parts/manuscript/manuscript-plots-by-manuscript-version.yml
+index 767c340..c2ebf86 100644
+--- a/parts/manuscript/manuscript-plots-by-manuscript-version.yml
++++ b/parts/manuscript/manuscript-plots-by-manuscript-version.yml
+@@ -18,6 +18,7 @@ manuscript-plots-by-manuscript-version:
+           type: string
+           example: '{{manuscriptVersionId}}'
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/manuscript/manuscript-stat.yml b/parts/manuscript/manuscript-stat.yml
+index feaf522..2c1e912 100644
+--- a/parts/manuscript/manuscript-stat.yml
++++ b/parts/manuscript/manuscript-stat.yml
+@@ -30,6 +30,7 @@ manuscript-stat:
+       this entity are "version" (manuscript version).
+     operationId: createManuscriptStat
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -79,6 +80,7 @@ manuscript-stat:
+           type: string
+           example: '{{manuscriptStatId}}'
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/manuscript/manuscript-stats-by manuscipt-version.yml b/parts/manuscript/manuscript-stats-by manuscipt-version.yml
+index 061d44d..18685c5 100644
+--- a/parts/manuscript/manuscript-stats-by manuscipt-version.yml	
++++ b/parts/manuscript/manuscript-stats-by manuscipt-version.yml	
+@@ -18,6 +18,7 @@ manuscript-stats-by manuscipt-version:
+           type: string
+           example: '{{manuscriptVersionId}}'
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/manuscript/manuscript-tag.yml b/parts/manuscript/manuscript-tag.yml
+index cbd5fbc..866996a 100644
+--- a/parts/manuscript/manuscript-tag.yml
++++ b/parts/manuscript/manuscript-tag.yml
+@@ -30,6 +30,7 @@ manuscript-tag:
+       this entity are "manuscript".
+     operationId: createManuscriptTag
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -79,6 +80,7 @@ manuscript-tag:
+           type: string
+           example: '{{manuscriptTagId}}'
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/manuscript/manuscript-tags-by-manuscript.yml b/parts/manuscript/manuscript-tags-by-manuscript.yml
+index 3210877..9c833d7 100644
+--- a/parts/manuscript/manuscript-tags-by-manuscript.yml
++++ b/parts/manuscript/manuscript-tags-by-manuscript.yml
+@@ -18,6 +18,7 @@ manuscript-tags-by-manuscript:
+           type: string
+           example: '{{manuscriptId}}'
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/manuscript/manuscript-version.yml b/parts/manuscript/manuscript-version.yml
+index d0bdfd7..a0481f3 100644
+--- a/parts/manuscript/manuscript-version.yml
++++ b/parts/manuscript/manuscript-version.yml
+@@ -30,6 +30,7 @@ manuscript-version:
+       this entity are "manuscript".
+     operationId: createManuscriptVersion
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -79,6 +80,7 @@ manuscript-version:
+           type: string
+           example: '{{manuscriptVersionId}}'
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/manuscript/manuscript-versions-by-manuscript.yml b/parts/manuscript/manuscript-versions-by-manuscript.yml
+index b0bf1bd..1ac14f5 100644
+--- a/parts/manuscript/manuscript-versions-by-manuscript.yml
++++ b/parts/manuscript/manuscript-versions-by-manuscript.yml
+@@ -18,6 +18,7 @@ manuscript-versions-by-manuscript:
+           type: string
+           example: '{{manuscriptId}}'
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/manuscript/manuscript.yml b/parts/manuscript/manuscript.yml
+index 3112afa..cde1037 100644
+--- a/parts/manuscript/manuscript.yml
++++ b/parts/manuscript/manuscript.yml
+@@ -30,6 +30,7 @@ manuscript:
+       entity are "title" and "world".
+     operationId: createManuscript
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -79,6 +80,7 @@ manuscript:
+           type: string
+           example: '{{manuscriptId}}'
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/manuscript/world-manuscripts.yml b/parts/manuscript/world-manuscripts.yml
+index cb8163a..ca08310 100644
+--- a/parts/manuscript/world-manuscripts.yml
++++ b/parts/manuscript/world-manuscripts.yml
+@@ -12,6 +12,7 @@ world-manuscripts:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/map/layer.yml b/parts/map/layer.yml
+index 0b3cdba..e352e85 100644
+--- a/parts/map/layer.yml
++++ b/parts/map/layer.yml
+@@ -46,6 +46,7 @@ layer:
+     description: Create a new map layer. Required parameters for the creation of this entity are "title" and "map". It is not possible to upload a new binary for the image. Only existing images can be assigned as the layer image.
+     operationId: createLayer
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -117,6 +118,7 @@ layer:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/map/map-layers.yml b/parts/map/map-layers.yml
+index d4b434f..a1ecafe 100644
+--- a/parts/map/map-layers.yml
++++ b/parts/map/map-layers.yml
+@@ -12,6 +12,7 @@ map-layers:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/map/map-markergroups.yml b/parts/map/map-markergroups.yml
+index d8aa996..b2bbc96 100644
+--- a/parts/map/map-markergroups.yml
++++ b/parts/map/map-markergroups.yml
+@@ -13,6 +13,7 @@ map-markergroups:
+           type: string
+           format: uuid
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/map/map-markers.yml b/parts/map/map-markers.yml
+index b12e4ac..63c4a06 100644
+--- a/parts/map/map-markers.yml
++++ b/parts/map/map-markers.yml
+@@ -13,6 +13,7 @@ map-markers:
+           type: string
+           format: uuid
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/map/map.yml b/parts/map/map.yml
+index 1333d05..555523a 100644
+--- a/parts/map/map.yml
++++ b/parts/map/map.yml
+@@ -50,6 +50,7 @@ map:
+       NOTE - The image is just the id of an already uploaded image or map image file. It is not currently possible to upload a binary with the API and use it as the map image. 
+     operationId: createMap
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -123,6 +124,7 @@ map:
+           type: string
+           format: uuid
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/map/marker.yml b/parts/map/marker.yml
+index c24ace4..00e4a6d 100644
+--- a/parts/map/marker.yml
++++ b/parts/map/marker.yml
+@@ -48,6 +48,7 @@ marker:
+     description: Create a new marker (pin). Check the schema for the possible and required fields.
+     operationId: createMarker
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -118,6 +119,7 @@ marker:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/map/markergroup-markers.yml b/parts/map/markergroup-markers.yml
+index c1c3e86..0d2fe92 100644
+--- a/parts/map/markergroup-markers.yml
++++ b/parts/map/markergroup-markers.yml
+@@ -12,6 +12,7 @@ markergroup-markers:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/map/markergroup.yml b/parts/map/markergroup.yml
+index fe2dfd9..7e38a1a 100644
+--- a/parts/map/markergroup.yml
++++ b/parts/map/markergroup.yml
+@@ -46,6 +46,7 @@ markergroup:
+     description: Create a new marker group. Required parameters for the creation of this entity are "title" and "map".
+     operationId: createMarkerGroup
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -119,6 +120,7 @@ markergroup:
+           type: string
+           format: uuid
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/map/world-maps.yml b/parts/map/world-maps.yml
+index cc2f7d8..813586f 100644
+--- a/parts/map/world-maps.yml
++++ b/parts/map/world-maps.yml
+@@ -13,6 +13,7 @@ world-maps:
+           type: string
+           format: uuid
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/markertype/markertype.yml b/parts/markertype/markertype.yml
+index b6943b2..e4a6ce5 100644
+--- a/parts/markertype/markertype.yml
++++ b/parts/markertype/markertype.yml
+@@ -46,6 +46,7 @@ markertype:
+     description: Create a custom marker type (pin). The title is the only required field. Check all the fields in the schema definition.
+     operationId: createMarkerType
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -117,6 +118,7 @@ markertype:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/markertype/markertypes.yml b/parts/markertype/markertypes.yml
+index 3960885..3001733 100644
+--- a/parts/markertype/markertypes.yml
++++ b/parts/markertype/markertypes.yml
+@@ -6,6 +6,7 @@ markertypes:
+     description: Retrieve a list of marker types. Use offset to skip the first n elements of the result, and limit to specify the maximum number of elements to retrieve.
+     operationId: listMarkerTypes
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/notebook/note.yml b/parts/notebook/note.yml
+index a69d8a8..99c0307 100644
+--- a/parts/notebook/note.yml
++++ b/parts/notebook/note.yml
+@@ -48,6 +48,7 @@ note:
+       Create a new note. The note requires a title and a notesection id to be created.
+     operationId: createNote
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -124,6 +125,7 @@ note:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/notebook/notebook-notesections.yml b/parts/notebook/notebook-notesections.yml
+index 302c1d0..ed40bbb 100644
+--- a/parts/notebook/notebook-notesections.yml
++++ b/parts/notebook/notebook-notesections.yml
+@@ -13,6 +13,7 @@ notebook-notesections:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/notebook/notebook.yml b/parts/notebook/notebook.yml
+index c6d4c3a..859629a 100644
+--- a/parts/notebook/notebook.yml
++++ b/parts/notebook/notebook.yml
+@@ -48,6 +48,7 @@ notebook:
+       Create a new notebook. The notebook requires a title to be created.
+     operationId: createNotebook
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -119,6 +120,7 @@ notebook:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/notebook/notesection-notes.yml b/parts/notebook/notesection-notes.yml
+index 115af6f..b90d302 100644
+--- a/parts/notebook/notesection-notes.yml
++++ b/parts/notebook/notesection-notes.yml
+@@ -13,6 +13,7 @@ notesection-notes:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/notebook/notesection.yml b/parts/notebook/notesection.yml
+index d9f7a63..b5391a6 100644
+--- a/parts/notebook/notesection.yml
++++ b/parts/notebook/notesection.yml
+@@ -48,6 +48,7 @@ notesection:
+       Create a new notesection. The notesection requires a title and a notebook id to be created. Check the notesection schema for the available fields.
+     operationId: createNotesection
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -119,6 +120,7 @@ notesection:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/notebook/world-notebooks.yml b/parts/notebook/world-notebooks.yml
+index 53c042c..f597bbe 100644
+--- a/parts/notebook/world-notebooks.yml
++++ b/parts/notebook/world-notebooks.yml
+@@ -15,6 +15,7 @@ world-notebooks:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/secret/secret.yml b/parts/secret/secret.yml
+index 57cae1f..a2a2a24 100644
+--- a/parts/secret/secret.yml
++++ b/parts/secret/secret.yml
+@@ -48,6 +48,7 @@ secret:
+       Create a new secret. The secret requires a title and a world id to be created.
+     operationId: createSecret
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -119,6 +120,7 @@ secret:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/secret/world-secrets.yml b/parts/secret/world-secrets.yml
+index 6fdf08e..6001b6c 100644
+--- a/parts/secret/world-secrets.yml
++++ b/parts/secret/world-secrets.yml
+@@ -12,6 +12,7 @@ world-secrets:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/subscribergroup/subscribergroup.yml b/parts/subscribergroup/subscribergroup.yml
+index a67f67b..5bba078 100644
+--- a/parts/subscribergroup/subscribergroup.yml
++++ b/parts/subscribergroup/subscribergroup.yml
+@@ -49,6 +49,7 @@ subscribergroup:
+       Create a new subscriber group. To create a subscriber group you need a title and the id of the world it should be created in. Check the schema for all available fields.
+     operationId: createSubscribergroup
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -117,6 +118,7 @@ subscribergroup:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/subscribergroup/world-subscribergroups.yml b/parts/subscribergroup/world-subscribergroups.yml
+index 87be6d3..b9c217b 100644
+--- a/parts/subscribergroup/world-subscribergroups.yml
++++ b/parts/subscribergroup/world-subscribergroups.yml
+@@ -12,6 +12,7 @@ world-subscribergroups:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/timeline/history.yml b/parts/timeline/history.yml
+index 21ae568..44069a6 100644
+--- a/parts/timeline/history.yml
++++ b/parts/timeline/history.yml
+@@ -47,6 +47,7 @@ history:
+     description: Create a historical event. The title, year and world are required fields. Check all the fields in the schema definition. To add an event to a timeline you have to update the timeline object.
+     operationId: createHistory
+     requestBody:
++        required: true
+         content:
+           application/json:
+             schema:
+@@ -118,6 +119,7 @@ history:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/timeline/timeline.yml b/parts/timeline/timeline.yml
+index 3f6cddb..6379c58 100644
+--- a/parts/timeline/timeline.yml
++++ b/parts/timeline/timeline.yml
+@@ -48,6 +48,7 @@ timeline:
+     description: Create a new timeline. The timeline requires a title and a world id to be created.
+     operationId: createTimeline
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -121,6 +122,7 @@ timeline:
+           type: string
+           format: uuid
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/timeline/world-histories.yml b/parts/timeline/world-histories.yml
+index 111ca3d..fabe1cd 100644
+--- a/parts/timeline/world-histories.yml
++++ b/parts/timeline/world-histories.yml
+@@ -12,6 +12,7 @@ world-histories:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/timeline/world-timelines.yml b/parts/timeline/world-timelines.yml
+index 93fe32a..c46b1e5 100644
+--- a/parts/timeline/world-timelines.yml
++++ b/parts/timeline/world-timelines.yml
+@@ -12,6 +12,7 @@ world-timelines:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/user/user.yml b/parts/user/user.yml
+index bca7d14..48710e2 100644
+--- a/parts/user/user.yml
++++ b/parts/user/user.yml
+@@ -55,6 +55,7 @@ user:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/variable/variable-collection.yml b/parts/variable/variable-collection.yml
+index 82523fb..45e51de 100644
+--- a/parts/variable/variable-collection.yml
++++ b/parts/variable/variable-collection.yml
+@@ -47,6 +47,7 @@ variable-collection:
+     description: Create a new variable collection. Required parameters for the creation of this entity are "title" and "world".
+     operationId: createVariableCollection
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -120,6 +121,7 @@ variable-collection:
+           type: string
+           format: uuid
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/variable/variable.yml b/parts/variable/variable.yml
+index 15a9333..c55c0bd 100644
+--- a/parts/variable/variable.yml
++++ b/parts/variable/variable.yml
+@@ -42,6 +42,7 @@ variable:
+       entity are "title", "templateType" and "world".
+     operationId: createVariable
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -123,6 +124,7 @@ variable:
+           type: string
+           example: '{{variableId}}'
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/variable/variables-by-variable-collection.yml b/parts/variable/variables-by-variable-collection.yml
+index 31d07c6..627a812 100644
+--- a/parts/variable/variables-by-variable-collection.yml
++++ b/parts/variable/variables-by-variable-collection.yml
+@@ -13,6 +13,7 @@ variables-by-variable-collection:
+           type: string
+           format: uuid
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/variable/world-variablecollections.yml b/parts/variable/world-variablecollections.yml
+index 1b29dca..83e3b9c 100644
+--- a/parts/variable/world-variablecollections.yml
++++ b/parts/variable/world-variablecollections.yml
+@@ -13,6 +13,7 @@ world-variablecollections:
+           type: string
+           format: uuid
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/world/user-worlds.yml b/parts/world/user-worlds.yml
+index 7e49d62..a88a42a 100644
+--- a/parts/world/user-worlds.yml
++++ b/parts/world/user-worlds.yml
+@@ -13,6 +13,7 @@ user-worlds:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+diff --git a/parts/world/world.yml b/parts/world/world.yml
+index 52ac17c..d52755d 100644
+--- a/parts/world/world.yml
++++ b/parts/world/world.yml
+@@ -49,6 +49,7 @@ world:
+       Create a new world in your account for a new project. The world only requires a title. Check the schema for all available fields.
+     operationId: createWorld
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:
+@@ -124,6 +125,7 @@ world:
+         schema:
+           type: string
+     requestBody:
++      required: true
+       content:
+         application/json:
+           schema:

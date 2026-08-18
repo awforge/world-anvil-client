@@ -10,6 +10,8 @@ temporary copy of `../upstream`. The vendored source remains unchanged.
 - `0003-bodyless-error-responses.patch` removes typed error bodies because
   Progenitor 0.14 supports only one error-body type per operation. Status codes
   and descriptions are preserved.
+- `0004-required-request-bodies.patch` marks every supported JSON request body
+  as required by the OpenAPI contract.
 
 Add new corrections as sequentially numbered patches and keep each patch
 focused on one concern.
