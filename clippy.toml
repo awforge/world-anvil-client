@@ -1,0 +1,6 @@
+# Required by incompatible transitive dependency generations.
+allowed-duplicate-crates = [
+    "getrandom",
+    "syn",
+    "windows-sys",
+]
