@@ -27,10 +27,6 @@ pub(super) fn run(output: Option<&Path>) -> Result<()> {
 
 pub(super) fn build_bundle(paths: &RepositoryPaths, output: &Path) -> Result<()> {
     ensure!(
-        paths.upstream.join("openapi.yml").is_file(),
-        "missing upstream snapshot; run 'cargo xtask openapi fetch' first"
-    );
-    ensure!(
         paths.redocly_config.is_file(),
         "missing Redocly configuration at {}",
         paths.redocly_config.display()
@@ -41,8 +37,7 @@ pub(super) fn build_bundle(paths: &RepositoryPaths, output: &Path) -> Result<()>
     );
 
     let work_dir = temporary_directory("world-anvil-openapi")?;
-    copy_directory(&paths.upstream, work_dir.path())?;
-    apply_patches(paths, work_dir.path())?;
+    materialize_sources(paths, work_dir.path(), None)?;
 
     let candidate = work_dir.path().join(BUNDLE_NAME);
     run_redocly(
@@ -90,6 +85,21 @@ pub(super) fn build_bundle(paths: &RepositoryPaths, output: &Path) -> Result<()>
     Ok(())
 }
 
+pub(super) fn materialize_sources(
+    paths: &RepositoryPaths,
+    destination: &Path,
+    before: Option<&OsStr>,
+) -> Result<()> {
+    ensure!(
+        paths.upstream.join("openapi.yml").is_file(),
+        "missing upstream snapshot; run 'cargo xtask openapi fetch' first"
+    );
+
+    let patch_files = selected_patch_files(paths, before)?;
+    copy_directory(&paths.upstream, destination)?;
+    apply_patch_files(paths, destination, &patch_files)
+}
+
 fn copy_directory(source: &Path, destination: &Path) -> Result<()> {
     fs::create_dir_all(destination)
         .with_context(|| format!("cannot create {}", destination.display()))?;
@@ -127,7 +137,7 @@ fn copy_directory(source: &Path, destination: &Path) -> Result<()> {
     Ok(())
 }
 
-fn apply_patches(paths: &RepositoryPaths, work_root: &Path) -> Result<()> {
+fn selected_patch_files(paths: &RepositoryPaths, before: Option<&OsStr>) -> Result<Vec<PathBuf>> {
     let mut patch_files = fs::read_dir(&paths.patches)
         .with_context(|| format!("cannot read {}", paths.patches.display()))?
         .collect::<std::io::Result<Vec<_>>>()?
@@ -137,9 +147,44 @@ fn apply_patches(paths: &RepositoryPaths, work_root: &Path) -> Result<()> {
         .collect::<Vec<_>>();
     patch_files.sort();
 
+    if let Some(before) = before {
+        let before_path = Path::new(before);
+        ensure!(
+            before_path.components().count() == 1
+                && before_path.file_name().is_some_and(|name| name == before),
+            "--before must be a patch filename, not a path: {}",
+            before_path.display()
+        );
+        ensure!(
+            before_path.extension() == Some(OsStr::new("patch")),
+            "--before must name a .patch file: {}",
+            before_path.display()
+        );
+
+        let cutoff = patch_files
+            .iter()
+            .position(|path| path.file_name().is_some_and(|name| name == before))
+            .with_context(|| {
+                format!(
+                    "--before patch does not exist in {}: {}",
+                    paths.patches.display(),
+                    before_path.display()
+                )
+            })?;
+        patch_files.truncate(cutoff);
+    }
+
+    Ok(patch_files)
+}
+
+fn apply_patch_files(
+    paths: &RepositoryPaths,
+    work_root: &Path,
+    patch_files: &[PathBuf],
+) -> Result<()> {
     for patch_file in patch_files {
-        println!("Applying {}", display_path(&paths.root, &patch_file));
-        apply_patch_file(&patch_file, work_root)?;
+        println!("Applying {}", display_path(&paths.root, patch_file));
+        apply_patch_file(patch_file, work_root)?;
     }
 
     Ok(())

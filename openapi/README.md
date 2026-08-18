@@ -29,15 +29,20 @@ Available commands:
 ```console
 cargo xtask openapi fetch
 cargo xtask openapi bundle
+cargo xtask openapi patch-worktree --output target/openapi-edit
 cargo xtask openapi check
 ```
 
 - `fetch` refreshes the vendored files from World Anvil.
 - `bundle` applies the patches and rebuilds `world-anvil.openapi.json`.
+- `patch-worktree` creates an editable, Git-backed copy of the patched source
+  for authoring a new patch.
 - `check` verifies checksums, reproducibility, and Rust code generation.
 
 After `fetch`, review the upstream changes, update `upstream/SOURCE.md`, adjust
 the patches if necessary, then run `bundle` and `check`.
+
+See [`patches/README.md`](patches/README.md) for the patch-authoring workflow.
 
 ## Known limitation
 

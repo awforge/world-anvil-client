@@ -1,6 +1,6 @@
 mod openapi;
 
-use std::{path::PathBuf, process::ExitCode};
+use std::{ffi::OsString, path::PathBuf, process::ExitCode};
 
 use anyhow::Result;
 use clap::{Args, Parser, Subcommand};
@@ -34,6 +34,15 @@ enum OpenapiTask {
         #[arg(long, value_name = "PATH")]
         output: Option<PathBuf>,
     },
+    /// Create an editable, Git-backed tree of the patched OpenAPI source.
+    PatchWorktree {
+        /// Create the patch worktree at this path.
+        #[arg(long, value_name = "PATH")]
+        output: PathBuf,
+        /// Stop before applying this existing patch filename.
+        #[arg(long, value_name = "PATCH")]
+        before: Option<OsString>,
+    },
     /// Verify the snapshot, reproduce the bundle, and smoke-test generation.
     Check,
 }
@@ -53,6 +62,9 @@ fn run() -> Result<()> {
         Task::Openapi(args) => match args.task {
             OpenapiTask::Fetch => openapi::fetch(),
             OpenapiTask::Bundle { output } => openapi::bundle(output.as_deref()),
+            OpenapiTask::PatchWorktree { output, before } => {
+                openapi::patch_worktree(&output, before.as_deref())
+            }
             OpenapiTask::Check => openapi::check(),
         },
     }
