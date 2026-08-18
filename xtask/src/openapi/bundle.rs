@@ -7,8 +7,11 @@ use std::{
     process::Command,
 };
 
-use super::shared::{
-    BUNDLE_NAME, RepositoryPaths, display_path, ensure_regular_file, temporary_directory,
+use super::{
+    invariants,
+    shared::{
+        BUNDLE_NAME, RepositoryPaths, display_path, ensure_regular_file, temporary_directory,
+    },
 };
 use anyhow::{Context, Result, bail, ensure};
 use diffy::{
@@ -71,6 +74,11 @@ pub(super) fn build_bundle(paths: &RepositoryPaths, output: &Path) -> Result<()>
             OsStr::new("1000"),
         ],
     )?;
+
+    let candidate_bytes = fs::read(&candidate)
+        .with_context(|| format!("cannot read generated bundle {}", candidate.display()))?;
+    invariants::validate(&candidate_bytes)?;
+    println!("OpenAPI semantic invariants hold.");
 
     let output_dir = output
         .parent()

@@ -34,7 +34,8 @@ cargo xtask openapi check
 ```
 
 - `fetch` refreshes the vendored files from World Anvil.
-- `bundle` applies the patches and rebuilds `world-anvil.openapi.json`.
+- `bundle` applies and validates the patches, then rebuilds
+  `world-anvil.openapi.json`.
 - `patch-worktree` creates an editable, Git-backed copy of the patched source
   for authoring a new patch.
 - `check` verifies checksums, reproducibility, and Rust code generation.

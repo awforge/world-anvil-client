@@ -5,6 +5,7 @@ use anyhow::Result;
 mod bundle;
 mod check;
 mod fetch;
+mod invariants;
 mod patch_worktree;
 mod shared;
 

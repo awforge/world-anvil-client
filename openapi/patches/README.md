@@ -18,6 +18,23 @@ temporary copy of `../upstream`. The vendored source remains unchanged.
 Add new corrections as sequentially numbered patches and keep each patch
 focused on one concern.
 
+## Semantic checks
+
+Before writing the generated JSON, `bundle` checks the final patched document:
+
+| Patch | Guarantee |
+| --- | --- |
+| `0001` | Authentication and corrected response/schema contracts remain intact. |
+| `0002` | Parameters, bodies, and required properties remain Progenitor-compatible. |
+| `0003` | Error responses remain bodyless. |
+| `0004` | Every request body is required. |
+| `0005` | Manuscript operations retain their standard error statuses. |
+
+Failures are reported together with stable rule IDs. Patch-specific tests live
+in `xtask/src/openapi/invariants/tests/patch_*.rs`; `current_bundle.rs` checks
+the complete bundle. Schema checks are intentionally conservative, so an
+upstream structural refactor may require updating the validator.
+
 ## Authoring a patch
 
 Create a disposable worktree containing the upstream snapshot with every
@@ -39,7 +56,7 @@ git -C target/openapi-edit diff \
   --no-ext-diff \
   --src-prefix=a/ \
   --dst-prefix=b/ \
-  -- . > openapi/patches/0005-description.patch
+  -- . > openapi/patches/0006-description.patch
 
 cargo xtask openapi bundle
 cargo xtask openapi check
