@@ -8,6 +8,7 @@ rules:
   spec-strict-refs: error
   spec-components-invalid-map-name: error
   nullable-type-sibling: error
+  operation-4xx-response: error
   tag-description: off
   no-invalid-schema-examples: off
   no-invalid-media-type-examples: off

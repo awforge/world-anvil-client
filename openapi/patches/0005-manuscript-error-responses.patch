@@ -1,0 +1,877 @@
+diff --git a/parts/manuscript/manuscript-beat.yml b/parts/manuscript/manuscript-beat.yml
+index c272bdc..4553271 100644
+--- a/parts/manuscript/manuscript-beat.yml
++++ b/parts/manuscript/manuscript-beat.yml
+@@ -21,6 +21,18 @@ manuscript-beat:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   put:
+     tags:
+       - Manuscript Beat
+@@ -52,6 +64,18 @@ manuscript-beat:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   delete:
+     tags:
+       - Manuscript Beat
+@@ -67,6 +91,18 @@ manuscript-beat:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   patch:
+     tags:
+       - Manuscript Beat
+@@ -94,3 +130,15 @@ manuscript-beat:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/manuscript/manuscript-beats-by-manuscript-parts.yml b/parts/manuscript/manuscript-beats-by-manuscript-parts.yml
+index 88be0de..c1e9d02 100644
+--- a/parts/manuscript/manuscript-beats-by-manuscript-parts.yml
++++ b/parts/manuscript/manuscript-beats-by-manuscript-parts.yml
+@@ -25,4 +25,16 @@ manuscript-beats-by-manuscript-parts:
+             $ref: '../schemas/limit.yml#/General'
+     responses:
+       '200':
+-        description: ''
+\ No newline at end of file
++        description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/manuscript/manuscript-bookmark.yml b/parts/manuscript/manuscript-bookmark.yml
+index 67b7a4b..b680962 100644
+--- a/parts/manuscript/manuscript-bookmark.yml
++++ b/parts/manuscript/manuscript-bookmark.yml
+@@ -21,6 +21,18 @@ manuscript-bookmark:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   put:
+     tags:
+       - Manuscript Bookmark
+@@ -48,6 +60,18 @@ manuscript-bookmark:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   delete:
+     tags:
+       - Manuscript Bookmark
+@@ -63,6 +87,18 @@ manuscript-bookmark:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   patch:
+     tags:
+       - Manuscript Bookmark
+@@ -94,3 +130,15 @@ manuscript-bookmark:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/manuscript/manuscript-bookmarks-by-manuscript.yml b/parts/manuscript/manuscript-bookmarks-by-manuscript.yml
+index 691737d..fb8d0c0 100644
+--- a/parts/manuscript/manuscript-bookmarks-by-manuscript.yml
++++ b/parts/manuscript/manuscript-bookmarks-by-manuscript.yml
+@@ -25,4 +25,16 @@ manuscript-bookmarks-by-manuscript:
+             $ref: '../schemas/limit.yml#/General'
+     responses:
+       '200':
+-        description: ''
+\ No newline at end of file
++        description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/manuscript/manuscript-label.yml b/parts/manuscript/manuscript-label.yml
+index ecc5d45..28400b2 100644
+--- a/parts/manuscript/manuscript-label.yml
++++ b/parts/manuscript/manuscript-label.yml
+@@ -21,6 +21,18 @@ manuscript-label:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   put:
+     tags:
+       - Manuscript Label
+@@ -52,6 +64,18 @@ manuscript-label:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   delete:
+     tags:
+       - Manuscript Label
+@@ -67,6 +91,18 @@ manuscript-label:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   patch:
+     tags:
+       - Manuscript Label
+@@ -94,3 +130,15 @@ manuscript-label:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/manuscript/manuscript-labels-by-manuscript.yml b/parts/manuscript/manuscript-labels-by-manuscript.yml
+index bca1c96..125040b 100644
+--- a/parts/manuscript/manuscript-labels-by-manuscript.yml
++++ b/parts/manuscript/manuscript-labels-by-manuscript.yml
+@@ -25,4 +25,16 @@ manuscript-labels-by-manuscript:
+             $ref: '../schemas/limit.yml#/General'
+     responses:
+       '200':
+-        description: ''
+\ No newline at end of file
++        description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/manuscript/manuscript-part.yml b/parts/manuscript/manuscript-part.yml
+index 96fc149..8798fa4 100644
+--- a/parts/manuscript/manuscript-part.yml
++++ b/parts/manuscript/manuscript-part.yml
+@@ -21,6 +21,18 @@ manuscript-part:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   put:
+     tags:
+       - Manuscript Part
+@@ -64,6 +76,18 @@ manuscript-part:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   delete:
+     tags:
+       - Manuscript Part
+@@ -79,6 +103,18 @@ manuscript-part:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   patch:
+     tags:
+       - Manuscript Part
+@@ -106,3 +142,15 @@ manuscript-part:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/manuscript/manuscript-parts-by-manuscript-version.yml b/parts/manuscript/manuscript-parts-by-manuscript-version.yml
+index e6a5732..52dad53 100644
+--- a/parts/manuscript/manuscript-parts-by-manuscript-version.yml
++++ b/parts/manuscript/manuscript-parts-by-manuscript-version.yml
+@@ -25,4 +25,16 @@ manuscript-parts-by-manuscript-version:
+             $ref: '../schemas/limit.yml#/General'
+     responses:
+       '200':
+-        description: ''
+\ No newline at end of file
++        description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/manuscript/manuscript-plot.yml b/parts/manuscript/manuscript-plot.yml
+index ee1cf83..4e5f6d5 100644
+--- a/parts/manuscript/manuscript-plot.yml
++++ b/parts/manuscript/manuscript-plot.yml
+@@ -21,6 +21,18 @@ manuscript-plot:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   put:
+     tags:
+       - Manuscript Plot
+@@ -52,6 +64,18 @@ manuscript-plot:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   delete:
+     tags:
+       - Manuscript Plot
+@@ -67,6 +91,18 @@ manuscript-plot:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   patch:
+     tags:
+       - Manuscript Plot
+@@ -94,3 +130,15 @@ manuscript-plot:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/manuscript/manuscript-plots-by-manuscript-version.yml b/parts/manuscript/manuscript-plots-by-manuscript-version.yml
+index c2ebf86..2145d29 100644
+--- a/parts/manuscript/manuscript-plots-by-manuscript-version.yml
++++ b/parts/manuscript/manuscript-plots-by-manuscript-version.yml
+@@ -25,4 +25,16 @@ manuscript-plots-by-manuscript-version:
+             $ref: '../schemas/limit.yml#/General'
+     responses:
+       '200':
+-        description: ''
+\ No newline at end of file
++        description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/manuscript/manuscript-stat.yml b/parts/manuscript/manuscript-stat.yml
+index 2c1e912..67db2a4 100644
+--- a/parts/manuscript/manuscript-stat.yml
++++ b/parts/manuscript/manuscript-stat.yml
+@@ -21,6 +21,18 @@ manuscript-stat:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   put:
+     tags:
+       - Manuscript Stat
+@@ -52,6 +64,18 @@ manuscript-stat:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   delete:
+     tags:
+       - Manuscript Stat
+@@ -67,6 +91,18 @@ manuscript-stat:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   patch:
+     tags:
+       - Manuscript Stat
+@@ -94,3 +130,15 @@ manuscript-stat:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/manuscript/manuscript-stats-by manuscipt-version.yml b/parts/manuscript/manuscript-stats-by manuscipt-version.yml
+index 18685c5..b55ffaf 100644
+--- a/parts/manuscript/manuscript-stats-by manuscipt-version.yml	
++++ b/parts/manuscript/manuscript-stats-by manuscipt-version.yml	
+@@ -25,4 +25,16 @@ manuscript-stats-by manuscipt-version:
+             $ref: '../schemas/limit.yml#/General'
+     responses:
+       '200':
+-        description: ''
+\ No newline at end of file
++        description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/manuscript/manuscript-tag.yml b/parts/manuscript/manuscript-tag.yml
+index 866996a..64cd3ea 100644
+--- a/parts/manuscript/manuscript-tag.yml
++++ b/parts/manuscript/manuscript-tag.yml
+@@ -21,6 +21,18 @@ manuscript-tag:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   put:
+     tags:
+       - Manuscript Tag
+@@ -52,6 +64,18 @@ manuscript-tag:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   delete:
+     tags:
+       - Manuscript Tag
+@@ -67,6 +91,18 @@ manuscript-tag:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   patch:
+     tags:
+       - Manuscript Tag
+@@ -94,3 +130,15 @@ manuscript-tag:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/manuscript/manuscript-tags-by-manuscript.yml b/parts/manuscript/manuscript-tags-by-manuscript.yml
+index 9c833d7..e2a6c06 100644
+--- a/parts/manuscript/manuscript-tags-by-manuscript.yml
++++ b/parts/manuscript/manuscript-tags-by-manuscript.yml
+@@ -25,4 +25,16 @@ manuscript-tags-by-manuscript:
+             $ref: '../schemas/limit.yml#/General'
+     responses:
+       '200':
+-        description: ''
+\ No newline at end of file
++        description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/manuscript/manuscript-version.yml b/parts/manuscript/manuscript-version.yml
+index a0481f3..47ffe35 100644
+--- a/parts/manuscript/manuscript-version.yml
++++ b/parts/manuscript/manuscript-version.yml
+@@ -21,6 +21,18 @@ manuscript-version:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   put:
+     tags:
+       - Manuscript Version
+@@ -52,6 +64,18 @@ manuscript-version:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   delete:
+     tags:
+       - Manuscript Version
+@@ -67,6 +91,18 @@ manuscript-version:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   patch:
+     tags:
+       - Manuscript Version
+@@ -98,3 +134,15 @@ manuscript-version:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/manuscript/manuscript-versions-by-manuscript.yml b/parts/manuscript/manuscript-versions-by-manuscript.yml
+index 1ac14f5..c01fb5a 100644
+--- a/parts/manuscript/manuscript-versions-by-manuscript.yml
++++ b/parts/manuscript/manuscript-versions-by-manuscript.yml
+@@ -25,4 +25,16 @@ manuscript-versions-by-manuscript:
+             $ref: '../schemas/limit.yml#/General'
+     responses:
+       '200':
+-        description: ''
+\ No newline at end of file
++        description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+diff --git a/parts/manuscript/manuscript.yml b/parts/manuscript/manuscript.yml
+index cde1037..a088f46 100644
+--- a/parts/manuscript/manuscript.yml
++++ b/parts/manuscript/manuscript.yml
+@@ -21,6 +21,18 @@ manuscript:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   put:
+     tags:
+       - Manuscript
+@@ -52,6 +64,18 @@ manuscript:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   delete:
+     tags:
+       - Manuscript
+@@ -67,6 +91,18 @@ manuscript:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'
+   patch:
+     tags:
+       - Manuscript
+@@ -94,3 +130,15 @@ manuscript:
+     responses:
+       '200':
+         description: ''
++      '400':
++        $ref: '../responses/BadRequest.yml'
++      '401':
++        $ref: '../responses/Unauthorized.yml'
++      '403':
++        $ref: '../responses/Forbidden.yml'
++      '404':
++        $ref: '../responses/NotFound.yml'
++      '405':
++        $ref: '../responses/MethodNotAllowed.yml'
++      '422':
++        $ref: '../responses/UnprocessableEntity.yml'

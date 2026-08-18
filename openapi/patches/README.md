@@ -12,6 +12,8 @@ temporary copy of `../upstream`. The vendored source remains unchanged.
   and descriptions are preserved.
 - `0004-required-request-bodies.patch` marks every supported JSON request body
   as required by the OpenAPI contract.
+- `0005-manuscript-error-responses.patch` adds the standard shared client-error
+  responses omitted from the manuscript operations.
 
 Add new corrections as sequentially numbered patches and keep each patch
 focused on one concern.
