@@ -1,3 +1,5 @@
+#[path = "../../codegen.rs"]
+mod codegen;
 mod openapi;
 
 use std::{ffi::OsString, path::PathBuf, process::ExitCode};

@@ -3,7 +3,9 @@ use std::fs;
 use anyhow::{Context, Result, bail, ensure};
 use diffy::DiffOptions;
 use openapiv3::OpenAPI;
-use progenitor::{GenerationSettings, Generator, InterfaceStyle, TagStyle};
+use progenitor::Generator;
+
+use crate::codegen;
 
 use super::{
     bundle::build_bundle,
@@ -71,10 +73,7 @@ fn smoke_generate(specification: &[u8]) -> Result<()> {
     let api: OpenAPI = serde_json::from_slice(specification)
         .context("cannot parse the rebuilt bundle as OpenAPI 3")?;
 
-    let mut settings = GenerationSettings::default();
-    settings
-        .with_interface(InterfaceStyle::Builder)
-        .with_tag(TagStyle::Separate);
+    let settings = codegen::generation_settings();
     let mut generator = Generator::new(&settings);
     let tokens = generator
         .generate_tokens(&api)

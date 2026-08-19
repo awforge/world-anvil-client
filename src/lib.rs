@@ -1,6 +1,73 @@
 #![warn(clippy::pedantic)]
 #![warn(clippy::cargo)]
 
+use std::{fmt, future};
+
+use reqwest::header::{HeaderMap, HeaderName, HeaderValue, InvalidHeaderValue};
+
+/// Base URL of the World Anvil Boromir API.
+pub const WORLD_ANVIL_API_URL: &str = "https://www.worldanvil.com/api/external/boromir";
+
+const APPLICATION_KEY_HEADER: HeaderName = HeaderName::from_static("x-application-key");
+const AUTH_TOKEN_HEADER: HeaderName = HeaderName::from_static("x-auth-token");
+
+/// Credentials required by the World Anvil API.
+///
+/// Both values are validated as HTTP header values and marked as sensitive so
+/// HTTP-client diagnostics redact them.
+#[derive(Clone)]
+pub struct Credentials {
+    application_key: HeaderValue,
+    authentication_token: HeaderValue,
+}
+
+impl Credentials {
+    /// Creates credentials from a World Anvil application key and user token.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`InvalidHeaderValue`] when either value cannot be represented
+    /// safely in an HTTP header.
+    pub fn new(
+        application_key: impl AsRef<str>,
+        authentication_token: impl AsRef<str>,
+    ) -> Result<Self, InvalidHeaderValue> {
+        let mut application_key = HeaderValue::from_str(application_key.as_ref())?;
+        application_key.set_sensitive(true);
+
+        let mut authentication_token = HeaderValue::from_str(authentication_token.as_ref())?;
+        authentication_token.set_sensitive(true);
+
+        Ok(Self {
+            application_key,
+            authentication_token,
+        })
+    }
+
+    fn apply(&self, headers: &mut HeaderMap) {
+        headers.insert(APPLICATION_KEY_HEADER, self.application_key.clone());
+        headers.insert(AUTH_TOKEN_HEADER, self.authentication_token.clone());
+    }
+}
+
+impl fmt::Debug for Credentials {
+    fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result {
+        formatter
+            .debug_struct("Credentials")
+            .field("application_key", &"[REDACTED]")
+            .field("authentication_token", &"[REDACTED]")
+            .finish()
+    }
+}
+
+fn inject_credentials(
+    credentials: &Credentials,
+    request: &mut reqwest::Request,
+) -> future::Ready<Result<(), std::convert::Infallible>> {
+    credentials.apply(request.headers_mut());
+    future::ready(Ok(()))
+}
+
 #[allow(
     clippy::all,
     clippy::pedantic,
@@ -9,4 +76,211 @@
 )]
 pub mod api {
     include!(concat!(env!("OUT_DIR"), "/world_anvil.rs"));
+}
+
+pub use api::Client;
+
+impl api::Client {
+    /// Creates an authenticated client for the World Anvil production API.
+    ///
+    /// ```no_run
+    /// use world_anvil_client::{Client, Credentials};
+    /// use world_anvil_client::api::ClientUserExt;
+    ///
+    /// async fn read_current_user() -> Result<(), Box<dyn std::error::Error>> {
+    ///     let credentials = Credentials::new(
+    ///         std::env::var("WORLD_ANVIL_APPLICATION_KEY")?,
+    ///         std::env::var("WORLD_ANVIL_AUTH_TOKEN")?,
+    ///     )?;
+    ///     let client = Client::world_anvil(credentials);
+    ///     let identity = client.read_identity().send().await?.into_inner();
+    ///     println!("Authenticated as {:?}", identity.username);
+    ///     Ok(())
+    /// }
+    /// ```
+    #[must_use]
+    pub fn world_anvil(credentials: Credentials) -> Self {
+        Self::new(WORLD_ANVIL_API_URL, credentials)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::{Client, Credentials, WORLD_ANVIL_API_URL, api::ClientInfo};
+
+    #[test]
+    fn credentials_preserve_both_header_values() {
+        // Arrange
+        let credentials = Credentials::new("application-key", "authentication-token")
+            .expect("test credentials are valid header values");
+
+        // Assert
+        assert_eq!(
+            credentials.application_key,
+            reqwest::header::HeaderValue::from_static("application-key")
+        );
+        assert_eq!(
+            credentials.authentication_token,
+            reqwest::header::HeaderValue::from_static("authentication-token")
+        );
+    }
+
+    #[test]
+    fn world_anvil_client_uses_the_production_url() {
+        // Arrange
+        let credentials = Credentials::new("application-key", "auth-token")
+            .expect("test credentials are valid header values");
+
+        // Act
+        let client = Client::world_anvil(credentials);
+
+        // Assert
+        assert_eq!(
+            <Client as ClientInfo<Credentials>>::baseurl(&client),
+            WORLD_ANVIL_API_URL
+        );
+    }
+
+    #[test]
+    fn credential_debug_output_is_redacted() {
+        // Arrange
+        let credentials = Credentials::new("visible-application-key", "visible-auth-token")
+            .expect("test credentials are valid header values");
+        assert!(credentials.application_key.is_sensitive());
+        assert!(credentials.authentication_token.is_sensitive());
+
+        // Act
+        let credentials_debug = format!("{credentials:?}");
+        let client_debug = format!(
+            "{:?}",
+            Client::new("https://example.invalid", credentials.clone())
+        );
+
+        // Assert
+        for output in [&credentials_debug, &client_debug] {
+            assert!(!output.contains("visible-application-key"), "{output}");
+            assert!(!output.contains("visible-auth-token"), "{output}");
+            assert!(output.contains("[REDACTED]"), "{output}");
+        }
+    }
+
+    #[cfg(not(target_arch = "wasm32"))]
+    #[test]
+    fn generated_client_configures_the_request_timeout() {
+        // Arrange
+        let credentials = Credentials::new("application-key", "auth-token")
+            .expect("test credentials are valid header values");
+
+        // Act
+        let client = Client::new("https://example.invalid", credentials);
+
+        // Assert
+        let transport_debug = format!("{:?}", <Client as ClientInfo<Credentials>>::client(&client));
+        assert!(
+            transport_debug.contains("reqwest::config::TotalTimeout: 15s"),
+            "generated client should retain its 15-second request timeout: {transport_debug}"
+        );
+    }
+
+    #[test]
+    fn generated_client_uses_fifteen_second_connect_timeout() {
+        use std::time::Duration;
+
+        // Arrange
+        let listener =
+            std::net::TcpListener::bind(("127.0.0.1", 0)).expect("test server should bind");
+        listener
+            .set_nonblocking(true)
+            .expect("test server should be nonblocking");
+        let address = listener
+            .local_addr()
+            .expect("test server should have an address");
+        let credentials = Credentials::new("application-key", "auth-token")
+            .expect("test credentials are valid header values");
+        let client = Client::new("https://example.invalid", credentials);
+        let transport = <Client as ClientInfo<Credentials>>::client(&client).clone();
+        let runtime = tokio::runtime::Builder::new_current_thread()
+            .enable_all()
+            .build()
+            .expect("test runtime configuration is valid");
+
+        runtime.block_on(async move {
+            tokio::time::pause();
+            let listener = tokio::net::TcpListener::from_std(listener)
+                .expect("test server should register with the runtime");
+            let (accepted_tx, accepted_rx) = tokio::sync::oneshot::channel();
+            let server = tokio::spawn(async move {
+                let (_socket, _) = listener
+                    .accept()
+                    .await
+                    .expect("test server should accept a connection");
+                accepted_tx
+                    .send(())
+                    .expect("request task should await the connection");
+                std::future::pending::<()>().await;
+            });
+            let request = transport
+                .get(format!("https://{address}"))
+                .timeout(Duration::from_secs(30));
+            let request_task = tokio::spawn(async move { request.send().await });
+
+            // Act
+            accepted_rx
+                .await
+                .expect("test server should observe the connection");
+            tokio::time::advance(Duration::from_secs(16)).await;
+            tokio::task::yield_now().await;
+
+            // Assert
+            assert!(
+                request_task.is_finished(),
+                "connect timeout did not fire after 15 seconds"
+            );
+            let error = request_task
+                .await
+                .expect("request task should finish normally")
+                .expect_err("the stalled TLS connection should time out");
+            assert!(error.is_timeout(), "{error:?}");
+            assert!(error.is_connect(), "{error:?}");
+
+            server.abort();
+            let _ = server.await;
+        });
+    }
+
+    #[test]
+    fn generated_client_preserves_a_supplied_transport() {
+        // Arrange
+        let mut default_headers = reqwest::header::HeaderMap::new();
+        default_headers.insert(
+            "x-client-marker",
+            reqwest::header::HeaderValue::from_static("supplied-transport"),
+        );
+        let transport = reqwest::Client::builder()
+            .default_headers(default_headers)
+            .build()
+            .expect("test transport configuration is valid");
+        let credentials = Credentials::new("application-key", "auth-token")
+            .expect("test credentials are valid header values");
+
+        // Act
+        let client = Client::new_with_client("https://example.invalid", transport, credentials);
+
+        // Assert
+        let transport_debug = format!("{:?}", <Client as ClientInfo<Credentials>>::client(&client));
+        assert!(
+            transport_debug.contains("x-client-marker")
+                && transport_debug.contains("supplied-transport"),
+            "generated client should retain the supplied transport: {transport_debug}"
+        );
+    }
+
+    #[test]
+    fn credentials_reject_unsafe_header_values() {
+        // Act
+        let error = Credentials::new("application-key", "auth-token\nleaked");
+
+        // Assert
+        assert!(error.is_err());
+    }
 }
