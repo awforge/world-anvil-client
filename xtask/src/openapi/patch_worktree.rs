@@ -173,12 +173,7 @@ fn repository_git_directories(root: &Path) -> Result<Vec<PathBuf>> {
             .map(str::trim)
             .filter(|path| !path.is_empty())
             .with_context(|| format!("invalid Git metadata pointer {}", dot_git.display()))?;
-        let path = Path::new(relative);
-        let path = if path.is_absolute() {
-            path.to_path_buf()
-        } else {
-            root.join(path)
-        };
+        let path = root.join(relative);
         fs::canonicalize(&path)
             .with_context(|| format!("cannot resolve Git metadata {}", path.display()))?
     };
@@ -198,12 +193,7 @@ fn repository_git_directories(root: &Path) -> Result<Vec<PathBuf>> {
                 "Git common-directory pointer is empty: {}",
                 common_pointer.display()
             );
-            let path = Path::new(relative);
-            let path = if path.is_absolute() {
-                path.to_path_buf()
-            } else {
-                git_directory.join(path)
-            };
+            let path = git_directory.join(relative);
             let common_directory = fs::canonicalize(&path)
                 .with_context(|| format!("cannot resolve Git metadata {}", path.display()))?;
             ensure!(
@@ -286,7 +276,6 @@ fn install(staging: TempDir, destination: &Destination) -> Result<()> {
             destination.path.display()
         );
     }
-    let _ = staging.keep();
 
     Ok(())
 }
@@ -297,7 +286,7 @@ mod tests {
 
     use tempfile::TempDir;
 
-    use super::create;
+    use super::{Destination, create, install, repository_git_directories, validate_destination};
     use crate::openapi::shared::RepositoryPaths;
 
     const FIRST_PATCH: &str = "\
@@ -464,6 +453,22 @@ diff --git a/parts/example.yml b/parts/example.yml
     }
 
     #[test]
+    fn validate_destination_records_that_an_empty_output_directory_exists() {
+        // Arrange
+        let fixture = Fixture::new();
+        let output = fixture.output("worktree");
+        fs::create_dir(&output).unwrap();
+
+        // Act
+        let destination = validate_destination(&fixture.paths, &output).unwrap();
+
+        // Assert
+        assert!(destination.existed);
+        assert_eq!(destination.path, output);
+        assert_eq!(destination.parent, fixture.directory.path());
+    }
+
+    #[test]
     fn create_rejects_a_nonempty_output_without_modifying_it() {
         // Arrange
         let fixture = Fixture::new();
@@ -597,6 +602,88 @@ diff --git a/parts/example.yml b/parts/example.yml
             "{error}"
         );
         assert!(!output.exists());
+    }
+
+    #[test]
+    fn repository_git_directories_accepts_a_dot_git_directory() {
+        // Arrange
+        let fixture = Fixture::new();
+        let dot_git = fixture.paths.root.join(".git");
+        fs::create_dir(&dot_git).unwrap();
+
+        // Act
+        let directories = repository_git_directories(&fixture.paths.root).unwrap();
+
+        // Assert
+        assert_eq!(directories, [dot_git.canonicalize().unwrap()]);
+    }
+
+    #[test]
+    fn repository_git_directories_resolves_a_relative_gitdir_pointer() {
+        // Arrange
+        let fixture = Fixture::new();
+        let git_directory = fixture.paths.root.join("worktree-git-directory");
+        fs::create_dir(&git_directory).unwrap();
+        fs::write(
+            fixture.paths.root.join(".git"),
+            "gitdir: worktree-git-directory\n",
+        )
+        .unwrap();
+
+        // Act
+        let directories = repository_git_directories(&fixture.paths.root).unwrap();
+
+        // Assert
+        assert_eq!(directories, [git_directory.canonicalize().unwrap()]);
+    }
+
+    #[test]
+    fn repository_git_directories_resolves_an_absolute_common_directory_pointer() {
+        // Arrange
+        let fixture = Fixture::new();
+        let dot_git = fixture.paths.root.join(".git");
+        let common_directory = fixture.paths.root.join("common-git-directory");
+        fs::create_dir(&dot_git).unwrap();
+        fs::create_dir(&common_directory).unwrap();
+        fs::write(
+            dot_git.join("commondir"),
+            format!("{}\n", common_directory.display()),
+        )
+        .unwrap();
+
+        // Act
+        let directories = repository_git_directories(&fixture.paths.root).unwrap();
+
+        // Assert
+        assert_eq!(
+            directories,
+            [
+                dot_git.canonicalize().unwrap(),
+                common_directory.canonicalize().unwrap(),
+            ]
+        );
+    }
+
+    #[test]
+    fn install_restores_an_existing_destination_when_rename_fails() {
+        // Arrange
+        let directory = tempfile::tempdir().unwrap();
+        let destination_path = directory.path().join("worktree");
+        fs::create_dir(&destination_path).unwrap();
+        let staging = tempfile::tempdir_in(directory.path()).unwrap();
+        fs::remove_dir(staging.path()).unwrap();
+        let destination = Destination {
+            path: destination_path.clone(),
+            parent: directory.path().to_path_buf(),
+            existed: true,
+        };
+
+        // Act
+        let error = install(staging, &destination).unwrap_err().to_string();
+
+        // Assert
+        assert!(error.contains("cannot install patch worktree"), "{error}");
+        assert!(destination_path.is_dir());
     }
 
     #[test]

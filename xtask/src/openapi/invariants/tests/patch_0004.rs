@@ -67,6 +67,27 @@ fn operations_without_request_bodies_pass() {
 }
 
 #[test]
+fn an_operation_without_a_request_body_does_not_stop_later_validation() {
+    let specification = specification(
+        json!({
+            "/alpha": {
+                "get": operation("readAlpha", None)
+            },
+            "/zeta": {
+                "post": operation("createZeta", Some(json_body(None)))
+            }
+        }),
+        json!({}),
+    );
+
+    let message = validation_error(&specification);
+    assert_eq!(
+        message,
+        "OpenAPI semantic invariants failed:\n  [WA-BODY-001] POST /zeta (createZeta): requestBody.required must be true"
+    );
+}
+
+#[test]
 fn an_inline_required_request_body_passes() {
     let specification = specification(
         json!({
@@ -117,9 +138,10 @@ fn omitted_and_explicitly_false_required_flags_fail() {
         );
 
         let message = validation_error(&specification);
-        assert!(
-            message.contains(RULE_ID),
-            "missing rule ID for {name} required flag: {message}"
+        assert_eq!(
+            message,
+            "OpenAPI semantic invariants failed:\n  [WA-BODY-001] POST /widgets (createWidget): requestBody.required must be true",
+            "unexpected diagnostic for {name} required flag"
         );
     }
 }
@@ -154,6 +176,7 @@ fn missing_external_and_cyclic_request_body_references_fail_closed() {
                 "operation": { "$ref": "#/components/requestBodies/Missing" },
                 "components": {}
             }),
+            "unresolved local reference: #/components/requestBodies/Missing",
         ),
         (
             "external",
@@ -163,6 +186,7 @@ fn missing_external_and_cyclic_request_body_references_fail_closed() {
                 },
                 "components": {}
             }),
+            "external reference is not supported: https://example.invalid/openapi.json#/components/requestBodies/Body",
         ),
         (
             "cyclic",
@@ -173,10 +197,11 @@ fn missing_external_and_cyclic_request_body_references_fail_closed() {
                     "B": { "$ref": "#/components/requestBodies/A" }
                 }
             }),
+            "cyclic reference #/components/requestBodies/A",
         ),
     ];
 
-    for (name, fixture) in fixtures {
+    for (name, fixture, expected_error) in fixtures {
         let specification = specification(
             json!({
                 "/widgets": {
@@ -187,9 +212,12 @@ fn missing_external_and_cyclic_request_body_references_fail_closed() {
         );
 
         let message = validation_error(&specification);
-        assert!(
-            message.contains(RULE_ID),
-            "missing rule ID for {name} reference: {message}"
+        assert_eq!(
+            message,
+            format!(
+                "OpenAPI semantic invariants failed:\n  [WA-BODY-001] POST /widgets (createWidget): {expected_error}"
+            ),
+            "unexpected diagnostic for {name} reference"
         );
     }
 }

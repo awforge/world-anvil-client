@@ -3,6 +3,7 @@ use std::collections::BTreeMap;
 use serde_json::Value;
 
 use super::{
+    OPERATION_RULE,
     context::{OperationView, Validator, resolve_local},
     schema::{
         component_schema, composition_refs, effective_properties, effective_shape, is_uuid_string,
@@ -13,7 +14,6 @@ use super::{
 const STANDARD_RESPONSE_STATUSES: &[&str] = &["200", "400", "401", "403", "404", "405", "422"];
 
 const AUTH_RULE: &str = "WA-AUTH-001";
-const OPERATION_RULE: &str = "WA-OP-001";
 const ARTICLE_RESPONSES_RULE: &str = "WA-CONTRACT-ARTICLE-RESPONSES";
 const NOTESECTION_RESPONSES_RULE: &str = "WA-CONTRACT-NOTESECTION-RESPONSES";
 const CANVAS_CREATE_RULE: &str = "WA-CONTRACT-CANVAS-CREATE";

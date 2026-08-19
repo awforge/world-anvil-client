@@ -15,6 +15,8 @@ use context::Validator;
 #[cfg(test)]
 use patch_0005::MANUSCRIPT_OPERATION_IDS;
 
+const OPERATION_RULE: &str = "WA-OP-001";
+
 #[derive(Clone, Copy)]
 struct RuleSelection {
     patch_0001: bool,
@@ -140,6 +142,10 @@ fn validate_value(root: &Value, rules: RuleSelection) -> Result<()> {
 
     validator.finish()
 }
+
+#[cfg(test)]
+#[path = "tests/context.rs"]
+mod context_tests;
 
 #[cfg(test)]
 #[path = "tests/patch_0001.rs"]

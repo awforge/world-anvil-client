@@ -108,6 +108,30 @@ fn success_and_redirect_response_bodies_are_out_of_scope() {
 }
 
 #[test]
+fn an_operation_without_response_entries_does_not_stop_later_validation() {
+    let specification = specification(
+        json!({
+            "/alpha": {
+                "get": operation("readAlpha", Value::Null)
+            },
+            "/zeta": {
+                "get": operation(
+                    "readZeta",
+                    json!({ "500": bodyful_response("application/json") })
+                )
+            }
+        }),
+        json!({}),
+    );
+
+    let message = validation_error(&specification);
+    assert_eq!(
+        message,
+        "OpenAPI semantic invariants failed:\n  [WA-ERROR-001] GET /zeta (readZeta), response 500: error response must be bodyless; found application/json"
+    );
+}
+
+#[test]
 fn bodyful_error_statuses_and_ranges_fail() {
     for (status, media_type) in [
         ("404", "application/json"),
@@ -178,7 +202,34 @@ fn a_referenced_bodyful_error_response_fails() {
     );
 
     let message = validation_error(&specification);
-    assert!(message.contains(RULE_ID), "missing rule ID: {message}");
+    assert_eq!(
+        message,
+        "OpenAPI semantic invariants failed:\n  [WA-ERROR-001] GET /widgets/{id} (readWidget), response 404: error response must be bodyless; found application/json"
+    );
+}
+
+#[test]
+fn an_unresolved_response_does_not_stop_later_response_validation() {
+    let specification = specification(
+        json!({
+            "/widgets": {
+                "get": operation(
+                    "readWidgets",
+                    json!({
+                        "400": { "$ref": "#/components/responses/Missing" },
+                        "500": bodyful_response("text/plain")
+                    })
+                )
+            }
+        }),
+        json!({}),
+    );
+
+    let message = validation_error(&specification);
+    assert_eq!(
+        message,
+        "OpenAPI semantic invariants failed:\n  [WA-ERROR-001] GET /widgets (readWidgets), response 400: unresolved local reference: #/components/responses/Missing\n  [WA-ERROR-001] GET /widgets (readWidgets), response 500: error response must be bodyless; found text/plain"
+    );
 }
 
 #[test]

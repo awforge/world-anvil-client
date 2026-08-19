@@ -3,10 +3,11 @@ use std::{collections::BTreeSet, fmt::Write as _};
 use anyhow::{Result, bail};
 use serde_json::Value;
 
+use super::OPERATION_RULE;
+
 const HTTP_METHODS: &[&str] = &[
     "get", "put", "post", "delete", "options", "head", "patch", "trace",
 ];
-const OPERATION_RULE: &str = "WA-OP-001";
 
 #[derive(Debug, Eq, Ord, PartialEq, PartialOrd)]
 struct Violation {
@@ -188,4 +189,69 @@ pub(super) fn resolve_reference_target<'a>(
     }
     root.pointer(pointer)
         .ok_or_else(|| format!("unresolved local reference: {reference}"))
+}
+
+#[cfg(test)]
+mod tests {
+    use serde_json::json;
+    use crate::openapi::invariants::context::Validator;
+
+    #[test]
+    fn reports_each_malformed_path_item_and_continues_collecting_operations() {
+        let root = json!({
+        "paths": {
+            "/1-unresolved": {
+                "$ref": "#/components/pathItems/Missing"
+            },
+            "/2-not-an-object": false,
+            "/3-methods": {
+                "get": false,
+                "post": {
+                    "operationId": "createWidget"
+                }
+            }
+        }
+    });
+        let validator = Validator::new(&root, true);
+
+        assert_eq!(validator.operations.len(), 1);
+        assert_eq!(validator.operations[0].path, "/3-methods");
+        assert_eq!(validator.operations[0].method, "post");
+
+        let error = validator
+            .finish()
+            .expect_err("malformed path entries must fail validation");
+
+        assert_eq!(
+            error.to_string(),
+            concat!(
+            "OpenAPI semantic invariants failed:\n",
+            "  [WA-OP-001] GET /3-methods: operation must be an object\n",
+            "  [WA-OP-001] path item /1-unresolved: unresolved local reference: ",
+            "#/components/pathItems/Missing\n",
+            "  [WA-OP-001] path item /2-not-an-object: path item must be an object",
+            )
+        );
+    }
+
+    #[test]
+    fn failure_diagnostics_include_the_header_and_sorted_violations() {
+        let root = json!({ "paths": {} });
+        let mut validator = Validator::new(&root, false);
+        validator.push("WA-TEST-002", "second", "later violation");
+        validator.push("WA-TEST-001", "first", "earlier violation");
+
+        let error = validator
+            .finish()
+            .expect_err("violations must fail validation");
+
+        assert_eq!(
+            error.to_string(),
+            concat!(
+            "OpenAPI semantic invariants failed:\n",
+            "  [WA-TEST-001] first: earlier violation\n",
+            "  [WA-TEST-002] second: later violation",
+            )
+        );
+    }
 }

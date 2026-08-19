@@ -10,26 +10,3 @@
 pub mod api {
     include!(concat!(env!("OUT_DIR"), "/world_anvil.rs"));
 }
-
-#[must_use]
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn add_returns_the_sum_of_its_operands() {
-        // Arrange
-        let left = 3;
-        let right = 2;
-
-        // Act
-        let result = add(left, right);
-
-        // Assert
-        assert_eq!(result, 5);
-    }
-}

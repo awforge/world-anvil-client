@@ -232,6 +232,70 @@ fn unrelated_tags_and_similar_prefixes_are_out_of_scope() {
 }
 
 #[test]
+fn an_unrelated_operation_does_not_stop_validation_of_later_operations() {
+    let mut specification = document();
+    extend_paths(
+        &mut specification,
+        json!({
+            "/000-unrelated": {
+                "get": operation("readArticle", &["Article"], &["200"])
+            },
+            "/zzz-manuscript": {
+                "post": operation(
+                    "readManuscriptComment",
+                    &["Manuscript Comment"],
+                    &["200"]
+                )
+            }
+        }),
+    );
+
+    let message = validation_error(&specification);
+    assert_eq!(
+        message,
+        "OpenAPI semantic invariants failed:\n  \
+         [WA-CONTRACT-MANUSCRIPT-RESPONSES] POST /zzz-manuscript \
+         (readManuscriptComment): missing explicit client-error response statuses \
+         400, 401, 403, 404, 405, 422"
+    );
+}
+
+#[test]
+fn invalid_responses_do_not_stop_validation_of_later_operations() {
+    let mut specification = document();
+    extend_paths(
+        &mut specification,
+        json!({
+            "/aaa-invalid-responses": {
+                "get": {
+                    "operationId": "readManuscriptComment",
+                    "tags": ["Manuscript Comment"],
+                    "responses": null
+                }
+            },
+            "/zzz-missing-statuses": {
+                "patch": operation(
+                    "updateManuscriptComment",
+                    &["Manuscript Comment"],
+                    &["200"]
+                )
+            }
+        }),
+    );
+
+    let message = validation_error(&specification);
+    assert_eq!(
+        message,
+        "OpenAPI semantic invariants failed:\n  \
+         [WA-CONTRACT-MANUSCRIPT-RESPONSES] GET /aaa-invalid-responses \
+         (readManuscriptComment): responses must be an object\n  \
+         [WA-CONTRACT-MANUSCRIPT-RESPONSES] PATCH /zzz-missing-statuses \
+         (updateManuscriptComment): missing explicit client-error response statuses \
+         400, 401, 403, 404, 405, 422"
+    );
+}
+
+#[test]
 fn diagnostics_are_aggregated_in_deterministic_order() {
     let first_paths = json!({
         "/zeta": {
