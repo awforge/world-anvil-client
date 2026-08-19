@@ -193,25 +193,25 @@ pub(super) fn resolve_reference_target<'a>(
 
 #[cfg(test)]
 mod tests {
-    use serde_json::json;
     use crate::openapi::invariants::context::Validator;
+    use serde_json::json;
 
     #[test]
     fn reports_each_malformed_path_item_and_continues_collecting_operations() {
         let root = json!({
-        "paths": {
-            "/1-unresolved": {
-                "$ref": "#/components/pathItems/Missing"
-            },
-            "/2-not-an-object": false,
-            "/3-methods": {
-                "get": false,
-                "post": {
-                    "operationId": "createWidget"
+            "paths": {
+                "/1-unresolved": {
+                    "$ref": "#/components/pathItems/Missing"
+                },
+                "/2-not-an-object": false,
+                "/3-methods": {
+                    "get": false,
+                    "post": {
+                        "operationId": "createWidget"
+                    }
                 }
             }
-        }
-    });
+        });
         let validator = Validator::new(&root, true);
 
         assert_eq!(validator.operations.len(), 1);
@@ -225,11 +225,11 @@ mod tests {
         assert_eq!(
             error.to_string(),
             concat!(
-            "OpenAPI semantic invariants failed:\n",
-            "  [WA-OP-001] GET /3-methods: operation must be an object\n",
-            "  [WA-OP-001] path item /1-unresolved: unresolved local reference: ",
-            "#/components/pathItems/Missing\n",
-            "  [WA-OP-001] path item /2-not-an-object: path item must be an object",
+                "OpenAPI semantic invariants failed:\n",
+                "  [WA-OP-001] GET /3-methods: operation must be an object\n",
+                "  [WA-OP-001] path item /1-unresolved: unresolved local reference: ",
+                "#/components/pathItems/Missing\n",
+                "  [WA-OP-001] path item /2-not-an-object: path item must be an object",
             )
         );
     }
@@ -248,9 +248,9 @@ mod tests {
         assert_eq!(
             error.to_string(),
             concat!(
-            "OpenAPI semantic invariants failed:\n",
-            "  [WA-TEST-001] first: earlier violation\n",
-            "  [WA-TEST-002] second: later violation",
+                "OpenAPI semantic invariants failed:\n",
+                "  [WA-TEST-001] first: earlier violation\n",
+                "  [WA-TEST-002] second: later violation",
             )
         );
     }

@@ -19,14 +19,13 @@ fn main() -> Result<(), Box<dyn Error>> {
     let manifest_dir = PathBuf::from(
         env::var_os("CARGO_MANIFEST_DIR").expect("Cargo must set CARGO_MANIFEST_DIR"),
     );
-    let specification_path = manifest_dir.join(SPECIFICATION);
-
-    let specification: OpenAPI = serde_json::from_reader(File::open(&specification_path)?)?;
+    let spec_path = manifest_dir.join(SPECIFICATION);
+    let spec: OpenAPI = serde_json::from_reader(File::open(&spec_path)?)?;
 
     let settings = codegen::generation_settings();
-
     let mut generator = Generator::new(&settings);
-    let tokens = generator.generate_tokens(&specification)?;
+
+    let tokens = generator.generate_tokens(&spec)?;
     let syntax: syn::File = syn::parse2(tokens)?;
     let source = prettyplease::unparse(&syntax);
 
